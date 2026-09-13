@@ -172,33 +172,33 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden transition-all duration-1000 bg-cover bg-center bg-no-repeat -mt-[55px] sm:-mt-[65px]" style={{ backgroundImage: `url(${heroSlides[currentSlide].image})`, backgroundAttachment: 'fixed', backgroundSize: 'cover' }}>
+      <section className="relative min-h-[100vh] max-md:min-h-[85vh] flex items-center justify-center overflow-hidden transition-all duration-1000 bg-cover bg-center bg-no-repeat -mt-[55px] sm:-mt-[65px] bg-fixed max-md:bg-scroll" style={{ backgroundImage: `url(${heroSlides[currentSlide].image})`, backgroundSize: 'cover' }}>
         {/* Enhanced Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/30"></div>
 
-        <div className="page-container relative z-10 py-6 sm:py-10 md:py-16 lg:py-20 flex flex-col justify-between h-full min-h-[80vh]">
+        <div className="page-container relative z-10 py-6 sm:py-10 md:py-16 lg:py-20 flex flex-col justify-between h-full min-h-[75vh] max-md:min-h-[65vh]">
           <div className="max-w-3xl mt-auto mb-auto" key={currentSlide}>
             <div className="badge mb-3 sm:mb-4 md:mb-6 animate-fadeInUp text-xs sm:text-sm px-3 sm:px-4 py-2" style={{ background: 'rgba(246,201,28,0.2)', color: 'rgb(223, 196, 172)', backdropFilter: 'blur(4px)' }}>
               {heroSlides[currentSlide].badge}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-3 sm:mb-4 md:mb-6 leading-tight animate-fadeInUp" style={{ animationDelay: '0.1s', textShadow: '0 4px 12px rgba(0,0,0,0.3)' }}>
+            <h1 className="text-[28px] leading-[1.1] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-3 sm:mb-4 md:mb-6 animate-fadeInUp" style={{ animationDelay: '0.1s', textShadow: '0 4px 12px rgba(0,0,0,0.3)' }}>
               {heroSlides[currentSlide].titleLine1}
               <span className="block" style={{ color: 'rgb(223, 196, 172)' }}>{heroSlides[currentSlide].titleLine2}</span>
             </h1>
 
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 mb-4 sm:mb-6 md:mb-8 lg:mb-10 leading-relaxed animate-fadeInUp font-light" style={{ animationDelay: '0.2s', maxWidth: '550px', textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
+            <p className="text-[15px] sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 mb-6 sm:mb-6 md:mb-8 lg:mb-10 leading-relaxed animate-fadeInUp font-light" style={{ animationDelay: '0.2s', maxWidth: '550px', textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
               {heroSlides[currentSlide].subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 md:gap-6 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
-              <Link href="/shop" className="btn-accent text-xs sm:text-sm md:text-base lg:text-lg px-5 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-4 justify-center sm:justify-start font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
-                Shop Now <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
+              <Link href="/shop" className="btn-accent text-sm md:text-base lg:text-lg px-5 sm:px-6 md:px-8 lg:px-10 py-3 md:py-4 justify-center sm:justify-start font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                Shop Now <ArrowRight className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
               </Link>
             </div>
           </div>
 
-          <div className="absolute bottom-16 sm:bottom-20 left-0 right-0 flex justify-center gap-2 z-20">
+          <div className="absolute bottom-12 sm:bottom-20 left-0 right-0 flex justify-center gap-2 z-20">
             {heroSlides.map((_, i) => (
               <button
                 key={i}
@@ -228,12 +228,12 @@ export default function HomePage() {
             <p className="section-subtitle mt-3 max-w-2xl mx-auto animate-fadeInUp delay-200 text-sm">Discover our carefully curated collections, each designed with a unique philosophy to keep you healthy and satisfied.</p>
           </div>
           <div className="flex justify-center">
-            <div className="flex flex-wrap justify-center gap-6 max-w-5xl w-full">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-5xl w-full">
             {categories.map((cat, i) => (
               <Link 
                 href={`/shop?category=${encodeURIComponent(cat.name)}`} 
                 key={cat.name}
-                className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] max-w-sm flex-shrink-0"
+                className="w-[calc(100%-16px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] max-w-sm flex-shrink-0"
               >
                 <div className="card overflow-hidden group flex flex-col h-full hover:shadow-lg transition-all duration-300">
                   {/* Card Header with Image */}
@@ -296,9 +296,9 @@ export default function HomePage() {
             </div>
           ) : (
             <div className="w-full overflow-hidden flex justify-center">
-              <div className="scroll-animate-reverse flex gap-4 w-max" style={{ '--duration': '7s' } as any}>
+              <div className="scroll-animate-reverse flex gap-3 sm:gap-4 w-max" style={{ '--duration': '7s' } as any}>
                 {[...featured, ...featured].map((p, i) => (
-                  <div key={`featured-${i}`} className="flex-shrink-0 w-[280px] sm:w-[320px]">
+                  <div key={`featured-${i}`} className="flex-shrink-0 w-[82vw] max-w-[280px] sm:w-[320px] sm:max-w-[320px]">
                     <ProductCardWithSizes product={p} />
                   </div>
                 ))}
@@ -319,13 +319,13 @@ export default function HomePage() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4BA9E] rounded-full mix-blend-overlay filter blur-[120px] opacity-20 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-[120px] opacity-10 pointer-events-none"></div>
         <div className="page-container relative z-10">
-          <div className="text-center mb-16 animate-fadeInUp">
+          <div className="text-center mb-10 md:mb-16 animate-fadeInUp">
             <div className="badge mb-4 animate-slideInTop backdrop-blur-md border border-white/20" style={{ background: 'rgba(212,186,158,0.15)', color: '#D4BA9E' }}>Our Promise to You</div>
             <h2 className="section-title text-white animate-fadeInUp delay-100 tracking-tight">Why We&apos;re Not Just Another Snack Brand</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-fr">
             {whyUs.map(({ icon: Icon, title, desc }, i) => (
-              <div key={title} className="p-6 md:p-8 rounded-3xl group animate-fadeInUp backdrop-blur-xl border border-white/10 flex flex-col justify-center transition-all duration-500 hover:transform hover:-translate-y-2 bg-white/5 hover:bg-white/10" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div key={title} className="p-5 md:p-8 rounded-3xl group animate-fadeInUp backdrop-blur-xl border border-white/10 flex flex-col justify-center transition-all duration-500 hover:transform hover:-translate-y-2 bg-white/5 hover:bg-white/10" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500 shadow-2xl bg-white/10 border border-white/10">
                   <Icon className="w-7 h-7 text-[#D4BA9E]" />
                 </div>
@@ -355,9 +355,9 @@ export default function HomePage() {
             </div>
           ) : (
             <div className="w-full overflow-hidden flex justify-center">
-              <div className="scroll-animate flex gap-4 w-max" style={{ '--duration': '8s' } as any}>
+              <div className="scroll-animate flex gap-3 sm:gap-4 w-max" style={{ '--duration': '8s' } as any}>
                 {[...bestsellers, ...bestsellers].map((p, i) => (
-                  <div key={`bestseller-${i}`} className="flex-shrink-0 w-[220px] sm:w-[260px]">
+                  <div key={`bestseller-${i}`} className="flex-shrink-0 w-[82vw] max-w-[240px] sm:w-[260px] sm:max-w-[260px]">
                     <ProductCardWithSizes product={p} />
                   </div>
                 ))}
@@ -532,15 +532,15 @@ export default function HomePage() {
             </div>
 
             {mounted && (
-              <div className="card p-8 text-center animate-fadeIn" key={testimonialIndex}>
+              <div className="card p-6 md:p-8 text-center animate-fadeIn" key={testimonialIndex}>
                 <div className="flex justify-center gap-1 mb-4">
                   {[...Array(testimonials[testimonialIndex].rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-[rgb(223, 196, 172)] text-[rgb(223, 196, 172)]" />
+                    <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-[rgb(223, 196, 172)] text-[rgb(223, 196, 172)]" />
                   ))}
                 </div>
-                <p className="text-lg italic text-gray-700 mb-6 leading-relaxed">"{testimonials[testimonialIndex].text}"</p>
-                <p className="font-bold" style={{ color: '#475d2a' }}>{testimonials[testimonialIndex].name}</p>
-                <p className="text-sm text-gray-400">{testimonials[testimonialIndex].city}</p>
+                <p className="text-base md:text-lg italic text-gray-700 mb-6 leading-relaxed">"{testimonials[testimonialIndex].text}"</p>
+                <p className="font-bold text-sm md:text-base" style={{ color: '#475d2a' }}>{testimonials[testimonialIndex].name}</p>
+                <p className="text-xs md:text-sm text-gray-400">{testimonials[testimonialIndex].city}</p>
               </div>
             )}
             {mounted && (
@@ -573,15 +573,15 @@ export default function HomePage() {
             <h2 className="text-2xl font-extrabold mb-2 animate-fadeInUp delay-100" style={{ color: '#1a1a1a' }}>Get 10% Off Your First Order!</h2>
             <p className="text-sm mb-6 animate-fadeInUp delay-200" style={{ color: 'rgba(0,0,0,0.6)' }}>Join our snacker newsletter for exclusive discounts, new launches, and healthy snacking tips.</p>
             {subSuccess ? (
-              <div className="bg-[#475d2a] text-white py-4 px-8 rounded-2xl font-bold text-base sm:text-lg animate-scaleIn shadow-md">
+              <div className="bg-[#475d2a] text-white py-4 px-6 md:px-8 rounded-2xl font-bold text-sm md:text-lg animate-scaleIn shadow-md">
                 🎉 You're in! Use discount code <span className="underline decoration-yellow-400 font-extrabold text-yellow-300">FIRST10</span> to get 10% off your first order!
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex gap-3 max-w-md mx-auto animate-fadeInUp delay-300">
+              <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto animate-fadeInUp delay-300">
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
                   placeholder="your@email.com"
-                  className="input-field flex-1" style={{ borderColor: 'rgba(0,0,0,0.1)' }} suppressHydrationWarning />
-                <button type="submit" className="btn-primary whitespace-nowrap" suppressHydrationWarning>Subscribe</button>
+                  className="input-field flex-1 min-h-[44px]" style={{ borderColor: 'rgba(0,0,0,0.1)' }} suppressHydrationWarning />
+                <button type="submit" className="btn-primary min-h-[44px] whitespace-nowrap flex items-center justify-center" suppressHydrationWarning>Subscribe</button>
               </form>
             )}
           </div>

@@ -183,7 +183,7 @@ export default function Navbar() {
         <>
             <style dangerouslySetInnerHTML={{ __html: NAV_CSS }} />
 
-            <div className="fixed top-[34px] w-full z-50 sm:py-4 px-0 sm:px-4 flex justify-center pointer-events-none transition-all duration-500">
+            <div className="fixed top-[34px] w-full z-50 sm:py-4 px-0 sm:px-4 flex justify-center pointer-events-none transition-all duration-500 pt-[env(safe-area-inset-top)]">
                 <nav className="pointer-events-auto w-full max-w-6xl premium-navbar bg-white/95 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] sm:rounded-2xl py-1">
                     <div className="w-full px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-14 sm:h-16">
@@ -301,7 +301,7 @@ export default function Navbar() {
 
                         {/* ── Mobile menu ── */}
                         {isOpen && (
-                            <div className="lg:hidden pb-3 sm:pb-4 border-t border-[#556B2F]/20 animate-slideDown">
+                            <div className="lg:hidden pb-[calc(1rem+env(safe-area-inset-bottom))] sm:pb-4 border-t border-[#556B2F]/20 animate-slideDown max-h-[85vh] overflow-y-auto">
                                 <div className="flex flex-col gap-1 py-2 sm:py-3">
                                     {allLinks.map(l => {
                                         const active = isActive(l.href);

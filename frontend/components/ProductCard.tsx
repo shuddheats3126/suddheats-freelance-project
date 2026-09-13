@@ -169,9 +169,9 @@ export default function ProductCard({ product }: { product: Product }) {
                 </div>
 
                 {/* Weight Selector */}
-                <div className="flex items-center justify-between gap-1.5 mt-1 mb-3 bg-gray-50/50 p-2 rounded-xl border border-gray-100/60" onClick={(e) => e.stopPropagation()}>
+                <div className="flex items-center justify-between gap-1.5 mt-1 mb-3 bg-gray-50/50 p-1.5 sm:p-2 rounded-xl border border-gray-100/60" onClick={(e) => e.stopPropagation()}>
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Weight:</span>
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 flex-wrap justify-end">
                         {(isMakhana ? [50, 90] : [120]).map((w) => {
                             const displayWeight = w;
                             const isSelected = selectedWeight === displayWeight;
@@ -223,7 +223,8 @@ export default function ProductCard({ product }: { product: Product }) {
                             borderRadius: '9999px',
                             background: added ? '#2d4a1e' : '#fff',
                             color: added ? '#fff' : '#2d4a1e',
-                            padding: '7px 18px',
+                            padding: '8px 20px',
+                            minHeight: '44px',
                             fontSize: '12px',
                             fontWeight: 700,
                             letterSpacing: '0.05em',

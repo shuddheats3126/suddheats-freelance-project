@@ -145,8 +145,8 @@ export default function ProductCardWithSizes({ product }: { product: Product }) 
                 )}
             </Link>
 
-            <div className="p-4 sm:p-5 flex flex-col flex-grow">
-                <span className="badge badge-primary mb-3 text-xs">{product.category}</span>
+            <div className="p-3 sm:p-5 flex flex-col flex-grow">
+                <span className="badge badge-primary mb-2 sm:mb-3 text-[10px] sm:text-xs">{product.category}</span>
 
                 <Link href={`/shop/${product.slug}`}>
                     <h3 className="font-bold text-sm sm:text-base my-2 hover:text-[#475d2a] transition-colors line-clamp-2 leading-snug">{product.name}</h3>
@@ -167,9 +167,9 @@ export default function ProductCardWithSizes({ product }: { product: Product }) 
                 </div>
 
                 {/* Weight Selector */}
-                <div className="flex items-center justify-between gap-1.5 mt-1 mb-4 bg-gray-50/50 p-2 rounded-xl border border-gray-100/60" onClick={(e) => e.stopPropagation()}>
+                <div className="flex items-center justify-between gap-1.5 mt-1 mb-3 sm:mb-4 bg-gray-50/50 p-1.5 sm:p-2 rounded-xl border border-gray-100/60" onClick={(e) => e.stopPropagation()}>
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Weight:</span>
-                    <div className="flex gap-1">
+                    <div className="flex gap-1 flex-wrap justify-end">
                         {(isMakhana ? [50, 90] : [120]).map((w) => {
                             const displayWeight = w;
                             const isSelected = selectedWeight === displayWeight;
@@ -222,6 +222,7 @@ export default function ProductCardWithSizes({ product }: { product: Product }) 
                             background: added ? '#2d4a1e' : '#fff',
                             color: added ? '#fff' : '#2d4a1e',
                             padding: '8px 20px',
+                            minHeight: '44px',
                             fontSize: '12px',
                             fontWeight: 700,
                             letterSpacing: '0.05em',
