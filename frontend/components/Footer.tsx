@@ -5,7 +5,7 @@ import { Leaf, Instagram, Twitter, Facebook, Mail, Phone, MapPin } from 'lucide-
 export default function Footer() {
     return (
         <footer style={{ background: '#475d2a' }} className="text-white">
-            <div className="page-container pt-16 pb-8">
+            <div className="page-container pt-16 pb-16 lg:pb-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
                     {/* Brand */}
                     <div className="col-span-1 sm:col-span-2 lg:col-span-1">

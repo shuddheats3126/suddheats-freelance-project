@@ -310,7 +310,7 @@ export default function Navbar() {
                                                 key={l.href}
                                                 href={l.href}
                                                 onClick={() => setIsOpen(false)}
-                                                className="px-3 sm:px-4 py-2.5 rounded-lg font-medium text-sm transition-colors hover:bg-black/5 flex items-center gap-2.5"
+                                                className="px-3 sm:px-4 py-3 rounded-lg font-medium text-base transition-colors hover:bg-black/5 flex items-center gap-2.5"
                                                 style={{ color: active ? '#556B2F' : '#1C1917', fontWeight: active ? 700 : 500 }}
                                             >
                                                 {active && <span className="nav-dot-active" />}
@@ -326,31 +326,31 @@ export default function Navbar() {
                                     {user ? (
                                         <>
                                             <Link href="/dashboard" onClick={() => setIsOpen(false)}
-                                                className="px-3 sm:px-4 py-2.5 rounded-lg font-medium text-sm flex items-center gap-2 hover:bg-black/5"
+                                                className="px-3 sm:px-4 py-3 rounded-lg font-medium text-base flex items-center gap-2 hover:bg-black/5"
                                                 style={{ color: '#1C1917' }}>
-                                                <LayoutDashboard className="w-4 h-4" /> Dashboard
+                                                <LayoutDashboard className="w-5 h-5" /> Dashboard
                                             </Link>
                                             {user.role?.toUpperCase() === 'ADMIN' && (
                                                 <Link href="/admin" onClick={() => setIsOpen(false)}
-                                                    className="px-3 sm:px-4 py-2.5 rounded-lg font-medium text-sm flex items-center gap-2 hover:bg-black/5"
+                                                    className="px-3 sm:px-4 py-3 rounded-lg font-medium text-base flex items-center gap-2 hover:bg-black/5"
                                                     style={{ color: '#c9a227' }}>
-                                                    <LayoutDashboard className="w-4 h-4" /> Admin
+                                                    <LayoutDashboard className="w-5 h-5" /> Admin
                                                 </Link>
                                             )}
-                                            <div className="px-3 sm:px-4 py-2 text-xs font-semibold text-white rounded-md inline-block" style={{ background: '#556B2F' }}>
+                                            <div className="mx-3 sm:mx-4 px-3 sm:px-4 py-2 text-sm font-semibold text-white rounded-md inline-block text-center" style={{ background: '#556B2F' }}>
                                                 {user.name}
                                             </div>
                                             <button
                                                 onClick={() => { handleLogout(); setIsOpen(false); }}
-                                                className="text-left px-3 sm:px-4 py-2.5 rounded-lg font-medium text-sm flex items-center gap-2 hover:bg-red-50 text-red-500">
-                                                <LogOut className="w-4 h-4" /> Logout
+                                                className="text-left px-3 sm:px-4 py-3 rounded-lg font-medium text-base flex items-center gap-2 hover:bg-red-50 text-red-500">
+                                                <LogOut className="w-5 h-5" /> Logout
                                             </button>
                                         </>
                                     ) : (
                                         <Link href="/auth/login" onClick={() => setIsOpen(false)}
-                                            className="mx-3 sm:mx-4 px-4 py-2.5 rounded-lg font-medium text-sm text-white flex items-center justify-center gap-2"
+                                            className="mx-3 sm:mx-4 px-4 py-3 rounded-lg font-medium text-base text-white flex items-center justify-center gap-2"
                                             style={{ background: '#556B2F' }}>
-                                            <User className="w-4 h-4" /> Login
+                                            <User className="w-5 h-5" /> Login
                                         </Link>
                                     )}
                                 </div>
