@@ -9,7 +9,7 @@ import OurStory from '@/components/OurStory';
 import IngredientsEducation from '@/components/IngredientsEducation';
 import FunFactsSlider from '@/components/FunFactsSlider';
 import api from '@/lib/api';
-import { ArrowRight, Leaf, Flame, Shield, Recycle, Star, ChevronLeft, ChevronRight, TreePine } from 'lucide-react';
+import { ArrowRight, Leaf, Flame, Shield, Recycle, Star, ChevronLeft, ChevronRight, TreePine, Palette, CheckCircle } from 'lucide-react';
 
 const heroSlides = [
   {
@@ -65,34 +65,34 @@ const heroSlides = [
 
 const categories = [
   {
-    name: 'Flavoured Makhanas',
+    name: 'Ghee Roasted Flavoured Makhanas',
     emoji: '🌰',
     image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/makhana-bundel.jpg',
-    desc: 'Air-popped fox nuts, guilt-free snacking',
+    desc: 'India’s timeless superfood, made irresistibly crunchy.',
     color: '#f0f4ed',
     icon: '🌿',
     variants: ['Himalayan Salt', 'Peri Peri', 'Pudina', 'Classic Cheese', 'Cream and Onion'],
-    sizes: ['35gm', '75gm', '100gm']
+    sizes: ['50gm', '90gm']
   },
   {
-    name: 'Air Fried Chips',
+    name: 'Air-Fried Chips',
     emoji: '🥔',
     image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563582/shuddheats/products/chips-bundel.jpg',
-    desc: '70% less oil, 100% more crunch',
+    desc: 'All the crunch. Air-fried to perfection.',
     color: '#FEF9E7',
     icon: '⚡',
     variants: ['Vegetable Chips', 'Sweet Potato Chips', 'Beetroot Chips'],
-    sizes: ['100gm']
+    sizes: ['120 gm']
   },
   {
-    name: 'No Sugar No Palm Oil Millet Cookies',
+    name: 'Millet Cookies',
     emoji: '🍪',
     image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563583/shuddheats/products/cokkies-bundel.jpg',
-    desc: 'Nutritious millet cookies with zero sugar',
+    desc: 'Goodness of millets. Zero added sugar.',
     color: '#F0FDF4',
     icon: '💪',
     variants: [],
-    sizes: ['100gm']
+    sizes: ['120 gm']
   },
 ];
 
@@ -104,10 +104,12 @@ const testimonials = [
 ];
 
 const whyUs = [
-  { icon: Leaf, title: 'Clean Ingredients', desc: 'No artificial colors, flavors, or preservatives. What you read is what you eat.' },
-  { icon: Flame, title: 'Roasted, Not Deep-Fried', desc: 'Up to 70% less oil using our state-of-the-art roasting technology.' },
-  { icon: Shield, title: 'Nutritionist Approved', desc: 'Every recipe is approved by certified nutritionists for maximum health benefits.' },
-  { icon: Recycle, title: 'Sustainable Packaging', desc: 'Fully recyclable packaging that reduces our carbon footprint.' },
+  { icon: Leaf, title: 'Honest, Not Hidden', desc: 'Every ingredient we use is something you can read, understand, and trust. No chemicals, nothing hidden.' },
+  { icon: Flame, title: 'Roasted & Air-Fried With Love, Not Deep-Fried With Guilt', desc: '70% less oil, 100% more crunch you get flavor without the guilt. Thanks to our roasting and air-frying technology.' },
+  { icon: Star, title: 'India’s Superfoods, Rediscovered', desc: 'From makhana to millets – we celebrate the ingredients India has trusted for centuries, simply given a modern, guilt-free twist.' },
+  { icon: Palette, title: 'Tribute to India’s Rich Cultural Art Forms', desc: 'Inspired by India’s timeless art forms like Madhubani and Warli, every pack is a small canvas celebrating our cultural heritage – because good snacking should feel good to look at too.' },
+  { icon: Shield, title: 'Family’s Health First', desc: 'With air-fried chips focussing on real nutrition, every recipe is carefully designed by certified nutritionists – because your family’s health is never up for compromise.' },
+  { icon: CheckCircle, title: 'Every Batch, Quality Checked', desc: 'From sourcing to roasting, every batch goes through strict quality checks consistency in every pack.' },
 ];
 
 export default function HomePage() {
@@ -318,17 +320,17 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-[120px] opacity-10 pointer-events-none"></div>
         <div className="page-container relative z-10">
           <div className="text-center mb-16 animate-fadeInUp">
-            <div className="badge mb-4 animate-slideInTop backdrop-blur-md border border-white/20" style={{ background: 'rgba(212,186,158,0.15)', color: '#D4BA9E' }}>Our Promise</div>
-            <h2 className="section-title text-white animate-fadeInUp delay-100 tracking-tight">Why Choose ShuddhEats?</h2>
+            <div className="badge mb-4 animate-slideInTop backdrop-blur-md border border-white/20" style={{ background: 'rgba(212,186,158,0.15)', color: '#D4BA9E' }}>Our Promise to You</div>
+            <h2 className="section-title text-white animate-fadeInUp delay-100 tracking-tight">Why We&apos;re Not Just Another Snack Brand</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-fr">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {whyUs.map(({ icon: Icon, title, desc }, i) => (
-              <div key={title} className="p-8 md:p-10 rounded-3xl group animate-fadeInUp backdrop-blur-xl border border-white/10 flex flex-col justify-center transition-all duration-500 hover:transform hover:-translate-y-2 bg-white/5 hover:bg-white/10" style={{ animationDelay: `${i * 0.1}s` }}>
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 shadow-2xl bg-white/10 border border-white/10">
-                  <Icon className="w-8 h-8 text-[#D4BA9E]" />
+              <div key={title} className="p-6 md:p-8 rounded-3xl group animate-fadeInUp backdrop-blur-xl border border-white/10 flex flex-col justify-center transition-all duration-500 hover:transform hover:-translate-y-2 bg-white/5 hover:bg-white/10" style={{ animationDelay: `${i * 0.1}s` }}>
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500 shadow-2xl bg-white/10 border border-white/10">
+                  <Icon className="w-7 h-7 text-[#D4BA9E]" />
                 </div>
-                <h3 className="font-bold text-white mb-3 text-xl">{title}</h3>
-                <p className="leading-relaxed text-white/70 text-base">{desc}</p>
+                <h3 className="font-bold text-white mb-2 text-lg">{title}</h3>
+                <p className="leading-relaxed text-white/70 text-sm">{desc}</p>
               </div>
             ))}
           </div>
@@ -389,53 +391,53 @@ export default function HomePage() {
             {/* Column Grid Cards - Right Side (7 cols) */}
             <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6 animate-slideInRight">
               {/* Feature 1 */}
-              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between font-sans">
                 <div>
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300 bg-[#f0f4ed] text-[#475d2a]">
                     🌿
                   </div>
-                  <h4 className="text-lg font-bold mb-2 text-[#475d2a]">100% Natural</h4>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    Every product uses only pure, whole ingredients sourced directly from nature. No synthetic flavors, colors, or additives.
+                  <h4 className="text-lg font-bold mb-2 text-[#475d2a]">Pure Ingredients, Nothing Hidden</h4>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    Nothing artificial, ever. We use carefully selected, pure ingredients you can recognize and trust – with no synthetic flavors, colors, or unnecessary preservatives.
                   </p>
                 </div>
               </div>
 
               {/* Feature 2 */}
-              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between font-sans">
                 <div>
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300 bg-[#f0f4ed] text-[#475d2a]">
                     👐
                   </div>
-                  <h4 className="text-lg font-bold mb-2 text-[#475d2a]">Handcrafted</h4>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    Prepared in small batches, mimicking home cooking, ensuring consistent freshness, flavor, and absolute quality control.
+                  <h4 className="text-lg font-bold mb-2 text-[#475d2a]">Handcrafted With Love</h4>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    Made in small batches with a whole lot of love. Every batch is carefully crafted to bring you that homemade taste, authentic goodness, and perfect crunch.
                   </p>
                 </div>
               </div>
 
               {/* Feature 3 */}
-              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between font-sans">
                 <div>
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300 bg-[#f0f4ed] text-[#475d2a]">
                     🚫
                   </div>
-                  <h4 className="text-lg font-bold mb-2 text-[#475d2a]">No Palm Oil</h4>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    We stay far away from refined sugars and unhealthy palm oil. We use cold-pressed oil and natural sweeteners like stevia.
+                  <h4 className="text-lg font-bold mb-2 text-[#475d2a]">Zero Palm Oil, Zero Compromise</h4>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    No refined sugar, no palm oil – ever. We cook with cold-pressed oils and naturally sweeten with stevia, so indulgence never costs your health.
                   </p>
                 </div>
               </div>
 
               {/* Feature 4 */}
-              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between">
+              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between font-sans">
                 <div>
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300 bg-[#f0f4ed] text-[#475d2a]">
                     🌱
                   </div>
-                  <h4 className="text-lg font-bold mb-2 text-[#475d2a]">Sustainably Sourced</h4>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    Partnering directly with local farmers ensures fresher ingredients, supports community livelihoods, and reduces carbon footprint.
+                  <h4 className="text-lg font-bold mb-2 text-[#475d2a]">From Indian Roots to Your Bowl</h4>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    Inspired by India’s rich food heritage, we source thoughtfully and bring traditional goodness to your everyday snacking.
                   </p>
                 </div>
               </div>

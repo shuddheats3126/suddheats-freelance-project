@@ -8,25 +8,50 @@ generator client {
 }
 
 model User {
-  id                String   @id @default(cuid()) @map("id")
-  name              String
-  email             String   @unique
-  password          String
-  role              Role     @default(USER)
-  phone             String?
-  addresses         Json     @default("[]")
-  is2FAEnabled      Boolean  @default(false)
-  twoFASecret       String?
-  backupCodes       Json     @default("[]") @map("backup_codes")
-  createdAt         DateTime @default(now()) @map("created_at")
-  updatedAt         DateTime @default(now()) @updatedAt @map("updated_at")
-  lastLogin         DateTime? @map("last_login")
-  cart              Cart?
-  orders            Order[]
-  reviews           Review[]
+  id           String    @id @default(cuid()) @map("id")
+  name         String
+  email        String    @unique
+  password     String
+  role         Role      @default(USER)
+  phone        String?
+  addresses    Json      @default("[]")
+  is2FAEnabled Boolean   @default(false)
+  twoFASecret  String?
+  backupCodes  Json      @default("[]") @map("backup_codes")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+  lastLogin    DateTime? @map("last_login")
 
-  @@map("users")
+  cart         Cart?
+  orders       Order[]
+  reviews      Review[]
 }
+
+model User {
+  id           String    @id @default(cuid()) @map("id")
+  name         String
+  email        String    @unique
+  password     String
+  role         Role      @default(USER)
+  phone        String?
+  addresses    Json      @default("[]")
+  is2FAEnabled Boolean   @default(false)
+  twoFASecret  String?
+  backupCodes  Json      @default("[]") @map("backup_codes")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+  lastLogin    DateTime? @map("last_login")
+
+  cart         Cart?
+  orders       Order[]
+  reviews      Review[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
 
 model Product {
   id               String   @id @default(cuid()) @map("id")

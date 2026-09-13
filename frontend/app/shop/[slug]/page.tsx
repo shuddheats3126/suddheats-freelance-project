@@ -48,21 +48,15 @@ export default function ProductDetailPage() {
         const isMakhana = product.category === 'Makhana' || product.category === 'Flavoured Makhanas' || product.name.toLowerCase().includes('makhana');
         
         if (isMakhana) {
-            if (selectedWeight <= 35) {
+            if (selectedWeight <= 50) {
                 return { price: 99, originalPrice: 129 };
-            } else if (selectedWeight === 75) {
+            } else if (selectedWeight === 90) {
                 return { price: 199, originalPrice: 249 };
             } else {
                 return { price: 249, originalPrice: 299 };
             }
         } else {
-            if (selectedWeight <= 35) {
-                return { price: 49, originalPrice: 69 };
-            } else if (selectedWeight === 75) {
-                return { price: 89, originalPrice: 119 };
-            } else {
-                return { price: product.price, originalPrice: product.originalPrice || (product.price + 40) };
-            }
+            return { price: product.price, originalPrice: product.originalPrice || (product.price + 40) };
         }
     };
 
@@ -179,8 +173,8 @@ export default function ProductDetailPage() {
                         <div className="mb-6">
                             <span className="font-semibold text-sm block mb-3 text-gray-700">Select Weight:</span>
                             <div className="flex flex-wrap gap-2.5">
-                                {[30, 75, 100].map((w) => {
-                                    const displayWeight = w === 30 && (product.category?.includes('Makhana') || product.name?.toLowerCase().includes('makhana')) ? 35 : w;
+                                {(product.category?.includes('Makhana') || product.name?.toLowerCase().includes('makhana') ? [50, 90] : [120]).map((w) => {
+                                    const displayWeight = w;
                                     const isSelected = selectedWeight === displayWeight;
                                     return (
                                         <button

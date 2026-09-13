@@ -25,47 +25,34 @@ export default function ProductCard({ product }: { product: Product }) {
     const { addToCart } = useCart();
     const [isAdding, setIsAdding] = useState(false);
 
+    const isMakhana = product.category?.toLowerCase().includes('makhana') || product.name.toLowerCase().includes('makhana');
+
     const [selectedWeight, setSelectedWeight] = useState<number>(() => {
         const name = product.name.toLowerCase();
-        if (name.includes('35g') || name.includes('30g')) return name.includes('makhana') ? 35 : 30;
-        if (name.includes('75g')) return 75;
-        if (name.includes('100g')) return 100;
+        if (name.includes('50g')) return 50;
+        if (name.includes('90g')) return 90;
+        if (name.includes('120g')) return 120;
         
         if (product.weight) {
             const parsed = parseInt(product.weight.toString());
             if (parsed) return parsed;
         }
-        return 100; // default fallback
+        return isMakhana ? 50 : 120; // default fallback
     });
 
-    const isMakhana = product.category?.toLowerCase().includes('makhana') || product.name.toLowerCase().includes('makhana');
+
 
     const getDynamicPrice = () => {
         if (isMakhana) {
-            if (selectedWeight <= 35) {
+            if (selectedWeight <= 50) {
                 return { price: 99, originalPrice: 129 };
-            } else if (selectedWeight === 75) {
-                return { price: 199, originalPrice: 249 };
             } else {
-                return { price: 249, originalPrice: 299 };
+                return { price: 199, originalPrice: 249 };
             }
         } else {
-            if (selectedWeight <= 35) {
-                return { price: 49, originalPrice: 69 };
-            } else if (selectedWeight === 75) {
-                return { price: 89, originalPrice: 119 };
-            } else {
-                let basePrice = product.price;
-                let baseOriginal = product.originalPrice || (product.price + 40);
-                const currentName = product.name.toLowerCase();
-                const is30gOr35g = currentName.includes('30g') || currentName.includes('35g');
-                const is75g = currentName.includes('75g');
-                if (is30gOr35g || is75g) {
-                    basePrice = 119;
-                    baseOriginal = 159;
-                }
-                return { price: basePrice, originalPrice: baseOriginal };
-            }
+            let basePrice = product.price;
+            let baseOriginal = product.originalPrice || (product.price + 40);
+            return { price: basePrice, originalPrice: baseOriginal };
         }
     };
 
@@ -115,9 +102,9 @@ export default function ProductCard({ product }: { product: Product }) {
     };
 
     const getPackagingType = () => {
-        if (selectedWeight <= 35) return { type: 'Pouch', color: '#fbbf24' };
-        if (selectedWeight === 75) return { type: 'Pouch', color: '#fbbf24' };
-        if (selectedWeight >= 100) return { type: 'Jar', color: '#f97316' };
+        if (selectedWeight <= 50) return { type: 'Pouch', color: '#fbbf24', icon: '📦' };
+        if (selectedWeight === 90) return { type: 'Pouch', color: '#fbbf24', icon: '📦' };
+        if (selectedWeight >= 120) return { type: 'Jar', color: '#f97316', icon: '🫙' };
         return null;
     };
 
@@ -185,8 +172,8 @@ export default function ProductCard({ product }: { product: Product }) {
                 <div className="flex items-center justify-between gap-1.5 mt-1 mb-3 bg-gray-50/50 p-2 rounded-xl border border-gray-100/60" onClick={(e) => e.stopPropagation()}>
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Weight:</span>
                     <div className="flex gap-1">
-                        {[30, 75, 100].map((w) => {
-                            const displayWeight = w === 30 && isMakhana ? 35 : w;
+                        {(isMakhana ? [50, 90] : [120]).map((w) => {
+                            const displayWeight = w;
                             const isSelected = selectedWeight === displayWeight;
                             return (
                                 <button

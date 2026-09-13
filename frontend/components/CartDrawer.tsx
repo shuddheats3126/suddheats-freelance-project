@@ -30,25 +30,12 @@ export default function CartDrawer({
     const name = itemName.toLowerCase();
     const isMakhana = name.includes('makhana');
     
-    // Find base price first to calculate other prices dynamically
-    let basePrice = currentPrice;
-    if (currentWeight) {
-      if (isMakhana) {
-        if (currentWeight <= 35) basePrice = 249; // standard 100g fallback base
-        else if (currentWeight === 75) basePrice = 249;
-      } else {
-        if (currentWeight <= 35) basePrice = 119;
-        else if (currentWeight === 75) basePrice = 119;
-      }
-    }
-
     if (isMakhana) {
-      if (weight <= 35) return 99;
-      if (weight === 75) return 199;
+      if (weight <= 50) return 99;
+      if (weight === 90) return 199;
       return 249;
     } else {
-      if (weight <= 35) return 49;
-      if (weight === 75) return 89;
+      let basePrice = currentPrice;
       return basePrice;
     }
   };
@@ -235,8 +222,8 @@ export default function CartDrawer({
                           <div className="flex items-center gap-2">
                             <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">Weight:</span>
                             <div className="flex gap-1 animate-fadeIn">
-                              {[30, 75, 100].map((w) => {
-                                const displayWeight = w === 30 && item.name.toLowerCase().includes('makhana') ? 35 : w;
+                              {(item.name.toLowerCase().includes('makhana') ? [50, 90] : [120]).map((w) => {
+                                const displayWeight = w;
                                 const isSelected = item.weight === displayWeight;
                                 return (
                                   <button

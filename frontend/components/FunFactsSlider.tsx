@@ -5,76 +5,129 @@ import Image from 'next/image';
 
 const slides = [
   {
-    id: 'fact-origin',
+    id: 'fact-1',
     bgTheme: 'bg-gradient-to-br from-[#f0f4ed] via-white to-[#e8efe3]',
-    title: 'Fun facts',
+    title: 'Fun Facts, Real Snacks',
     accentColor: '#475d2a',
-    heading: 'Born from a Late-Night Craving! 🌙',
-    description: 'ShuddhEats started in a small home kitchen during a late-night work session. Frustrated by the lack of truly clean, non-fried options that actually tasted good, our founders decided to roast their own spiced foxnuts (Makhanas). That kitchen experiment changed snacking forever!',
-    badge: 'Our Origin Story',
+    heading: 'Makhana is 5,000 Years Old 📜',
+    description: 'Fox nuts have been part of Indian diets since ancient times – you’re basically snacking on history!',
+    badge: 'Did You Know?',
     visual: (
       <div className="relative w-full h-full flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-radial-gradient from-emerald-100 to-transparent opacity-60 rounded-2xl"></div>
         <div className="relative z-10 flex flex-col items-center gap-2 animate-scaleIn">
           <div className="relative w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center border-4 border-[#475d2a]">
-            <span className="text-5xl">🥣</span>
+            <span className="text-5xl">🏛️</span>
             <span className="absolute -top-2 -right-2 text-2xl animate-bounce-slow">✨</span>
-            <span className="absolute -bottom-2 -left-2 text-2xl animate-wiggle">🔥</span>
           </div>
           <div className="bg-[#475d2a] text-white font-extrabold text-[9px] tracking-widest uppercase px-3 py-1 rounded-full shadow">
-            Est. 2024
+            Ancient Roots
           </div>
         </div>
       </div>
     )
   },
   {
-    id: 'fact-nutrition',
+    id: 'fact-2',
     bgTheme: 'bg-gradient-to-br from-[#FEF9E7] via-white to-[#FDF2E2]',
-    title: 'Fun facts',
+    title: 'Fun Facts, Real Snacks',
     accentColor: '#d97706',
-    heading: 'More Crunch, 70% Less Oil! 🍟',
-    description: "Our signature Sweet Potato and Beetroot Chips aren't just delicious—they are air-fried using advanced convection heat. They pack up to 3x more dietary fiber and natural potassium than common fried potato chips, with absolutely zero maida, palm oil, or synthetic chemicals!",
-    badge: 'Nutritional Powerhouse',
+    heading: 'One Handful = Guilt-Free Power 💪',
+    description: 'A single serving of roasted makhana has more protein than a regular potato chip pack -and way less oil.',
+    badge: 'Did You Know?',
     visual: (
       <div className="relative w-full h-full flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-radial-gradient from-amber-100 to-transparent opacity-60 rounded-2xl"></div>
         <div className="relative z-10 flex flex-col items-center gap-3 animate-fadeInUp">
-            <div className="flex gap-2">
-              <div className="relative w-18 h-18 bg-white/90 rounded-xl shadow-xs border border-amber-300 flex items-center justify-center hover:scale-105 transition-transform duration-300 p-2">
-                <span className="text-4xl">🍠</span>
-              </div>
-              <div className="relative w-18 h-18 bg-white/90 rounded-xl shadow-xs border border-rose-300 flex items-center justify-center hover:scale-105 transition-transform duration-300 p-2">
-                <span className="text-4xl">🥗</span>
-              </div>
-            </div>
+          <div className="relative w-20 h-20 bg-white/90 rounded-xl shadow-xs border border-amber-300 flex items-center justify-center hover:scale-105 transition-transform duration-300 p-2">
+            <span className="text-5xl">⚡</span>
+          </div>
           <div className="bg-amber-600 text-white font-extrabold text-[9px] tracking-widest uppercase px-3 py-1 rounded-full shadow flex items-center gap-1">
-            <Flame className="w-3 h-3 fill-white text-white" /> Convection Popped
+            <Flame className="w-3 h-3 fill-white text-white" /> High Protein
           </div>
         </div>
       </div>
     )
   },
   {
-    id: 'fact-iteration',
+    id: 'fact-3',
     bgTheme: 'bg-gradient-to-br from-[#F0FDF4] via-white to-[#DCFCE7]',
-    title: 'Fun facts',
+    title: 'Fun Facts, Real Snacks',
     accentColor: '#059669',
-    heading: 'We Iterate Until It is Perfect! 🎯',
-    description: 'No ShuddhEats recipe is ever truly finished. We treat our snacks like software—we constantly roll out "updates" based on customer reviews, tweaking natural seasoning ratios and crunch duration to make each batch taste better and nurture you more. You eat, we listen, we improve!',
-    badge: 'Continuous Innovation',
+    heading: 'Millets Fed Ancient Kings 👑',
+    description: 'Long before rice took over, millets were the OG superfood of Indian royalty.',
+    badge: 'Did You Know?',
     visual: (
       <div className="relative w-full h-full flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-radial-gradient from-emerald-100 to-transparent opacity-60 rounded-2xl"></div>
         <div className="relative z-10 flex flex-col items-center gap-2">
-          <div className="relative w-32 h-26 bg-white rounded-2xl shadow-md border border-emerald-200 p-3 flex flex-col items-center justify-center">
-            <div className="flex gap-0.5 mb-1">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-base">⭐️</span>
-              ))}
-            </div>
-            <p className="text-[10px] font-bold text-[#475d2a] mb-0.5">Batch #47 updated!</p>
-            <span className="text-[8px] text-gray-500 uppercase tracking-widest bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100">Feedback Loop</span>
+          <div className="relative w-24 h-24 bg-white rounded-2xl shadow-md border border-emerald-200 flex items-center justify-center">
+            <span className="text-5xl">🌾</span>
+            <span className="absolute -bottom-2 -right-2 text-2xl animate-pulse">👑</span>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 'fact-4',
+    bgTheme: 'bg-gradient-to-br from-[#EFF6FF] via-white to-[#DBEAFE]',
+    title: 'Fun Facts, Real Snacks',
+    accentColor: '#2563EB',
+    heading: 'Makhana Grows in Water, Not Soil 💧',
+    description: 'Fun fact: fox nuts are harvested from ponds and lakes – nature’s own floating snack farm!',
+    badge: 'Did You Know?',
+    visual: (
+      <div className="relative w-full h-full flex items-center justify-center p-4">
+        <div className="absolute inset-0 bg-radial-gradient from-blue-100 to-transparent opacity-60 rounded-2xl"></div>
+        <div className="relative z-10 flex flex-col items-center gap-2">
+          <div className="relative w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center border-4 border-[#2563EB]">
+            <span className="text-5xl">🌊</span>
+          </div>
+          <div className="bg-[#2563EB] text-white font-extrabold text-[9px] tracking-widest uppercase px-3 py-1 rounded-full shadow">
+            Floating Farm
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 'fact-5',
+    bgTheme: 'bg-gradient-to-br from-[#FEF2F2] via-white to-[#FEE2E2]',
+    title: 'Fun Facts, Real Snacks',
+    accentColor: '#DC2626',
+    heading: 'A Spoon of Ghee, A Boost of Goodness 🧈',
+    description: 'Roasting makhana in ghee doesn’t just add flavor – it helps your body absorb its nutrients better.',
+    badge: 'Did You Know?',
+    visual: (
+      <div className="relative w-full h-full flex items-center justify-center p-4">
+        <div className="absolute inset-0 bg-radial-gradient from-red-100 to-transparent opacity-60 rounded-2xl"></div>
+        <div className="relative z-10 flex flex-col items-center gap-2">
+          <div className="relative w-20 h-20 bg-white/90 rounded-xl shadow-xs border border-red-300 flex items-center justify-center hover:scale-105 transition-transform duration-300 p-2">
+            <span className="text-5xl">🥄</span>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 'fact-6',
+    bgTheme: 'bg-gradient-to-br from-[#F5F3FF] via-white to-[#EDE9FE]',
+    title: 'Fun Facts, Real Snacks',
+    accentColor: '#7C3AED',
+    heading: 'Steady Energy, No Sugar Crash 🔋',
+    description: 'Thanks to its low glycemic index, makhana keeps blood sugar stable – so you stay full longer, without the spike.',
+    badge: 'Did You Know?',
+    visual: (
+      <div className="relative w-full h-full flex items-center justify-center p-4">
+        <div className="absolute inset-0 bg-radial-gradient from-purple-100 to-transparent opacity-60 rounded-2xl"></div>
+        <div className="relative z-10 flex flex-col items-center gap-2 animate-scaleIn">
+          <div className="relative w-24 h-24 bg-white rounded-full shadow-md flex items-center justify-center border-4 border-[#7C3AED]">
+            <span className="text-5xl">🔋</span>
+            <span className="absolute -top-2 -right-2 text-2xl animate-bounce-slow">✨</span>
+          </div>
+          <div className="bg-[#7C3AED] text-white font-extrabold text-[9px] tracking-widest uppercase px-3 py-1 rounded-full shadow">
+            Sustained Energy
           </div>
         </div>
       </div>

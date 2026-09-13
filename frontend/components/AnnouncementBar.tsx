@@ -39,7 +39,7 @@ export default function AnnouncementBar() {
       <style jsx>{`
         .announcement-track {
           width: max-content;
-          animation: ticker 28s linear infinite;
+          animation: ticker 45s linear infinite;
         }
         .announcement-track:hover {
           animation-play-state: paused;
