@@ -312,7 +312,8 @@ const mockProducts = [
     "category": "No Sugar No Palm Oil Millet Cookies",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319786/millet_honey_back.jpg"
     ],
     "stock": 120,
     "weight": "100g",
