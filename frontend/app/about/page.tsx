@@ -67,7 +67,7 @@ export default function AboutPage() {
                             <p className="section-subtitle text-sm md:text-base">ShuddhEats bridges the gap between "good for you" and "good to eat". Using roasted preparation, clean spice blends, and honest ingredients, we're proving that health and taste can coexist.</p>
                         </div>
                         <div className="grid grid-cols-2 gap-3 md:gap-4 animate-slideInRight">
-                            {[['10K+', 'Happy Customers'], ['9', 'Products'], ['3', 'Categories'], ['0', 'Artificial Additives']].map(([n, l]) => (
+                            {[['100%', 'Natural'], ['9', 'Products'], ['3', 'Categories'], ['0', 'Artificial Additives']].map(([n, l]) => (
                                 <div key={l} className="card p-4 md:p-6 text-center">
                                     <div className="text-2xl sm:text-3xl font-extrabold mb-1" style={{ color: 'rgb(223, 196, 172)' }}>{n}</div>
                                     <div className="text-xs sm:text-sm font-medium" style={{ color: '#475d2a' }}>{l}</div>
