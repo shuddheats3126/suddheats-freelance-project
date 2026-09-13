@@ -297,11 +297,11 @@
 
 @keyframes scrollX {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-100% / 2)); }
+  100% { transform: translateX(-100%); }
 }
 
 @keyframes scrollXReverse {
-  0% { transform: translateX(calc(-100% / 2)); }
+  0% { transform: translateX(-100%); }
   100% { transform: translateX(0); }
 }
 
@@ -410,57 +410,17 @@
   min-width: 280px;
 }
 
-/* Scrolling animation - DISABLED ON MOBILE, ENABLED ON DESKTOP ONLY */
 .scroll-animate {
-  display: flex;
-  gap: 1.25rem;
-  overflow: visible;
+  animation: scrollX var(--duration, 15s) linear infinite;
 }
 
-/* On mobile: disable animation, show as scrollable */
-@media (max-width: 768px) {
-  .scroll-animate {
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .scroll-animate::-webkit-scrollbar {
-    height: 4px;
-  }
-
-  .scroll-animate::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .scroll-animate::-webkit-scrollbar-thumb {
-    background: #d0d0d0;
-    border-radius: 2px;
-  }
-
-  .scroll-animate > div {
-    animation: none !important;
-    flex-shrink: 0;
-  }
+.scroll-animate-reverse {
+  animation: scrollXReverse var(--duration, 15s) linear infinite;
 }
 
-/* On desktop: apply animation */
-@media (min-width: 769px) {
-  .scroll-animate {
-    animation: scrollX var(--duration, 15s) linear infinite;
-    width: max-content;
-  }
-
-  .scroll-animate-reverse {
-    animation: scrollXReverse var(--duration, 15s) linear infinite;
-    width: max-content;
-  }
-
-  .scroll-animate > div,
-  .scroll-animate-reverse > div {
-    flex-shrink: 0;
-  }
+.scroll-animate > div,
+.scroll-animate-reverse > div {
+  flex-shrink: 0;
 }
 
 .scroll-animate:hover,
