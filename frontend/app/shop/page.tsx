@@ -426,9 +426,9 @@ function ShopContent() {
         "price": 149,
         "originalPrice": 199,
         "category": "No Sugar No Palm Oil Millet Cookies",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563592/shuddheats/products/ragi-elaichi-cookies.jpg",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg",
         "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563592/shuddheats/products/ragi-elaichi-cookies.jpg"
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg"
         ],
         "stock": 125,
         "weight": "100g",
