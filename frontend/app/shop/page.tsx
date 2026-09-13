@@ -341,9 +341,9 @@ function ShopContent() {
         "price": 149,
         "originalPrice": 199,
         "category": "No Sugar No Palm Oil Millet Cookies",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563586/shuddheats/products/honey-oats-cookies.jpg",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg",
         "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563586/shuddheats/products/honey-oats-cookies.jpg"
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg"
         ],
         "stock": 120,
         "weight": "100g",
