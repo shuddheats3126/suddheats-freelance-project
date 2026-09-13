@@ -135,13 +135,13 @@ export default function AboutPage() {
                         <div className="card p-6 md:p-8 text-center animate-scaleIn" style={{ animationDelay: '0.1s' }}>
                             <div className="text-3xl md:text-4xl mb-3 md:mb-4">✉️</div>
                             <h3 className="font-bold text-base md:text-lg mb-1 md:mb-2" style={{ color: '#475d2a' }}>Email</h3>
-                            <a href="mailto:shuddheats3126@gmail.com" className="text-sm md:text-base text-gray-600 hover:text-primary transition break-all">shuddheats3126@gmail.com</a>
+                            <a href="mailto:shuddheats3126@gmail.com" className="text-[13px] lg:text-sm text-gray-600 hover:text-primary transition whitespace-nowrap">shuddheats3126@gmail.com</a>
                         </div>
                         <div className="card p-6 md:p-8 text-center animate-scaleIn" style={{ animationDelay: '0.2s' }}>
                             <div className="text-3xl md:text-4xl mb-3 md:mb-4">📞</div>
                             <h3 className="font-bold text-base md:text-lg mb-1 md:mb-2" style={{ color: '#475d2a' }}>Phone</h3>
                             <div className="text-sm md:text-base text-gray-600">
-                                <a href="tel:8850823761" className="hover:text-primary transition block">8850823761</a>
+                                <a href="tel:8850823761" className="hover:text-primary transition block">+91 88508 23761</a>
                                 <a href="tel:+917208780656" className="hover:text-primary transition block">+91 72087 80656</a>
                             </div>
                         </div>
