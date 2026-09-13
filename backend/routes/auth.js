@@ -90,14 +90,13 @@ router.post('/login', async (req, res) => {
 
     // 🔐 ADMIN + 2FA ONLY
     if (user.role === "ADMIN") {
-      if (user.is2FAEnabled === false) {
-        // allow login (no block)
-      } else {
+      if (user.is2FAEnabled) {
         if (!token) {
-          return res.status(403).json({
-            success: false,
-            message: 'OTP required for Admin login',
-            requireOTP: true
+          // Send 200 so axios doesn't throw, and provide the temporary token
+          return res.status(200).json({
+            success: true,
+            requiresTwoFA: true,
+            tempSessionToken: generateTempToken(user.id)
           });
         }
 
@@ -127,11 +126,13 @@ router.post('/login', async (req, res) => {
     res.status(200).json({
       success: true,
       token: String(jwtToken),
+      requiresTwoFASetup: user.role === "ADMIN" && !user.is2FAEnabled,
       user: {
         id: user.id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        is2FAEnabled: user.is2FAEnabled
       }
     });
   } catch (error) {
