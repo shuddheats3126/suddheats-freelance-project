@@ -263,7 +263,7 @@ export default function Navbar() {
                                         <Link href="/dashboard" className="p-2 rounded-lg hover:bg-black/5 transition-all" title="Dashboard">
                                             <LayoutDashboard className="w-5 h-5" style={{ color: '#556B2F' }} />
                                         </Link>
-                                        {user.role === 'admin' && (
+                                        {user.role?.toUpperCase() === 'ADMIN' && (
                                             <Link href="/admin" className="p-2 rounded-lg hover:bg-black/5 transition-all" title="Admin">
                                                 <LayoutDashboard className="w-5 h-5" style={{ color: '#c9a227' }} />
                                             </Link>
@@ -330,7 +330,7 @@ export default function Navbar() {
                                                 style={{ color: '#1C1917' }}>
                                                 <LayoutDashboard className="w-4 h-4" /> Dashboard
                                             </Link>
-                                            {user.role === 'admin' && (
+                                            {user.role?.toUpperCase() === 'ADMIN' && (
                                                 <Link href="/admin" onClick={() => setIsOpen(false)}
                                                     className="px-3 sm:px-4 py-2.5 rounded-lg font-medium text-sm flex items-center gap-2 hover:bg-black/5"
                                                     style={{ color: '#c9a227' }}>
