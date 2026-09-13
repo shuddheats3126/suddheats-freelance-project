@@ -15,8 +15,8 @@ model User {
   role         Role      @default(USER)
   phone        String?
   addresses    Json      @default("[]")
-  is2FAEnabled Boolean   @default(false)
-  twoFASecret  String?
+  is2FAEnabled Boolean   @default(false) @map("two_factor_enabled")
+  twoFASecret  String?   @map("two_factor_secret")
   backupCodes  Json      @default("[]") @map("backup_codes")
   createdAt    DateTime  @default(now()) @map("created_at")
   updatedAt    DateTime  @updatedAt @map("updated_at")
@@ -25,6 +25,8 @@ model User {
   cart         Cart?
   orders       Order[]
   reviews      Review[]
+
+  @@map("users")
 }
 
 enum Role {

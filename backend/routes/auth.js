@@ -29,18 +29,28 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Name is required' });
         }
 
+        if (!email) {
+            return res.status(400).json({ success: false, message: 'Email is required' });
+        }
+
         if (!password || password.length < 8) {
             return res.status(400).json({ success: false, message: 'Password must be at least 8 characters long' });
         }
 
         const exists = await withTimeout(User.findUnique({ where: { email } }));
         if (exists) {
-            return res.status(400).json({ success: false, message: 'User already exists' });
+            return res.status(409).json({ success: false, message: 'User already exists' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
         const user = await withTimeout(User.create({
-            data: { name, email, password: hashedPassword, phone, role: 'USER' }
+            data: { 
+                name, 
+                email, 
+                password: hashedPassword, 
+                phone: phone || null,
+                role: 'USER' 
+            }
         }));
 
         res.status(201).json({
@@ -54,7 +64,8 @@ router.post('/register', async (req, res) => {
             }
         });
     } catch (error) {
-        console.error(error);
+        console.error("Registration Error:", error);
+        console.error(error.stack);
         return res.status(500).json({
             success: false,
             message: "Internal server error"
