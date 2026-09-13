@@ -163,12 +163,12 @@ router.post('/verify-2fa', async (req, res) => {
         }
 
         const user = await User.findUnique({ where: { id: decoded.id } });
-        if (!user || !user.twoFactorSecret) {
+        if (!user || !user.twoFASecret) {
             return res.status(400).json({ message: 'Invalid 2FA state' });
         }
 
         const isValid = speakeasy.totp.verify({
-            secret: user.twoFactorSecret,
+            secret: user.twoFASecret,
             encoding: 'base32',
             token: totpCode,
             window: 1
