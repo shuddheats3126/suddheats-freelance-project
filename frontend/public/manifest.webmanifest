@@ -15,8 +15,8 @@
       "purpose": "any"
     },
     {
-      "src": "/icons/splash-icon-512x512.png",
-      "sizes": "512x512",
+      "src": "/icons/splash-icon-600x600.png",
+      "sizes": "600x600",
       "type": "image/png",
       "purpose": "any"
     }
