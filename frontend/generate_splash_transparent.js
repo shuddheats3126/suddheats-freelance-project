@@ -5,15 +5,15 @@ async function createSplash() {
   const outputFile = 'public/icons/splash-icon-512x512.png';
   
   // Create a 512x512 transparent canvas
-  // Make the actual logo larger (mid-size) by resizing to 450x450
+  // Make the actual logo larger (mid-size) by resizing to 500x500
   
   // 1. Process the input: trim empty space, and if it has a white bg, maybe the user wants it transparent, 
   // but if it's already transparent, this just resizes it.
   const processedImageBuffer = await sharp(inputFile)
     .trim({ threshold: 240 }) // Removes background if it's plain white/transparent
-    .resize(450, 450, {
+    .resize(500, 500, {
       fit: 'contain',
-      background: { r: 255, g: 255, b: 255, alpha: 0 } // Transparent padding inside the 450 box
+      background: { r: 255, g: 255, b: 255, alpha: 0 } // Transparent padding inside the 500 box
     })
     .toBuffer();
 
