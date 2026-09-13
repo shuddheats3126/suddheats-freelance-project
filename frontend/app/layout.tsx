@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: "Discover ShuddhEats — air-fried snacks, flavoured makhana, and roasted diet mixes made with clean ingredients and eco-friendly packaging.",
   keywords: "healthy snacks, makhana, air fried chips, diet mix, clean eating, Indian snacks",
   manifest: "/manifest.webmanifest",
+};
+
+export const viewport = {
   themeColor: "#475d2a",
 };
 
