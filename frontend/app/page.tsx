@@ -9,6 +9,7 @@ import OurStory from '@/components/OurStory';
 import IngredientsEducation from '@/components/IngredientsEducation';
 import FunFactsSlider from '@/components/FunFactsSlider';
 import api from '@/lib/api';
+import toast from 'react-hot-toast';
 import { ArrowRight, Leaf, Flame, Shield, Recycle, Star, ChevronLeft, ChevronRight, TreePine, Palette, CheckCircle } from 'lucide-react';
 
 const heroSlides = [
@@ -179,22 +180,17 @@ export default function HomePage() {
     
     setIsSubmittingReview(true);
     try {
-      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'https://suddheats-freelance-project-production-b773.up.railway.app';
-      await fetch(`${backendUrl}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: 'Anonymous Snacker',
-          email: 'anonymous@shuddheats.co.in',
-          subject: `Site Review: ${rating} Stars`,
-          message: reviewText
-        })
+      await api.post('/contact', {
+        name: 'Anonymous Snacker',
+        email: 'anonymous@shuddheats.co.in',
+        subject: `Site Review: ${rating} Stars`,
+        message: reviewText
       });
-      alert('Thank you for your review! 🌿');
+      toast.success('Thank you for your review! 🌿');
       setReviewText('');
       setRating(5);
-    } catch (err) {
-      alert('Failed to submit review. Please try again.');
+    } catch (err: any) {
+      toast.error(err.response?.data?.message || 'Failed to submit review. Please try again.');
     } finally {
       setIsSubmittingReview(false);
     }
