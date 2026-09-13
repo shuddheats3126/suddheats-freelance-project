@@ -4,7 +4,7 @@
   "description": "Clean & Healthy Indian Snacks",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f0f4ed",
+  "background_color": "#ffffff",
   "theme_color": "#475d2a",
   "orientation": "portrait-primary",
   "icons": [
@@ -15,7 +15,7 @@
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/icons/splash-icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
