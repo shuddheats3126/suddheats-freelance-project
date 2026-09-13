@@ -262,9 +262,9 @@ function ShopContent() {
         "price": 129,
         "originalPrice": 169,
         "category": "Air Fried Chips",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563581/shuddheats/products/broccoli-chips.jpg",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
         "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563581/shuddheats/products/broccoli-chips.jpg"
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg"
         ],
         "stock": 135,
         "weight": "100g",
