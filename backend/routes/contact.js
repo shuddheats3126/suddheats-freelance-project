@@ -26,11 +26,6 @@ router.post('/', async (req, res) => {
         console.log("Database write successful");
         console.log('[Contact] Query saved to database successfully');
 
-        if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-            console.log('[Contact] SMTP credentials missing. Skipping email notification.');
-            return res.json({ success: true, message: 'Message saved successfully' });
-        }
-
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST || 'smtp.gmail.com',
             port: parseInt(process.env.SMTP_PORT) || 465,
