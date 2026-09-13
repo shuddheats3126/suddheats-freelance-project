@@ -341,6 +341,7 @@ export default function HomePage() {
       <DualScrollBanner />
 
       {/* Best Sellers */}
+      {false && (
       <section className="py-12 animate-fadeInUp" style={{ background: '#fafaf7' }}>
         <div className="page-container">
           <div className="text-center mb-8">
@@ -365,6 +366,7 @@ export default function HomePage() {
           )}
         </div>
       </section>
+      )}
 
       {/* Why We're Different */}
       <section className="py-20 bg-gradient-to-b from-white to-[#fafaf7] overflow-hidden">
