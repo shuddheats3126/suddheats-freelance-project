@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import api from '@/lib/api';
 import { useAuth } from './AuthContext';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 interface CartItem {
     product: string;
@@ -31,6 +32,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     const [items, setItems] = useState<CartItem[]>([]);
     const { user } = useAuth();
+    const router = useRouter();
 
     const setNormalizedItems = (cartItems: any[]) => {
         const normalized = (cartItems || []).map(item => ({
@@ -51,7 +53,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => { fetchCart(); }, [user]);
 
     const addToCart = async (productId: string, name: string, image: string, price: number, quantity = 1, options?: { weight?: number; packaging?: 'jar' | 'pouch' }) => {
-        if (!user) { toast.error('Please login to add items to cart'); return; }
+        if (!user) { 
+            toast.error('Please login first to buy'); 
+            router.push('/auth/login'); 
+            return; 
+        }
         try {
             const { data } = await api.post('/cart', { productId, quantity, weight: options?.weight, packaging: options?.packaging });
             setNormalizedItems(data.items || []);
