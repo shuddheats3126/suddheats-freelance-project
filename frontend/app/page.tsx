@@ -25,6 +25,13 @@ const heroSlides = [
     titleLine1: 'Air Fried Chips',
     titleLine2: 'Collection',
     subtitle: 'Beetroot, Broccoli & Ragi chips — crispy, clean, and crafted with love in Mumbai.'
+  },
+  {
+    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319660/hero_cokkies.jpg',
+    badge: '🍪 No Sugar | No Palm Oil | Millet Goodness',
+    titleLine1: 'Millet Cookie',
+    titleLine2: 'Collection',
+    subtitle: 'Baked with love — Honey & Oats, Jowar & Nuts, Ragi & Elaichi. Zero refined sugar.'
   }
 ];
 
