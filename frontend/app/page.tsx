@@ -66,6 +66,7 @@ const heroSlides = [
 const categories = [
   {
     name: 'Ghee Roasted Flavoured Makhanas',
+    filterId: 'Flavoured Makhanas',
     emoji: '🌰',
     image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/makhana-bundel.jpg',
     desc: 'India’s timeless superfood, made irresistibly crunchy.',
@@ -76,6 +77,7 @@ const categories = [
   },
   {
     name: 'Air-Fried Chips',
+    filterId: 'Air Fried Chips',
     emoji: '🥔',
     image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563582/shuddheats/products/chips-bundel.jpg',
     desc: 'All the crunch. Air-fried to perfection.',
@@ -86,6 +88,7 @@ const categories = [
   },
   {
     name: 'Millet Cookies',
+    filterId: 'No Sugar No Palm Oil Millet Cookies',
     emoji: '🍪',
     image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563583/shuddheats/products/cokkies-bundel.jpg',
     desc: 'Goodness of millets. Zero added sugar.',
@@ -237,7 +240,7 @@ export default function HomePage() {
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 max-w-5xl w-full">
             {categories.map((cat, i) => (
               <Link 
-                href={`/shop?category=${encodeURIComponent(cat.name)}`} 
+                href={`/shop?category=${encodeURIComponent(cat.filterId || cat.name)}`} 
                 key={cat.name}
                 className="w-[calc(100%-16px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] max-w-sm flex-shrink-0"
               >
