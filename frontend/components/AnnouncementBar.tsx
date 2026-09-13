@@ -1,14 +1,9 @@
 'use client';
 
 const items = [
-  '🌿 1,00,000+ Happy Snackers',
-  '📦 10,000+ Orders Every Month',
   '🚚 Free Delivery on Orders Above ₹699',
-  '🇮🇳 Shipped Across All of India',
   '🔥 100% Baked / Roasted — Never Deep-Fried',
   '✅ No Maida · No Palm Oil · No Preservatives',
-  '⭐ Doctor & Nutritionist Approved',
-  '♻️ Eco-Friendly Recyclable Packaging',
 ];
 
 export default function AnnouncementBar() {
