@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Leaf, Instagram, Twitter, Facebook, Mail, Phone, MapPin } from 'lucide-react';
+import { Leaf, Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
     return (
@@ -27,11 +27,11 @@ export default function Footer() {
                                 style={{ background: 'rgba(255,255,255,0.1)' }}>
                                 <Instagram className="w-4 h-4" />
                             </a>
-                            <a href="#" className="w-9 h-9 rounded-xl flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity"
+                            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity"
                                 style={{ background: 'rgba(255,255,255,0.1)' }}>
-                                <Twitter className="w-4 h-4" />
+                                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                             </a>
-                            <a href="#" className="w-9 h-9 rounded-xl flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity"
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-xl flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity"
                                 style={{ background: 'rgba(255,255,255,0.1)' }}>
                                 <Facebook className="w-4 h-4" />
                             </a>
