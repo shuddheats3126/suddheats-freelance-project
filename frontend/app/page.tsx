@@ -118,6 +118,10 @@ export default function HomePage() {
   const [email, setEmail] = useState('');
   const [subSuccess, setSubSuccess] = useState(false);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [rating, setRating] = useState(5);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [reviewText, setReviewText] = useState('');
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   const [infoSlide, setInfoSlide] = useState(0);
   const infoSlides = [{ image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563593/shuddheats/assets/slide1.jpg' }, { image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563594/shuddheats/assets/slide2.jpg' }, { image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563595/shuddheats/assets/slide3.jpg' }];
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -167,6 +171,33 @@ export default function HomePage() {
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) { setSubSuccess(true); setEmail(''); }
+  };
+
+  const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!reviewText.trim()) return;
+    
+    setIsSubmittingReview(true);
+    try {
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'https://suddheats-freelance-project-production-b773.up.railway.app';
+      await fetch(`${backendUrl}/api/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Anonymous Snacker',
+          email: 'anonymous@shuddheats.co.in',
+          subject: `Site Review: ${rating} Stars`,
+          message: reviewText
+        })
+      });
+      alert('Thank you for your review! 🌿');
+      setReviewText('');
+      setRating(5);
+    } catch (err) {
+      alert('Failed to submit review. Please try again.');
+    } finally {
+      setIsSubmittingReview(false);
+    }
   };
 
   return (
@@ -532,33 +563,34 @@ export default function HomePage() {
             </div>
 
             {mounted && (
-              <div className="card p-8 text-center animate-fadeIn" key={testimonialIndex}>
-                <div className="flex justify-center gap-1 mb-4">
-                  {[...Array(testimonials[testimonialIndex].rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-[rgb(223, 196, 172)] text-[rgb(223, 196, 172)]" />
+              <div className="card p-8 text-center animate-fadeIn relative z-20">
+                <p className="text-gray-600 mb-4 font-medium">Leave a review for us!</p>
+                <div className="flex justify-center gap-2 mb-6">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button 
+                      key={star}
+                      onClick={() => setRating(star)}
+                      onMouseEnter={() => setHoverRating(star)}
+                      onMouseLeave={() => setHoverRating(0)}
+                      className="transition-transform hover:scale-110 focus:outline-none"
+                    >
+                      <Star className={`w-8 h-8 ${star <= (hoverRating || rating) ? 'fill-[rgb(223,196,172)] text-[rgb(223,196,172)]' : 'text-gray-200'}`} />
+                    </button>
                   ))}
                 </div>
-                <p className="text-lg italic text-gray-700 mb-6 leading-relaxed">"{testimonials[testimonialIndex].text}"</p>
-                <p className="font-bold" style={{ color: '#475d2a' }}>{testimonials[testimonialIndex].name}</p>
-                <p className="text-sm text-gray-400">{testimonials[testimonialIndex].city}</p>
-              </div>
-            )}
-            {mounted && (
-              <div className="flex justify-center gap-3 mt-6">
-                <button onClick={() => setTestimonialIndex((i) => (i - 1 + testimonials.length) % testimonials.length)}
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-                  style={{ background: '#475d2a', color: 'white' }}>
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                {testimonials.map((_, i) => (
-                  <button key={i} onClick={() => setTestimonialIndex(i)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all ${i === testimonialIndex ? 'w-6 bg-[#475d2a]' : 'bg-gray-300'}`} />
-                ))}
-                <button onClick={() => setTestimonialIndex((i) => (i + 1) % testimonials.length)}
-                  className="w-10 h-10 rounded-full flex items-center justify-center"
-                  style={{ background: '#475d2a', color: 'white' }}>
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+                <form onSubmit={handleReviewSubmit} className="flex flex-col sm:flex-row gap-3 justify-center items-center max-w-lg mx-auto">
+                  <input 
+                    type="text" 
+                    value={reviewText}
+                    onChange={(e) => setReviewText(e.target.value)}
+                    placeholder="Tell us what you think..." 
+                    className="input-field flex-1 w-full"
+                    required
+                  />
+                  <button type="submit" disabled={isSubmittingReview} className="btn-primary whitespace-nowrap px-6">
+                    {isSubmittingReview ? 'Submitting...' : 'Submit'}
+                  </button>
+                </form>
               </div>
             )}
           </div>
