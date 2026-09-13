@@ -117,6 +117,7 @@ export default function HomePage() {
   const [bestsellers, setBestsellers] = useState<any[]>([]);
   const [email, setEmail] = useState('');
   const [subSuccess, setSubSuccess] = useState(false);
+  const [generatedCode, setGeneratedCode] = useState('');
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [infoSlide, setInfoSlide] = useState(0);
   const infoSlides = [{ image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563593/shuddheats/assets/slide1.jpg' }, { image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563594/shuddheats/assets/slide2.jpg' }, { image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563595/shuddheats/assets/slide3.jpg' }];
@@ -166,7 +167,12 @@ export default function HomePage() {
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) { setSubSuccess(true); setEmail(''); }
+    if (email) { 
+      const code = 'NEW-' + Math.floor(1000 + Math.random() * 9000);
+      setGeneratedCode(code);
+      setSubSuccess(true); 
+      setEmail(''); 
+    }
   };
 
   return (
@@ -574,7 +580,7 @@ export default function HomePage() {
             <p className="text-sm mb-6 animate-fadeInUp delay-200" style={{ color: 'rgba(0,0,0,0.6)' }}>Join our snacker newsletter for exclusive discounts, new launches, and healthy snacking tips.</p>
             {subSuccess ? (
               <div className="bg-[#475d2a] text-white py-4 px-6 md:px-8 rounded-2xl font-bold text-sm md:text-lg animate-scaleIn shadow-md">
-                🎉 You're in! Use discount code <span className="underline decoration-yellow-400 font-extrabold text-yellow-300">FIRST10</span> to get 10% off your first order!
+                🎉 You're in! Use discount code <span className="underline decoration-yellow-400 font-extrabold text-yellow-300">{generatedCode}</span> to get 10% off your first order!
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto animate-fadeInUp delay-300">

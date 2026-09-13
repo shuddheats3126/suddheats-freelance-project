@@ -98,7 +98,7 @@ export default function CheckoutPage() {
             toast.error('Promo code already applied');
             return;
         }
-        if (code === 'SHUDDHEATS10' || code === 'FIRST10' || code === 'CLEAN10') {
+        if (code === 'SHUDDHEATS10' || code === 'FIRST10' || code === 'CLEAN10' || (code.startsWith('NEW-') && code.length === 8)) {
             const calculatedDiscount = Math.round(subtotal * 0.1);
             setDiscountAmount(calculatedDiscount);
             setAppliedPromo(code);
@@ -377,7 +377,7 @@ export default function CheckoutPage() {
                                             type="text"
                                             value={promoCode}
                                             onChange={e => setPromoCode(e.target.value)}
-                                            placeholder="e.g. FIRST10"
+                                            placeholder="e.g. NEW-4829"
                                             className="input-field text-xs py-1.5 px-3 flex-1 min-h-[36px]"
                                         />
                                         <button
