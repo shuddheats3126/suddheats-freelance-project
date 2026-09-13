@@ -94,8 +94,8 @@ export default function Footer() {
                         <h4 className="font-bold text-sm uppercase tracking-wider mb-5 opacity-60">Get in Touch</h4>
                         <div className="flex flex-col gap-4">
                             {[
-                                { Icon: Mail, text: 'hello@shuddheats.com' },
-                                { Icon: Phone, text: '+91 98765 43210' },
+                                { Icon: Mail, text: 'shuddheats3126@gmail.com' },
+                                { Icon: Phone, text: '+91 8850823761' },
                                 { Icon: MapPin, text: 'Mumbai, Maharashtra' },
                             ].map(({ Icon, text }) => (
                                 <div key={text} className="flex items-center gap-3 text-sm opacity-75">

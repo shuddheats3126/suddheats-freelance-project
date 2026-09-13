@@ -40,7 +40,7 @@ export default function RegisterPage() {
                         {[
                             { n: 'name', l: 'Full Name', t: 'text', p: 'Rahul Sharma' },
                             { n: 'email', l: 'Email', t: 'email', p: 'rahul@email.com' },
-                            { n: 'phone', l: 'Phone (optional)', t: 'tel', p: '+91 98765 43210' },
+                            { n: 'phone', l: 'Phone (optional)', t: 'tel', p: '+91 8850823761' },
                             { n: 'password', l: 'Password', t: 'password', p: 'Min 6 characters' },
                         ].map(({ n, l, t, p }) => (
                             <div key={n}>

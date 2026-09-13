@@ -20,8 +20,8 @@ export default function PrivacyPolicy() {
                         By accessing this website or any other online property of ShuddhEats or using our services, you provide
                         your consent to the collection, use, and processing of your personal data for the purposes stated
                         in this Privacy Policy. You may withdraw your consent at any time by contacting us at email{' '}
-                        <a href="mailto:hello@shuddheats.com" className="text-[#475d2a] font-bold hover:underline">
-                            hello@shuddheats.com
+                        <a href="mailto:shuddheats3126@gmail.com" className="text-[#475d2a] font-bold hover:underline">
+                            shuddheats3126@gmail.com
                         </a>. We may be required to retain some of your Personal Data after you have requested deletion,
                         to satisfy our legal or contractual obligations.
                     </p>
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
                         <li><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
                         <li><strong>Sensitive Personal Data:</strong> Information related to but not limited to financial details and passwords.</li>
                         <li><strong>Service</strong> refers to the Website.</li>
-                        <li><strong>Website</strong> refers to this website owned and operated by ShuddhEats, accessible at <a href="https://ShuddhEatsfoods.com/" className="text-[#475d2a] hover:underline">https://ShuddhEatsfoods.com/</a></li>
+                        <li><strong>Website</strong> refers to this website owned and operated by ShuddhEats, accessible at <a href="https://shuddheats.co.in/" className="text-[#475d2a] hover:underline">https://shuddheats.co.in/</a></li>
                     </ul>
 
                     <h2 className="text-2xl font-bold text-[#475d2a] mt-8 mb-4 border-b pb-2">Collecting and Using Your Personal Data</h2>
@@ -94,8 +94,8 @@ export default function PrivacyPolicy() {
                     <h2 className="text-2xl font-bold text-[#475d2a] mt-8 mb-4 border-b pb-2">Contact Us</h2>
                     <p>If you have any questions about this Privacy Policy, You can contact us:</p>
                     <ul className="list-none space-y-2 text-gray-600">
-                        <li><strong>By email:</strong> <a href="mailto:hello@ShuddhEatsfoods.com" className="text-[#475d2a] hover:underline">hello@ShuddhEatsfoods.com</a></li>
-                        <li><strong>By phone number:</strong> <a href="tel:+91 98765 43210" className="text-[#475d2a] hover:underline">+91 98765 43210</a></li>
+                        <li><strong>By email:</strong> <a href="mailto:shuddheats3126@gmail.com" className="text-[#475d2a] hover:underline">shuddheats3126@gmail.com</a></li>
+                        <li><strong>By phone number:</strong> <a href="tel:+91 8850823761" className="text-[#475d2a] hover:underline">+91 8850823761</a></li>
                         <li><strong>By Post:</strong> Mumbai, Maharashtra</li>
                     </ul>
                 </div>

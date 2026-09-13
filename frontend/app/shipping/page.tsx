@@ -13,8 +13,8 @@ export default function ShippingPolicy() {
                         Information regarding our shipping policy will be updated here soon. If you have any immediate questions regarding the shipping of your order, please contact our support team.
                     </p>
                     <p>
-                        Email: <a href="mailto:hello@ShuddhEatsfoods.com" className="text-[#475d2a] font-bold hover:underline">hello@ShuddhEatsfoods.com</a><br/>
-                        Phone: <a href="tel:+91 98765 43210" className="text-[#475d2a] font-bold hover:underline">+91 98765 43210</a>
+                        Email: <a href="mailto:shuddheats3126@gmail.com" className="text-[#475d2a] font-bold hover:underline">shuddheats3126@gmail.com</a><br/>
+                        Phone: <a href="tel:+91 8850823761" className="text-[#475d2a] font-bold hover:underline">+91 8850823761</a>
                     </p>
                 </div>
             </div>

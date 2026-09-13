@@ -43,7 +43,7 @@ export default function RefundPolicy() {
                     <h2 className="text-xl font-bold text-[#475d2a] mt-8 mb-4">How to Request a Return:</h2>
                     <p>To ensure a quick resolution, please follow these steps:</p>
                     <ol className="list-decimal pl-5 space-y-2">
-                        <li>Contact us immediately at <a href="mailto:hello@ShuddhEatsfoods.com" className="text-[#475d2a] font-bold hover:underline">hello@ShuddhEatsfoods.com</a> or <a href="tel:+91 98765 43210" className="text-[#475d2a] font-bold hover:underline">+91 98765 43210</a>.</li>
+                        <li>Contact us immediately at <a href="mailto:shuddheats3126@gmail.com" className="text-[#475d2a] font-bold hover:underline">shuddheats3126@gmail.com</a> or <a href="tel:+91 8850823761" className="text-[#475d2a] font-bold hover:underline">+91 8850823761</a>.</li>
                         <li>You must provide your order ID and receipt.</li>
                         <li>You must submit clear photos or videos of the product explicitly showing the batch number and manufacturing date, as well as the packaging showing the reported issue.</li>
                     </ol>
