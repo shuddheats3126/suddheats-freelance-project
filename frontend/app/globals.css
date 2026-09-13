@@ -296,13 +296,13 @@
 }
 
 @keyframes scrollX {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 @keyframes scrollXReverse {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(0); }
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 @keyframes slideInLeft {
@@ -412,10 +412,12 @@
 
 .scroll-animate {
   animation: scrollX var(--duration, 15s) linear infinite;
+  will-change: transform;
 }
 
 .scroll-animate-reverse {
   animation: scrollXReverse var(--duration, 15s) linear infinite;
+  will-change: transform;
 }
 
 .scroll-animate > div,

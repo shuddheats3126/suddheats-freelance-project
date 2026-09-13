@@ -301,20 +301,22 @@ export default function HomePage() {
               {[...Array(3)].map((_, i) => <div key={i} className="skeleton h-80" />)}
             </div>
           ) : (
-            <div className="w-full overflow-hidden whitespace-nowrap group">
-              <div className="scroll-animate-reverse inline-flex shrink-0 gap-3 sm:gap-4 pr-3 sm:pr-4 w-max" style={{ '--duration': '25s' } as any}>
-                {[...featured, ...featured].map((p, i) => (
-                  <div key={`featured-1-${i}`} className="flex-shrink-0 w-[82vw] max-w-[280px] sm:w-[320px] sm:max-w-[320px] whitespace-normal">
-                    <ProductCardWithSizes product={p} />
-                  </div>
-                ))}
-              </div>
-              <div className="scroll-animate-reverse inline-flex shrink-0 gap-3 sm:gap-4 pr-3 sm:pr-4 w-max" style={{ '--duration': '25s' } as any} aria-hidden="true">
-                {[...featured, ...featured].map((p, i) => (
-                  <div key={`featured-2-${i}`} className="flex-shrink-0 w-[82vw] max-w-[280px] sm:w-[320px] sm:max-w-[320px] whitespace-normal">
-                    <ProductCardWithSizes product={p} />
-                  </div>
-                ))}
+            <div className="w-full overflow-hidden group">
+              <div className="scroll-animate-reverse flex w-max" style={{ '--duration': '35s' } as any}>
+                <div className="flex gap-3 sm:gap-4 pr-3 sm:pr-4">
+                  {[...featured, ...featured, ...featured].map((p, i) => (
+                    <div key={`featured-1-${i}`} className="flex-shrink-0 w-[82vw] max-w-[280px] sm:w-[320px] sm:max-w-[320px]">
+                      <ProductCardWithSizes product={p} />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-3 sm:gap-4 pr-3 sm:pr-4" aria-hidden="true">
+                  {[...featured, ...featured, ...featured].map((p, i) => (
+                    <div key={`featured-2-${i}`} className="flex-shrink-0 w-[82vw] max-w-[280px] sm:w-[320px] sm:max-w-[320px]">
+                      <ProductCardWithSizes product={p} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
@@ -367,20 +369,22 @@ export default function HomePage() {
               {[...Array(4)].map((_, i) => <div key={i} className="skeleton h-72" />)}
             </div>
           ) : (
-            <div className="w-full overflow-hidden whitespace-nowrap group">
-              <div className="scroll-animate inline-flex shrink-0 gap-3 sm:gap-4 pr-3 sm:pr-4 w-max" style={{ '--duration': '25s' } as any}>
-                {[...bestsellers, ...bestsellers].map((p, i) => (
-                  <div key={`bestseller-1-${i}`} className="flex-shrink-0 w-[82vw] max-w-[240px] sm:w-[260px] sm:max-w-[260px] whitespace-normal">
-                    <ProductCardWithSizes product={p} />
-                  </div>
-                ))}
-              </div>
-              <div className="scroll-animate inline-flex shrink-0 gap-3 sm:gap-4 pr-3 sm:pr-4 w-max" style={{ '--duration': '25s' } as any} aria-hidden="true">
-                {[...bestsellers, ...bestsellers].map((p, i) => (
-                  <div key={`bestseller-2-${i}`} className="flex-shrink-0 w-[82vw] max-w-[240px] sm:w-[260px] sm:max-w-[260px] whitespace-normal">
-                    <ProductCardWithSizes product={p} />
-                  </div>
-                ))}
+            <div className="w-full overflow-hidden group">
+              <div className="scroll-animate flex w-max" style={{ '--duration': '35s' } as any}>
+                <div className="flex gap-3 sm:gap-4 pr-3 sm:pr-4">
+                  {[...bestsellers, ...bestsellers, ...bestsellers].map((p, i) => (
+                    <div key={`bestseller-1-${i}`} className="flex-shrink-0 w-[82vw] max-w-[240px] sm:w-[260px] sm:max-w-[260px]">
+                      <ProductCardWithSizes product={p} />
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-3 sm:gap-4 pr-3 sm:pr-4" aria-hidden="true">
+                  {[...bestsellers, ...bestsellers, ...bestsellers].map((p, i) => (
+                    <div key={`bestseller-2-${i}`} className="flex-shrink-0 w-[82vw] max-w-[240px] sm:w-[260px] sm:max-w-[260px]">
+                      <ProductCardWithSizes product={p} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
