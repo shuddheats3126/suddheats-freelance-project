@@ -65,11 +65,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             if (data.requiresTwoFASetup) {
                 // Admin without 2FA, needs setup
                 console.log('⚠️ 2FA setup required for admin:', { email });
-                if (typeof window !== 'undefined') {
-                    localStorage.setItem('token', data.token);
-                    document.cookie = `token=${data.token}; path=/; max-age=2592000; SameSite=Lax`;
-                }
-                api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
                 
                 const userData = {
                     id: data.user.id,
@@ -79,6 +74,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                     role: data.user.role,
                     token: data.token
                 };
+
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('shuddheats_token', data.token);
+                    localStorage.setItem('shuddheats_user', JSON.stringify(userData));
+                    document.cookie = `token=${data.token}; path=/; max-age=2592000; SameSite=Lax`;
+                }
+                api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+                
                 setUser(userData);
                 setRequiresTwoFA(false);
                 setTempSessionToken(null);
@@ -193,7 +196,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, register, logout, isAdmin: user?.role === 'admin', requiresTwoFA, tempSessionToken, verifyTwoFA }}>
+        <AuthContext.Provider value={{ user, loading, login, register, logout, isAdmin: user?.role?.toUpperCase() === 'ADMIN', requiresTwoFA, tempSessionToken, verifyTwoFA }}>
             {children}
         </AuthContext.Provider>
     );
