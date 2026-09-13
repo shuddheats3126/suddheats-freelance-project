@@ -48,4 +48,47 @@ router.post('/2fa/setup', adminOnly, async (req, res) => {
   }
 });
 
+/**
+ * ADMIN DASHBOARD STATS
+ * GET /api/admin/dashboard
+ */
+router.get('/dashboard', adminOnly, async (req, res) => {
+  try {
+    const totalOrders = await prisma.order.count();
+    const totalProducts = await prisma.product.count();
+    const totalUsers = await prisma.user.count({ where: { role: 'USER' } });
+    
+    const revenueAgg = await prisma.order.aggregate({
+      _sum: {
+        totalPrice: true
+      },
+      where: {
+        isPaid: true
+      }
+    });
+    const totalRevenue = revenueAgg._sum.totalPrice || 0;
+
+    const recentOrders = await prisma.order.findMany({
+      take: 5,
+      orderBy: { createdAt: 'desc' },
+      include: {
+        user: {
+          select: { name: true, email: true }
+        }
+      }
+    });
+
+    res.json({
+      totalOrders,
+      totalProducts,
+      totalUsers,
+      totalRevenue,
+      recentOrders
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to fetch dashboard stats' });
+  }
+});
+
 module.exports = router;

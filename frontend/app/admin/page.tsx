@@ -18,12 +18,10 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         if (!isAdmin) return;
-        api.get('/admin/dashboard').then(r => setStats(r.data)).catch(() => {
+        api.get('/admin/dashboard').then(r => setStats(r.data)).catch((err) => {
+            console.error('Failed to fetch admin stats:', err);
             setStats({
-                totalOrders: 12, totalProducts: 9, totalUsers: 47, totalRevenue: 8940, recentOrders: [
-                    { id: 'ord1', user: { name: 'Priya Sharma', email: 'priya@example.com' }, totalPrice: 437, status: 'Processing', isPaid: true, createdAt: new Date().toISOString() },
-                    { id: 'ord2', user: { name: 'Rahul Gupta', email: 'rahul@example.com' }, totalPrice: 199, status: 'Shipped', isPaid: true, createdAt: new Date().toISOString() },
-                ]
+                totalOrders: 0, totalProducts: 0, totalUsers: 0, totalRevenue: 0, recentOrders: []
             });
         }).finally(() => setFetching(false));
     }, [isAdmin]);
