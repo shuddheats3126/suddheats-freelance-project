@@ -383,9 +383,9 @@ function ShopContent() {
         "price": 149,
         "originalPrice": 199,
         "category": "No Sugar No Palm Oil Millet Cookies",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563587/shuddheats/products/jowar-nuts-cookies.jpg",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg",
         "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563587/shuddheats/products/jowar-nuts-cookies.jpg"
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg"
         ],
         "stock": 115,
         "weight": "100g",
