@@ -4,6 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Leaf } from 'lucide-react';
+import Image from 'next/image';
 import toast from 'react-hot-toast';
 
 export default function RegisterPage() {
@@ -29,8 +30,14 @@ export default function RegisterPage() {
         <div className="min-h-screen flex items-center justify-center py-8 sm:py-16 px-3 sm:px-4" style={{ background: '#f0f4ed' }}>
             <div className="w-full max-w-md">
                 <div className="text-center mb-6 sm:mb-8">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4" style={{ background: '#475d2a' }}>
-                        <Leaf className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden flex items-center justify-center mx-auto mb-3 sm:mb-4" style={{ background: 'rgba(255,255,255,0.95)', border: '2px solid #475d2a' }}>
+                        <Image
+                            src="https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563574/shuddheats/assets/logo-se-circle.png"
+                            alt="ShuddhEats Logo"
+                            width={80}
+                            height={80}
+                            className="object-contain"
+                        />
                     </div>
                     <h1 className="text-2xl sm:text-3xl font-extrabold" style={{ color: '#475d2a' }}>Join ShuddhEats</h1>
                     <p className="text-sm sm:text-base text-gray-500 mt-1">Create your account and start snacking clean</p>
