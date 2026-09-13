@@ -13,7 +13,7 @@ import { ArrowRight, Leaf, Flame, Shield, Recycle, Star, ChevronLeft, ChevronRig
 
 const heroSlides = [
   {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/makhana-bundel.jpg',
+    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1789299180/file_0000000009f08208867a0c9b82e86840.png',
     badge: '🌰 Air-Popped | Guilt-Free | High Protein',
     titleLine1: 'Flavoured',
     titleLine2: 'Makhanas',
@@ -55,7 +55,7 @@ const heroSlides = [
     subtitle: 'Air Fried & Crispy. Real Broccoli Taste with zero added preservatives.'
   },
   {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563582/shuddheats/products/chips-bundel.jpg',
+    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1789299180/file_000000006db08208bd7802128d7a0203.png',
     badge: '🥗 Air Fried | 70% Less Oil | Crunchy',
     titleLine1: 'Air Fried Chips',
     titleLine2: 'Collection',
