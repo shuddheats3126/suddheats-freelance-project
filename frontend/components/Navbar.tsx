@@ -301,7 +301,7 @@ export default function Navbar() {
 
                         {/* ── Mobile menu ── */}
                         {isOpen && (
-                            <div className="lg:hidden pb-[calc(1rem+env(safe-area-inset-bottom))] sm:pb-4 border-t border-[#556B2F]/20 animate-slideDown max-h-[85vh] overflow-y-auto">
+                            <div className="lg:hidden pb-[calc(1rem+env(safe-area-inset-bottom))] sm:pb-4 border-t border-[#556B2F]/20 animate-slideDown max-h-[85vh] overflow-y-auto bg-white rounded-b-2xl">
                                 <div className="flex flex-col gap-1 py-2 sm:py-3">
                                     {allLinks.map(l => {
                                         const active = isActive(l.href);

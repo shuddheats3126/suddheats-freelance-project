@@ -82,7 +82,7 @@ export default function OurStory() {
 
                     {/* Right - Illustration Placeholder */}
                     <div className="order-1 lg:order-2">
-                        <div className="bg-white rounded-3xl p-8 flex items-center justify-center min-h-[250px] shadow-sm border border-gray-100 overflow-hidden relative">
+                        <div className="bg-white rounded-3xl p-4 md:p-8 flex items-center justify-center min-h-[120px] md:min-h-[250px] shadow-sm border border-gray-100 overflow-hidden relative">
                             <div className="absolute inset-0 bg-[#475d2a]/5"></div>
                             <div className="flex gap-4 md:gap-8 items-center relative z-10 transition-all duration-500 hover:scale-110">
                                 {current.emojis.map((emoji, idx) => (
