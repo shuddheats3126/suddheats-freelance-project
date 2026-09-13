@@ -85,8 +85,8 @@ router.post('/verify-setup', protect, adminOnly, async (req, res) => {
         await User.update({
             where: { id: req.user.id },
             data: {
-                twoFactorEnabled: true,
-                twoFactorSecret: secret,
+                is2FAEnabled: true,
+                twoFASecret: secret,
                 backupCodes: backupCodes
             }
         });
@@ -131,8 +131,8 @@ router.post('/disable', protect, adminOnly, async (req, res) => {
         await User.update({
             where: { id: req.user.id },
             data: {
-                twoFactorEnabled: false,
-                twoFactorSecret: null,
+                is2FAEnabled: false,
+                twoFASecret: null,
                 backupCodes: []
             }
         });
@@ -163,7 +163,7 @@ router.post('/verify', async (req, res) => {
         }
 
         const user = await User.findUnique({ where: { email } });
-        if (!user || !user.twoFactorEnabled) {
+        if (!user || !user.is2FAEnabled) {
             return res.status(400).json({ message: '2FA is not enabled for this user' });
         }
 
@@ -183,7 +183,7 @@ router.post('/verify', async (req, res) => {
         }
 
         const verified = speakeasy.totp.verify({
-            secret: user.twoFactorSecret,
+            secret: user.twoFASecret,
             encoding: 'base32',
             token: totpCode,
             window: 2
