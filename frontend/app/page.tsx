@@ -20,41 +20,6 @@ const heroSlides = [
     subtitle: 'From Himalayan Salt to Peri Peri — discover our full range of delicious roasted fox nuts.'
   },
   {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563570/shuddheats/assets/ragi-cookies.jpg',
-    badge: '🍪 Healthy | Organic | Clean Eating',
-    titleLine1: 'Ragi & Elaichi',
-    titleLine2: 'Cookies',
-    subtitle: 'Wholesome | Vegan | Gluten-Free. Made with 100% Organic Ragi & Cardamom.'
-  },
-  {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563568/shuddheats/assets/jowar-cookies.jpg',
-    badge: '🍪 Healthy | Organic | Clean Eating',
-    titleLine1: 'Jowar & Nuts',
-    titleLine2: 'Cookies',
-    subtitle: 'Wholesome | Vegan | Gluten-Free. Made with 100% Organic Jowar & Premium Nuts.'
-  },
-  {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563583/shuddheats/products/cokkies-bundel.jpg',
-    badge: '🍪 No Sugar | No Palm Oil | Millet Goodness',
-    titleLine1: 'Millet Cookie',
-    titleLine2: 'Collection',
-    subtitle: 'Baked with love — Honey & Oats, Jowar & Nuts, Ragi & Elaichi. Zero refined sugar.'
-  },
-  {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563567/shuddheats/assets/beetroot-chips.jpg',
-    badge: '🥔 Low Calorie | Fibre Rich',
-    titleLine1: 'Beetroot',
-    titleLine2: 'Chips',
-    subtitle: 'Air Fried & Flavourful. Real Beetroot Taste with zero added preservatives.'
-  },
-  {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563567/shuddheats/assets/broccoli-chips.jpg',
-    badge: '🥦 Low Calorie | Fibre Rich',
-    titleLine1: 'Broccoli',
-    titleLine2: 'Chips',
-    subtitle: 'Air Fried & Crispy. Real Broccoli Taste with zero added preservatives.'
-  },
-  {
     image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1789299180/file_000000006db08208bd7802128d7a0203.png',
     badge: '🥗 Air Fried | 70% Less Oil | Crunchy',
     titleLine1: 'Air Fried Chips',
