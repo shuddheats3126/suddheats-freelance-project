@@ -118,12 +118,15 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
     const nodemailer = require('nodemailer');
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.SMTP_PORT) || 465,
-      secure: process.env.SMTP_SECURE === 'true' || true,
+      port: parseInt(process.env.SMTP_PORT) || 587,
+      secure: false, // true for 465, false for 587
       auth: {
         user: process.env.SMTP_USER || 'shuddheats3126@gmail.com',
         pass: process.env.SMTP_PASS || 'qqbqyjjutwzxyglc'
-      }
+      },
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 10000
     });
 
     const htmlContent = `
