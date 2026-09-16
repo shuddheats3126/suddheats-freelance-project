@@ -121,8 +121,8 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
       port: parseInt(process.env.SMTP_PORT) || 587,
       secure: false, // true for 465, false for 587
       auth: {
-        user: process.env.SMTP_USER || 'shuddheats3126@gmail.com',
-        pass: process.env.SMTP_PASS || 'qqbqyjjutwzxyglc'
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
       },
       connectionTimeout: 10000,
       greetingTimeout: 10000,
