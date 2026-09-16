@@ -111,13 +111,15 @@ model Review {
 }
 
 model ContactQuery {
-  id        String   @id @default(cuid()) @map("id")
-  name      String
-  email     String
-  subject   String
-  message   String
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+  id           String   @id @default(cuid()) @map("id")
+  name         String
+  email        String
+  subject      String
+  message      String
+  isReplied    Boolean  @default(false) @map("is_replied")
+  replyMessage String?  @map("reply_message")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
 
   @@map("contact_queries")
 }

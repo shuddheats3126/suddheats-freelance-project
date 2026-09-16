@@ -103,11 +103,10 @@ export default function HomePage() {
   useEffect(() => {
     const fetchHomeProducts = async () => {
       try {
-        const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'https://suddheats-freelance-project-production-b773.up.railway.app';
-        console.log('Fetching products from:', backendUrl);
-        const res = await fetch(`${backendUrl}/api/products`, { cache: 'no-store' });
-        const data = await res.json();
-        const products = data.products || data;
+        console.log('Fetching home products...');
+        const res = await api.get('/products');
+        const products = res.data.products || res.data;
+        
         if (products && products.length > 0) {
             console.log('API response arrives. Products array is not empty:', products.length);
         } else {
