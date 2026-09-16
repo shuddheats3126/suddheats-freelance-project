@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f3; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
     .email-container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #ebf0e6; }
     .header { padding: 30px; text-align: center; background-color: #ffffff; }
-    .logo { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #dfc4ac; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .logo { max-width: 200px; height: auto; }
     .hero { background-color: #475d2a; padding: 25px 30px; text-align: center; }
     .hero h1 { color: #ffffff; font-size: 22px; font-weight: 700; margin: 0; letter-spacing: 0.5px; }
     .hero p { color: #dfc4ac; font-size: 13px; margin: 8px 0 0; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 <body>
   <div class="email-container">
     <div class="header">
-      <img src="https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563574/shuddheats/assets/logo-se-circle.png" alt="ShuddhEats Logo" class="logo" />
+      <img src="cid:shuddheats_logo" alt="ShuddhEats Logo" class="logo" />
     </div>
     <div class="hero">
       <h1>New Customer Inquiry</h1>
@@ -105,7 +105,7 @@ router.post('/', async (req, res) => {
     </div>
     
     <div class="footer">
-      <a href="https://shuddheats.co.in" class="btn">Visit ShuddhEats.co.in</a>
+      <a href="http://localhost:3000" class="btn">Visit ShuddhEats</a>
       <p class="footer-text">This automated alert was sent from your website platform.</p>
       <p class="footer-text" style="margin-top: 5px; color: #aaa;">You can safely reply directly to this email to contact the customer.</p>
     </div>
@@ -148,7 +148,14 @@ router.post('/', async (req, res) => {
                 replyTo: email,
                 subject: `[ShuddhEats Inquiry] ${subject}`,
                 html: htmlContent,
-                text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`
+                text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`,
+                attachments: [
+                    {
+                        filename: 'logo.png',
+                        path: require('path').join(__dirname, '../../frontend/public/images/logo.png'),
+                        cid: 'shuddheats_logo'
+                    }
+                ]
             });
         }
         

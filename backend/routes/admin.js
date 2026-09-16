@@ -127,7 +127,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #fcfcfc; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
     .email-container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: 1px solid #f0f0f0; }
     .header { padding: 30px; text-align: center; }
-    .logo { width: 100px; height: 100px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 10px; }
+    .logo { max-width: 200px; height: auto; margin-bottom: 10px; }
     .hero { background-color: #f9fafa; padding: 30px; text-align: center; border-bottom: 2px solid #f0f4ed; }
     .hero h1 { color: #2d371c; font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.2px; }
     .hero p { color: #829e59; font-size: 16px; margin: 10px 0 0; font-weight: 500; }
@@ -151,7 +151,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
 <body>
   <div class="email-container">
     <div class="header">
-      <img src="https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563574/shuddheats/assets/logo-se-circle.png" alt="ShuddhEats Logo" class="logo" />
+      <img src="cid:shuddheats_logo" alt="ShuddhEats Logo" class="logo" />
     </div>
     
     <div class="hero">
@@ -177,7 +177,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
     
     <div class="footer">
       <p>Stay Healthy, Stay Shuddh.</p>
-      <a href="https://shuddheats.co.in" class="btn">Visit ShuddhEats.co.in</a>
+      <a href="http://localhost:3000" class="btn">Visit ShuddhEats</a>
     </div>
   </div>
 </body>
@@ -215,7 +215,14 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
         to: query.email,
         subject: `Re: ${query.subject}`,
         html: htmlContent,
-        text: `Hi ${query.name},\n\n${replyMessage}\n\nWarm regards,\nThe ShuddhEats Team\n\n--- Your Original Message ---\n${query.message}`
+        text: `Hi ${query.name},\n\n${replyMessage}\n\nWarm regards,\nThe ShuddhEats Team\n\n--- Your Original Message ---\n${query.message}`,
+        attachments: [
+          {
+            filename: 'logo.png',
+            path: require('path').join(__dirname, '../../frontend/public/images/logo.png'),
+            cid: 'shuddheats_logo'
+          }
+        ]
       });
     }
 
