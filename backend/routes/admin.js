@@ -89,6 +89,7 @@ router.get('/dashboard', adminOnly, async (req, res) => {
     console.error(err);
     res.status(500).json({ message: 'Failed to fetch dashboard stats' });
   }
+});
 /**
  * ADMIN REPLY TO QUERY
  * POST /api/admin/queries/:id/reply
