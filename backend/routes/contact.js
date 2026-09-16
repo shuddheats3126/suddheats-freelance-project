@@ -26,19 +26,6 @@ router.post('/', async (req, res) => {
         console.log("Database write successful");
         console.log('[Contact] Query saved to database successfully');
 
-        const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST || 'smtp.gmail.com',
-            port: parseInt(process.env.SMTP_PORT) || 587,
-            secure: false, // true for 465, false for 587
-            auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS
-            },
-            connectionTimeout: 10000,
-            greetingTimeout: 10000,
-            socketTimeout: 10000
-        });
-
         const now = new Date().toLocaleString('en-IN', {
             timeZone: 'Asia/Kolkata',
             dateStyle: 'long',
@@ -106,20 +93,50 @@ router.post('/', async (req, res) => {
 </body>
 </html>`;
 
-        await transporter.sendMail({
-            from: `"ShuddhEats Contact Form" <${process.env.SMTP_USER}>`,
-            to: 'shuddheats3126@gmail.com',
-            replyTo: email,
-            subject: `[ShuddhEats Inquiry] ${subject}`,
-            html: htmlContent,
-            text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`,
-            attachments: [{
-                filename: 'logo.png',
-                path: path.join(__dirname, '../assets/logo.png'),
-                cid: 'shuddheats_logo',
-                contentDisposition: 'inline'
-            }]
-        });
+        if (process.env.EMAIL_WEBHOOK_URL) {
+            // Bypass Railway's SMTP block using a Webhook
+            const response = await fetch(process.env.EMAIL_WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    to: 'shuddheats3126@gmail.com',
+                    replyTo: email,
+                    subject: `[ShuddhEats Inquiry] ${subject}`,
+                    html: htmlContent
+                })
+            });
+            const data = await response.json();
+            if (!data.success) throw new Error('Webhook failed to send email');
+        } else {
+            // Standard SMTP (Blocked on Railway Hobby plan)
+            const transporter = nodemailer.createTransport({
+                host: process.env.SMTP_HOST || 'smtp.gmail.com',
+                port: parseInt(process.env.SMTP_PORT) || 587,
+                secure: false, // true for 465, false for 587
+                auth: {
+                    user: process.env.SMTP_USER,
+                    pass: process.env.SMTP_PASS
+                },
+                connectionTimeout: 10000,
+                greetingTimeout: 10000,
+                socketTimeout: 10000
+            });
+
+            await transporter.sendMail({
+                from: `"ShuddhEats Contact Form" <${process.env.SMTP_USER}>`,
+                to: 'shuddheats3126@gmail.com',
+                replyTo: email,
+                subject: `[ShuddhEats Inquiry] ${subject}`,
+                html: htmlContent,
+                text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`,
+                attachments: [{
+                    filename: 'logo.png',
+                    path: path.join(__dirname, '../assets/logo.png'),
+                    cid: 'shuddheats_logo',
+                    contentDisposition: 'inline'
+                }]
+            });
+        }
         
         console.log('[Contact] Email sent successfully');
         res.json({ success: true, message: 'Message sent successfully' });

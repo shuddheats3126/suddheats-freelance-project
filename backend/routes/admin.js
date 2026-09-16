@@ -116,18 +116,6 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
     }
 
     const nodemailer = require('nodemailer');
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.SMTP_PORT) || 587,
-      secure: false, // true for 465, false for 587
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      },
-      connectionTimeout: 10000,
-      greetingTimeout: 10000,
-      socketTimeout: 10000
-    });
 
     const htmlContent = `
 <!DOCTYPE html>
@@ -179,13 +167,41 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
 </body>
 </html>`;
 
-    await transporter.sendMail({
-      from: `"ShuddhEats Support" <${process.env.SMTP_USER}>`,
-      to: query.email,
-      subject: `Re: ${query.subject}`,
-      html: htmlContent,
-      text: `Hi ${query.name},\n\n${replyMessage}\n\nWarm regards,\nThe ShuddhEats Team\n\n--- Your Original Message ---\n${query.message}`
-    });
+    if (process.env.EMAIL_WEBHOOK_URL) {
+      // Bypass Railway's SMTP block using a Webhook
+      const response = await fetch(process.env.EMAIL_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: query.email,
+          subject: `Re: ${query.subject}`,
+          html: htmlContent
+        })
+      });
+      const data = await response.json();
+      if (!data.success) throw new Error('Webhook failed to send email');
+    } else {
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        port: parseInt(process.env.SMTP_PORT) || 587,
+        secure: false, // true for 465, false for 587
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS
+        },
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 10000
+      });
+
+      await transporter.sendMail({
+        from: `"ShuddhEats Support" <${process.env.SMTP_USER}>`,
+        to: query.email,
+        subject: `Re: ${query.subject}`,
+        html: htmlContent,
+        text: `Hi ${query.name},\n\n${replyMessage}\n\nWarm regards,\nThe ShuddhEats Team\n\n--- Your Original Message ---\n${query.message}`
+      });
+    }
 
     // Update the database
     await prisma.contactQuery.update({
