@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Clock, CheckCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
+import api from '@/lib/api';
 
 export default function ContactPage() {
     const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
@@ -12,12 +13,7 @@ export default function ContactPage() {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(form)
-            });
-            if (!res.ok) throw new Error('Failed');
+            const res = await api.post('/contact', form);
             setSent(true);
             setForm({ name: '', email: '', subject: '', message: '' }); // Clear form
         } catch {
