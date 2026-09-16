@@ -219,7 +219,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
         attachments: [
           {
             filename: 'logo.png',
-            path: require('path').join(__dirname, '../../frontend/public/images/logo.png'),
+            path: require('path').join(__dirname, '../assets/logo.png'),
             cid: 'shuddheats_logo'
           }
         ]
