@@ -105,7 +105,7 @@ router.post('/', async (req, res) => {
     </div>
     
     <div class="footer">
-      <a href="http://localhost:3000" class="btn">Visit ShuddhEats</a>
+      <a href="https://www.shuddheats.co.in" class="btn">Visit ShuddhEats.co.in</a>
       <p class="footer-text">This automated alert was sent from your website platform.</p>
       <p class="footer-text" style="margin-top: 5px; color: #aaa;">You can safely reply directly to this email to contact the customer.</p>
     </div>
@@ -151,8 +151,8 @@ router.post('/', async (req, res) => {
                 text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`,
                 attachments: [
                     {
-                        filename: 'logo.png',
-                        path: require('path').join(__dirname, '../assets/logo.png'),
+                        filename: 'logo.jpg',
+                        path: require('path').join(__dirname, '../assets/logo.jpg'),
                         cid: 'shuddheats_logo'
                     }
                 ]

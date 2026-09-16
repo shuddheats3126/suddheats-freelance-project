@@ -177,7 +177,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
     
     <div class="footer">
       <p>Stay Healthy, Stay Shuddh.</p>
-      <a href="http://localhost:3000" class="btn">Visit ShuddhEats</a>
+      <a href="https://www.shuddheats.co.in" class="btn">Visit ShuddhEats.co.in</a>
     </div>
   </div>
 </body>
@@ -218,8 +218,8 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
         text: `Hi ${query.name},\n\n${replyMessage}\n\nWarm regards,\nThe ShuddhEats Team\n\n--- Your Original Message ---\n${query.message}`,
         attachments: [
           {
-            filename: 'logo.png',
-            path: require('path').join(__dirname, '../assets/logo.png'),
+            filename: 'logo.jpg',
+            path: require('path').join(__dirname, '../assets/logo.jpg'),
             cid: 'shuddheats_logo'
           }
         ]
