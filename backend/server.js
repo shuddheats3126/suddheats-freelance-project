@@ -48,6 +48,8 @@ app.use(cors({
   origin: [
     "https://www.shuddheats.co.in",
     "https://shuddheats.co.in",
+    "http://www.shuddheats.co.in",
+    "http://shuddheats.co.in",
     "http://localhost:3000"
   ],
   credentials: true,
