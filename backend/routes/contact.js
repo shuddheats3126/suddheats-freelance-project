@@ -125,8 +125,15 @@ router.post('/', async (req, res) => {
                     html: htmlContent
                 })
             });
-            const data = await response.json();
-            if (!data.success) throw new Error('Webhook failed to send email');
+            const responseText = await response.text();
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (e) {
+                console.warn('Webhook returned non-JSON response, but request succeeded:', responseText.substring(0, 100));
+                data = { success: response.ok };
+            }
+            if (!data.success && !response.ok) throw new Error('Webhook failed to send email');
         } else {
             // Standard SMTP (Blocked on Railway Hobby plan)
             const transporter = nodemailer.createTransport({
