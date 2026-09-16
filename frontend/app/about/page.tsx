@@ -1,4 +1,5 @@
 import { Leaf, Heart, Recycle, Shield, Users, Award, TreePine } from 'lucide-react';
+import Link from 'next/link';
 
 const values = [
     { icon: Leaf, title: 'Clean Label', desc: 'Every ingredient is traceable and honest. We believe you deserve to know exactly what you eat.' },
@@ -147,7 +148,7 @@ export default function AboutPage() {
                         </div>
                     </div>
                     <div className="text-center mt-10 md:mt-12">
-                        <a href="www.shuddheats.co.in" className="text-base md:text-lg font-semibold" style={{ color: 'rgb(223, 196, 172)' }}>www.shuddheats.co.in</a>
+                        <Link href="/" className="text-base md:text-lg font-semibold hover:underline transition-all" style={{ color: 'rgb(223, 196, 172)' }}>www.shuddheats.co.in</Link>
                     </div>
                 </div>
             </section>
