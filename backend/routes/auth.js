@@ -15,10 +15,10 @@ const withTimeout = (promise, ms = 5000) => {
     return Promise.race([promise, timeoutPromise]).finally(() => clearTimeout(timeoutId));
 };
 
-const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+const generateToken = (id, role = 'USER') => jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
 // Generate temporary session token for 2FA verification
-const generateTempToken = (id) => jwt.sign({ id, temp: true }, process.env.JWT_SECRET, { expiresIn: '5m' });
+const generateTempToken = (id, role = 'USER') => jwt.sign({ id, role, temp: true }, process.env.JWT_SECRET, { expiresIn: '5m' });
 
 // @POST /api/auth/register
 router.post('/register', async (req, res) => {
@@ -55,7 +55,7 @@ router.post('/register', async (req, res) => {
 
         res.status(201).json({
             success: true,
-            token: generateToken(user.id),
+            token: generateToken(user.id, user.role),
             user: {
                 id: user.id,
                 name: user.name,
@@ -96,7 +96,7 @@ router.post('/login', async (req, res) => {
           return res.status(200).json({
             success: true,
             requiresTwoFA: true,
-            tempSessionToken: generateTempToken(user.id)
+            tempSessionToken: generateTempToken(user.id, user.role)
           });
         }
 
@@ -183,7 +183,7 @@ router.post('/verify-2fa', async (req, res) => {
             name: user.name,
             email: user.email,
             role: user.role,
-            token: generateToken(user.id)
+            token: generateToken(user.id, user.role)
         });
     } catch (error) {
         console.error(error);
@@ -249,7 +249,7 @@ router.put('/profile', protect, async (req, res) => {
             name: updated.name,
             email: updated.email,
             role: updated.role,
-            token: generateToken(updated.id)
+            token: generateToken(updated.id, updated.role)
         });
     } catch (error) {
         console.error(error);
