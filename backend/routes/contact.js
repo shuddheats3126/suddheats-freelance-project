@@ -123,17 +123,16 @@ router.post('/', async (req, res) => {
                     replyTo: email,
                     subject: `[ShuddhEats Inquiry] ${subject}`,
                     html: htmlContent
-                })
+                }),
+                redirect: 'manual' // Prevent following the 302 redirect to a non-existent doGet
             });
-            const responseText = await response.text();
-            let data;
-            try {
-                data = JSON.parse(responseText);
-            } catch (e) {
-                console.warn('Webhook returned non-JSON response, but request succeeded:', responseText.substring(0, 100));
-                data = { success: response.ok };
+            
+            // Google Apps Script always returns a 302 Redirect on successful POST
+            if (response.status !== 200 && response.status !== 302) {
+                const text = await response.text();
+                console.error('Webhook failed:', response.status, text);
+                throw new Error('Webhook failed to send email');
             }
-            if (!data.success && !response.ok) throw new Error('Webhook failed to send email');
         } else {
             // Standard SMTP (Blocked on Railway Hobby plan)
             const transporter = nodemailer.createTransport({
