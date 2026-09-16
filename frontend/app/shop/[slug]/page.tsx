@@ -111,6 +111,12 @@ export default function ProductDetailPage() {
 
 
 
+    if (loading) return (
+        <div className="min-h-screen flex items-center justify-center pt-20">
+            <div className="w-12 h-12 border-4 border-[#475d2a] border-t-transparent rounded-full animate-spin"></div>
+        </div>
+    );
+
     if (!product) return (
         <div className="min-h-screen pt-24 flex items-center justify-center flex-col gap-4">
             <div className="text-5xl">😔</div>
