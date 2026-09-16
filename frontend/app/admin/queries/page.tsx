@@ -16,16 +16,18 @@ export default function QueriesPage() {
     const [replyText, setReplyText] = useState('');
     const [sendingReply, setSendingReply] = useState(false);
 
-    const { user } = useAuth();
+    const { user, isAdmin, loading: authLoading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
-        if (user && user.role !== 'admin') {
-            router.push('/');
-        } else if (user && user.role === 'admin') {
-            fetchQueries();
+        if (!authLoading) {
+            if (!user || !isAdmin) {
+                router.push('/');
+            } else {
+                fetchQueries();
+            }
         }
-    }, [user]);
+    }, [user, isAdmin, authLoading]);
 
     const fetchQueries = async () => {
         try {
