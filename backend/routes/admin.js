@@ -91,6 +91,22 @@ router.get('/dashboard', adminOnly, async (req, res) => {
   }
 });
 /**
+ * ADMIN GET QUERIES
+ * GET /api/admin/queries
+ */
+router.get('/queries', adminOnly, async (req, res) => {
+  try {
+    const queries = await prisma.contactQuery.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+    res.json(queries);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to fetch queries' });
+  }
+});
+
+/**
  * ADMIN REPLY TO QUERY
  * POST /api/admin/queries/:id/reply
  */
