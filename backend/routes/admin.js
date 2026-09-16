@@ -151,7 +151,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
 <body>
   <div class="email-container">
     <div class="header">
-      <img src="cid:shuddheats_logo" alt="ShuddhEats Logo" class="logo" />
+      <img src="https://res.cloudinary.com/dyf00ptkk/image/upload/v1789572181/shuddheats/assets/logo_full_spelling_new.png" alt="ShuddhEats Logo" class="logo" />
     </div>
     
     <div class="hero">
@@ -215,14 +215,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
         to: query.email,
         subject: `Re: ${query.subject}`,
         html: htmlContent,
-        text: `Hi ${query.name},\n\n${replyMessage}\n\nWarm regards,\nThe ShuddhEats Team\n\n--- Your Original Message ---\n${query.message}`,
-        attachments: [
-          {
-            filename: 'logo.jpg',
-            path: require('path').join(__dirname, '../assets/logo.jpg'),
-            cid: 'shuddheats_logo'
-          }
-        ]
+        text: `Hi ${query.name},\n\n${replyMessage}\n\nWarm regards,\nThe ShuddhEats Team\n\n--- Your Original Message ---\n${query.message}`
       });
     }
 

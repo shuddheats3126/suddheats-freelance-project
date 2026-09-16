@@ -67,7 +67,7 @@ router.post('/', async (req, res) => {
 <body>
   <div class="email-container">
     <div class="header">
-      <img src="cid:shuddheats_logo" alt="ShuddhEats Logo" class="logo" />
+      <img src="https://res.cloudinary.com/dyf00ptkk/image/upload/v1789572181/shuddheats/assets/logo_full_spelling_new.png" alt="ShuddhEats Logo" class="logo" />
     </div>
     <div class="hero">
       <h1>New Customer Inquiry</h1>
@@ -148,14 +148,7 @@ router.post('/', async (req, res) => {
                 replyTo: email,
                 subject: `[ShuddhEats Inquiry] ${subject}`,
                 html: htmlContent,
-                text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`,
-                attachments: [
-                    {
-                        filename: 'logo.jpg',
-                        path: require('path').join(__dirname, '../assets/logo.jpg'),
-                        cid: 'shuddheats_logo'
-                    }
-                ]
+                text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`
             });
         }
         
