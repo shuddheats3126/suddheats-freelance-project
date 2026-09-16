@@ -122,46 +122,65 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f0; margin: 0; padding: 0; }
-    .wrapper { max-width: 600px; margin: 30px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
-    .header { background: #475d2a; padding: 28px 32px; text-align: center; }
-    .header h1 { color: #ffffff; font-size: 22px; margin: 0; font-weight: 700; letter-spacing: 0.5px; }
-    .header p { color: rgba(255,255,255,0.7); font-size: 13px; margin: 4px 0 0; }
-    .body { padding: 32px; }
-    .greeting { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; }
-    .message-value { white-space: pre-wrap; font-size: 15px; color: #333; line-height: 1.6; margin-bottom: 24px; }
-    .original-query { padding: 16px; background: #f5f7f2; border-left: 3px solid #475d2a; border-radius: 0 8px 8px 0; margin-top: 32px; }
-    .original-query-title { font-size: 12px; font-weight: 700; color: #475d2a; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
-    .original-query-text { font-size: 13px; color: #555; white-space: pre-wrap; font-style: italic; }
-    .footer { background: #f0f4ed; padding: 20px 32px; text-align: center; border-top: 1px solid #e5ebe0; }
-    .footer p { color: #888; font-size: 12px; margin: 0; }
-    .footer .brand { color: #475d2a; font-weight: 700; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #fcfcfc; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    .email-container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: 1px solid #f0f0f0; }
+    .header { padding: 40px 30px 20px; text-align: center; }
+    .logo { max-width: 200px; height: auto; margin-bottom: 20px; }
+    .hero { background-color: #f9fafa; padding: 30px; text-align: center; border-bottom: 2px solid #f0f4ed; }
+    .hero h1 { color: #2d371c; font-size: 22px; font-weight: 700; margin: 0; letter-spacing: -0.2px; }
+    .hero p { color: #829e59; font-size: 15px; margin: 10px 0 0; font-weight: 500; }
+    .body { padding: 40px 30px; }
+    .greeting { font-size: 18px; color: #333333; font-weight: 600; margin-top: 0; margin-bottom: 20px; }
+    .reply-content { font-size: 16px; color: #444444; line-height: 1.6; margin-bottom: 35px; white-space: pre-wrap; }
+    .signature { font-size: 16px; color: #333333; margin-bottom: 40px; }
+    .signature strong { color: #475d2a; }
+    .original-message-card { background-color: #fdfdfd; border: 1px solid #eeeeee; border-left: 4px solid #dfc4ac; border-radius: 8px; padding: 25px; margin-top: 30px; }
+    .original-message-card h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #999999; margin: 0 0 15px 0; }
+    .original-text { font-size: 14px; color: #666666; line-height: 1.6; font-style: italic; white-space: pre-wrap; margin: 0; }
+    .footer { background-color: #475d2a; padding: 40px 30px; text-align: center; color: #ffffff; }
+    .footer p { margin: 0 0 10px; font-size: 14px; opacity: 0.9; }
+    .social-links { margin-top: 20px; }
+    .social-links a { color: #dfc4ac; font-size: 13px; font-weight: 600; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; padding: 0 10px; }
+    @media only screen and (max-width: 600px) {
+      .email-container { margin: 20px 10px; width: auto !important; }
+      .header, .hero, .body, .footer { padding-left: 20px; padding-right: 20px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="email-container">
     <div class="header">
-      <h1>ShuddhEats Support</h1>
-      <p>Re: ${query.subject}</p>
+      <img src="https://shuddheats.co.in/images/logo.png" alt="ShuddhEats Logo" class="logo" />
     </div>
-    <div class="body">
-      <div class="greeting">Hi ${query.name},</div>
-      
-      <div class="message-value">${replyMessage}</div>
-      
-      <p style="color:#555; font-size:14px; margin-top: 24px;">
-        Warm regards,<br>
-        <strong>The ShuddhEats Team</strong>
-      </p>
+    
+    <div class="hero">
+      <h1>We've got an answer for you!</h1>
+      <p>Thank you for reaching out to ShuddhEats</p>
+    </div>
 
-      <div class="original-query">
-        <div class="original-query-title">Your Original Message</div>
-        <div class="original-query-text">${query.message}</div>
+    <div class="body">
+      <p class="greeting">Hi ${query.name},</p>
+      
+      <div class="reply-content">${replyMessage}</div>
+      
+      <div class="signature">
+        Warmest regards,<br>
+        <strong>The ShuddhEats Team</strong>
+      </div>
+
+      <div class="original-message-card">
+        <h3>Your Original Message</h3>
+        <p class="original-text">${query.message}</p>
       </div>
     </div>
+    
     <div class="footer">
-      <p>This message was sent by <span class="brand">ShuddhEats.co.in</span></p>
+      <p>Stay Healthy, Stay Shuddh.</p>
+      <div class="social-links">
+        <a href="https://shuddheats.co.in">Visit our Website</a>
+      </div>
     </div>
   </div>
 </body>

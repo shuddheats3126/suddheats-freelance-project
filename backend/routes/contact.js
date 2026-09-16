@@ -37,57 +37,75 @@ router.post('/', async (req, res) => {
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f0; margin: 0; padding: 0; }
-    .wrapper { max-width: 600px; margin: 30px auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
-    .header { background: #475d2a; padding: 28px 32px; text-align: center; }
-    .header img { width: 48px; height: 48px; margin-bottom: 8px; }
-    .header h1 { color: #ffffff; font-size: 22px; margin: 0; font-weight: 700; letter-spacing: 0.5px; }
-    .header p { color: rgba(255,255,255,0.7); font-size: 13px; margin: 4px 0 0; }
-    .badge { display: inline-block; background: rgb(223,196,172); color: #475d2a; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-top: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
-    .body { padding: 32px; }
-    .label { font-size: 11px; font-weight: 700; color: #475d2a; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
-    .value { font-size: 15px; color: #1a1a1a; margin: 0 0 20px; padding: 12px 16px; background: #f5f7f2; border-left: 3px solid #475d2a; border-radius: 0 8px 8px 0; }
-    .message-value { white-space: pre-wrap; }
-    .footer { background: #f0f4ed; padding: 20px 32px; text-align: center; border-top: 1px solid #e5ebe0; }
-    .footer p { color: #888; font-size: 12px; margin: 0; }
-    .footer .brand { color: #475d2a; font-weight: 700; }
-    .divider { height: 1px; background: #eee; margin: 8px 0 24px; }
-    .meta { color: #999; font-size: 12px; margin-top: 4px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f3; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    .email-container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #ebf0e6; }
+    .header { padding: 40px 30px 30px; text-align: center; background-color: #ffffff; border-bottom: 3px solid #dfc4ac; }
+    .logo { max-width: 220px; height: auto; }
+    .hero { background-color: #475d2a; padding: 25px 30px; text-align: center; }
+    .hero h1 { color: #ffffff; font-size: 20px; font-weight: 600; margin: 0; letter-spacing: 0.5px; }
+    .hero p { color: #dfc4ac; font-size: 14px; margin: 8px 0 0; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+    .body { padding: 40px 30px; }
+    .intro { color: #555555; font-size: 15px; line-height: 1.6; margin-top: 0; margin-bottom: 30px; text-align: center; }
+    .data-card { background-color: #fafbf9; border: 1px solid #e5ebe0; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+    .data-row { margin-bottom: 20px; }
+    .data-row:last-child { margin-bottom: 0; }
+    .label { font-size: 12px; font-weight: 700; color: #829e59; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; }
+    .value { font-size: 15px; color: #2d371c; font-weight: 500; margin: 0; word-break: break-word; }
+    .value a { color: #475d2a; text-decoration: none; font-weight: 600; }
+    .message-box { background-color: #ffffff; border: 1px solid #e5ebe0; border-radius: 8px; padding: 20px; margin-top: 8px; font-size: 15px; color: #444; line-height: 1.7; white-space: pre-wrap; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
+    .footer { background-color: #f4f6f3; padding: 30px; text-align: center; color: #888888; font-size: 13px; border-top: 1px solid #e5ebe0; }
+    .footer a { color: #475d2a; text-decoration: none; font-weight: 600; }
+    @media only screen and (max-width: 600px) {
+      .email-container { margin: 20px 10px; width: auto !important; }
+      .header, .hero, .body, .footer { padding-left: 20px; padding-right: 20px; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="email-container">
     <div class="header">
-      <img src="cid:shuddheats_logo" alt="ShuddhEats" style="width:180px; height:auto; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto;" />
-      <p>New Customer Message</p>
-      <div class="badge">Contact Form Submission</div>
+      <img src="https://shuddheats.co.in/images/logo.png" alt="ShuddhEats Logo" class="logo" />
+    </div>
+    <div class="hero">
+      <h1>New Customer Inquiry</h1>
+      <p>Action Required</p>
     </div>
     <div class="body">
-      <p style="color:#555; font-size:14px; margin-bottom:24px;">
-        You have received a new message from the ShuddhEats contact form. Please review and respond within 24 hours.
-      </p>
+      <p class="intro">A new message has been submitted via the ShuddhEats website contact form. Please review the details below.</p>
+      
+      <div class="data-card">
+        <div class="data-row">
+          <span class="label">Customer Name</span>
+          <p class="value">${name}</p>
+        </div>
+        
+        <div class="data-row">
+          <span class="label">Email Address</span>
+          <p class="value"><a href="mailto:${email}">${email}</a></p>
+        </div>
+        
+        <div class="data-row">
+          <span class="label">Date & Time</span>
+          <p class="value" style="color: #666;">${now}</p>
+        </div>
+      </div>
 
-      <div class="divider"></div>
-
-      <div class="label">Customer Name</div>
-      <div class="value">${name}</div>
-
-      <div class="label">Email Address</div>
-      <div class="value"><a href="mailto:${email}" style="color:#475d2a; text-decoration:none;">${email}</a></div>
-
-      <div class="label">Subject</div>
-      <div class="value">${subject}</div>
-
-      <div class="label">Message</div>
-      <div class="value message-value">${message}</div>
-
-      <div class="label">Received On</div>
-      <div class="value">${now}</div>
+      <div class="data-row">
+        <span class="label">Subject</span>
+        <p class="value" style="font-size: 18px; font-weight: 600; color: #475d2a;">${subject}</p>
+      </div>
+      
+      <div class="data-row">
+        <span class="label">Message</span>
+        <div class="message-box">${message}</div>
+      </div>
     </div>
+    
     <div class="footer">
-      <p>This message was sent via the contact form on <span class="brand">ShuddhEats.co.in</span></p>
-      <p style="margin-top: 6px;">To reply, simply respond to: <a href="mailto:${email}" style="color:#475d2a;">${email}</a></p>
+      <p style="margin: 0 0 10px;">This automated alert was sent from the <a href="https://shuddheats.co.in">ShuddhEats</a> platform.</p>
+      <p style="margin: 0; font-size: 12px; color: #aaa;">You can safely reply directly to this email to contact the customer.</p>
     </div>
   </div>
 </body>
@@ -128,13 +146,7 @@ router.post('/', async (req, res) => {
                 replyTo: email,
                 subject: `[ShuddhEats Inquiry] ${subject}`,
                 html: htmlContent,
-                text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`,
-                attachments: [{
-                    filename: 'logo.png',
-                    path: path.join(__dirname, '../assets/logo.png'),
-                    cid: 'shuddheats_logo',
-                    contentDisposition: 'inline'
-                }]
+                text: `New message from ${name} (${email})\n\nSubject: ${subject}\n\nMessage:\n${message}\n\nReceived: ${now}`
             });
         }
         
