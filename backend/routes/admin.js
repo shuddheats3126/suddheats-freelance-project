@@ -3,7 +3,7 @@ const speakeasy = require('speakeasy');
 const QRCode = require('qrcode');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const authMiddleware = require('../middleware/auth');
+const { authMiddleware } = require('../middleware/auth');
 const adminOnly = require('../middleware/adminOnly');
 
 const router = express.Router();
