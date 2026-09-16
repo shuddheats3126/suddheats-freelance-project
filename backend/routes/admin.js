@@ -126,23 +126,22 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #fcfcfc; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
     .email-container { max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.06); border: 1px solid #f0f0f0; }
-    .header { padding: 40px 30px 20px; text-align: center; }
-    .logo { max-width: 200px; height: auto; margin-bottom: 20px; }
+    .header { padding: 30px; text-align: center; }
+    .logo { width: 100px; height: 100px; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 10px; }
     .hero { background-color: #f9fafa; padding: 30px; text-align: center; border-bottom: 2px solid #f0f4ed; }
-    .hero h1 { color: #2d371c; font-size: 22px; font-weight: 700; margin: 0; letter-spacing: -0.2px; }
-    .hero p { color: #829e59; font-size: 15px; margin: 10px 0 0; font-weight: 500; }
+    .hero h1 { color: #2d371c; font-size: 24px; font-weight: 700; margin: 0; letter-spacing: -0.2px; }
+    .hero p { color: #829e59; font-size: 16px; margin: 10px 0 0; font-weight: 500; }
     .body { padding: 40px 30px; }
     .greeting { font-size: 18px; color: #333333; font-weight: 600; margin-top: 0; margin-bottom: 20px; }
     .reply-content { font-size: 16px; color: #444444; line-height: 1.6; margin-bottom: 35px; white-space: pre-wrap; }
-    .signature { font-size: 16px; color: #333333; margin-bottom: 40px; }
-    .signature strong { color: #475d2a; }
-    .original-message-card { background-color: #fdfdfd; border: 1px solid #eeeeee; border-left: 4px solid #dfc4ac; border-radius: 8px; padding: 25px; margin-top: 30px; }
-    .original-message-card h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #999999; margin: 0 0 15px 0; }
+    .signature { font-size: 16px; color: #333333; margin-bottom: 40px; border-left: 3px solid #dfc4ac; padding-left: 15px; }
+    .signature strong { color: #475d2a; display: block; margin-top: 5px; font-size: 18px; }
+    .original-message-card { background-color: #fafbf9; border: 1px solid #e5ebe0; border-radius: 8px; padding: 25px; margin-top: 30px; }
+    .original-message-card h3 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #829e59; margin: 0 0 15px 0; }
     .original-text { font-size: 14px; color: #666666; line-height: 1.6; font-style: italic; white-space: pre-wrap; margin: 0; }
     .footer { background-color: #475d2a; padding: 40px 30px; text-align: center; color: #ffffff; }
-    .footer p { margin: 0 0 10px; font-size: 14px; opacity: 0.9; }
-    .social-links { margin-top: 20px; }
-    .social-links a { color: #dfc4ac; font-size: 13px; font-weight: 600; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; padding: 0 10px; }
+    .footer p { margin: 0 0 20px; font-size: 15px; font-weight: 500; letter-spacing: 0.5px; opacity: 0.9; }
+    .btn { display: inline-block; background-color: #ffffff; color: #475d2a !important; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-weight: 700; font-size: 14px; letter-spacing: 0.5px; transition: all 0.2s; }
     @media only screen and (max-width: 600px) {
       .email-container { margin: 20px 10px; width: auto !important; }
       .header, .hero, .body, .footer { padding-left: 20px; padding-right: 20px; }
@@ -152,12 +151,12 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
 <body>
   <div class="email-container">
     <div class="header">
-      <img src="https://shuddheats.co.in/images/logo.png" alt="ShuddhEats Logo" class="logo" />
+      <img src="https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563574/shuddheats/assets/logo-se-circle.png" alt="ShuddhEats Logo" class="logo" />
     </div>
     
     <div class="hero">
       <h1>We've got an answer for you!</h1>
-      <p>Thank you for reaching out to ShuddhEats</p>
+      <p>Thank you for reaching out to ShuddhEats.</p>
     </div>
 
     <div class="body">
@@ -166,7 +165,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
       <div class="reply-content">${replyMessage}</div>
       
       <div class="signature">
-        Warmest regards,<br>
+        Warmest regards,
         <strong>The ShuddhEats Team</strong>
       </div>
 
@@ -178,9 +177,7 @@ router.post('/queries/:id/reply', adminOnly, async (req, res) => {
     
     <div class="footer">
       <p>Stay Healthy, Stay Shuddh.</p>
-      <div class="social-links">
-        <a href="https://shuddheats.co.in">Visit our Website</a>
-      </div>
+      <a href="https://shuddheats.co.in" class="btn">Visit ShuddhEats.co.in</a>
     </div>
   </div>
 </body>
