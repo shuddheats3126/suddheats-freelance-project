@@ -7,8 +7,8 @@ const items = [
 ];
 
 export default function AnnouncementBar() {
-  // Double the items so the seamless loop always has content
-  const repeated = [...items, ...items];
+  // Create 10 copies to ensure it covers even ultra-wide screens seamlessly
+  const repeated = Array(10).fill(items).flat();
 
   return (
     <div
@@ -34,14 +34,14 @@ export default function AnnouncementBar() {
       <style jsx>{`
         .announcement-track {
           width: max-content;
-          animation: ticker 45s linear infinite;
+          animation: ticker 25s linear infinite;
         }
         .announcement-track:hover {
           animation-play-state: paused;
         }
         @keyframes ticker {
           0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-10%); }
         }
       `}</style>
     </div>
