@@ -104,7 +104,7 @@ export default function LaunchOfferWidget() {
           
           <button 
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 p-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50"
+            className="absolute top-4 right-4 z-20 p-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
             aria-label="Close popup"
           >
             <X size={18} />
