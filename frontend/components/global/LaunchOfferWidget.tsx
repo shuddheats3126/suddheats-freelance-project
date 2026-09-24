@@ -167,41 +167,41 @@ export default function LaunchOfferWidget() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={`fixed z-[10000] focus:outline-none transition-all duration-300
-          bottom-[16px] right-[16px] w-[65px] h-[65px]
-          md:bottom-[20px] md:right-[20px] md:w-[75px] md:h-[75px]
-          lg:bottom-[24px] lg:right-[24px] lg:w-[90px] lg:h-[90px]
+          bottom-[16px] right-[16px] w-[80px] h-[80px]
+          md:bottom-[20px] md:right-[20px] md:w-[100px] md:h-[100px]
+          lg:bottom-[24px] lg:right-[24px] lg:w-[120px] lg:h-[120px]
           ${!isOpen ? 'animate-attention' : ''}
           ${isHovered && !isOpen ? 'scale-110' : ''}
         `}
         aria-label={isOpen ? "Close Launch Offer" : "Open Launch Offer"}
       >
-        <div className={`relative w-full h-full rounded-full shadow-[0_8px_25px_-5px_rgba(71,93,42,0.4)]
-          bg-gradient-to-tr from-[#3a4d22] via-[#475d2a] to-[#5a7635]
+        <div className={`relative w-full h-full rounded-full shadow-[0_12px_25px_-5px_rgba(61,82,37,0.7)]
+          bg-gradient-to-br from-[#809f56] via-[#5c7a36] to-[#364b1f]
           flex items-center justify-center overflow-hidden transition-shadow duration-300
-          ${isHovered ? 'shadow-[0_12px_35px_-5px_rgba(71,93,42,0.6)]' : ''}
+          border-[2px] border-[#6b8c42]
+          ${isHovered ? 'shadow-[0_18px_35px_-5px_rgba(61,82,37,0.9)]' : ''}
         `}>
-          {/* Glossy inner glow */}
-          <div className="absolute inset-0 rounded-full border-[2px] border-white/20"></div>
-          {/* Glossy top highlight */}
-          <div className="absolute top-[5%] left-[10%] right-[10%] h-[30%] bg-gradient-to-b from-white/40 to-transparent rounded-full pointer-events-none"></div>
+          {/* Inner 3D Sphere shadow */}
+          <div className="absolute inset-0 rounded-full shadow-[inset_0_-15px_20px_rgba(0,0,0,0.35)] pointer-events-none"></div>
+
+          {/* Stitched dashed border */}
+          <div className="absolute inset-[5px] md:inset-[7px] rounded-full border-[1.5px] border-dashed border-white/30 pointer-events-none"></div>
           
-          <div className="flex flex-col items-center justify-center text-white relative z-10 drop-shadow-md w-full">
+          {/* Realistic Glossy top reflection */}
+          <div className="absolute top-[2%] left-[10%] right-[10%] h-[40%] bg-gradient-to-b from-white/45 to-white/0 rounded-full rounded-b-[70%] pointer-events-none filter blur-[1px]"></div>
+          
+          <div className="flex flex-col items-center justify-center text-white relative z-10 drop-shadow-lg w-full mt-1">
             {isOpen ? (
-              <X size={28} className="md:w-8 md:h-8 lg:w-10 lg:h-10 text-white/90" />
+              <X size={36} className="md:w-12 md:h-12 lg:w-14 lg:h-14 text-white/90" />
             ) : (
               <>
-                <span className="text-xl md:text-2xl lg:text-3xl mb-0.5 md:mb-1 filter drop-shadow">🔥</span>
-                <span className="text-[9px] md:text-[10px] lg:text-[12px] font-black tracking-tight leading-[1.1] uppercase text-center w-full px-1 drop-shadow-sm">
+                <span className="text-3xl md:text-4xl lg:text-[46px] mb-0 md:mb-1 filter drop-shadow-md leading-none">🔥</span>
+                <span className="text-[12px] md:text-[15px] lg:text-[18px] font-black tracking-tighter leading-[0.95] uppercase text-center w-full px-2" style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.5)', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                   Launch<br/>Offer
                 </span>
               </>
             )}
           </div>
-          
-          {/* Rotating dashed border effect */}
-          {!isOpen && (
-            <div className="absolute inset-[3px] md:inset-1 rounded-full border border-dashed border-white/30 animate-[spin_10s_linear_infinite] pointer-events-none"></div>
-          )}
         </div>
       </button>
     </>
