@@ -7,6 +7,7 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import InstallPrompt from "@/components/InstallPrompt";
 import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
+import LaunchOfferWidget from "@/components/global/LaunchOfferWidget";
 
 export const metadata: Metadata = {
   title: "ShuddhEats — Clean & Healthy Indian Snacks",
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 error: { style: { background: '#991b1b', color: 'white' } },
               }}
             />
+            <LaunchOfferWidget />
           </CartProvider>
         </AuthProvider>
       </body>
