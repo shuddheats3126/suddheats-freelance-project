@@ -47,6 +47,8 @@ export default function LaunchOfferWidget() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: `
+        @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
         @keyframes attention-sequence {
           0%, 15% { transform: scale(1) rotate(0deg); }
           17% { transform: scale(1) rotate(-8deg); }
@@ -196,7 +198,7 @@ export default function LaunchOfferWidget() {
             ) : (
               <>
                 <span className="text-3xl md:text-4xl lg:text-[46px] mb-0 md:mb-1 filter drop-shadow-md leading-none">🔥</span>
-                <span className="text-[12px] md:text-[15px] lg:text-[18px] font-black tracking-tighter leading-[0.95] uppercase text-center w-full px-2" style={{ textShadow: '0px 2px 4px rgba(0,0,0,0.5)', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                <span className="text-[14px] md:text-[17px] lg:text-[20px] tracking-wide leading-[0.95] uppercase text-center w-full px-2" style={{ textShadow: '0px 2px 5px rgba(0,0,0,0.6)', fontFamily: "'Lilita One', system-ui, sans-serif" }}>
                   Launch<br/>Offer
                 </span>
               </>
