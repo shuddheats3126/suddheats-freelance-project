@@ -52,3 +52,4 @@ for item in cropped_img.getdata():
 cropped_img.putdata(new_data)
 cropped_img.save(dest_path, "PNG")
 print("New logo saved successfully.")
+

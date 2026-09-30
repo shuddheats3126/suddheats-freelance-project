@@ -30,3 +30,4 @@ async function run() {
 }
 
 run().catch(console.error).finally(() => prisma.$disconnect());
+

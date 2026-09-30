@@ -56,3 +56,4 @@ for (const dir of searchDirs) {
     processDirectory(dir);
 }
 console.log('Replacement complete.');
+

@@ -61,3 +61,4 @@ for image_path in sorted(images):
 
 print("=" * 60)
 print("Done! All images optimized.")
+

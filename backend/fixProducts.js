@@ -9,3 +9,4 @@ async function check() {
   console.log('Updated flags');
 }
 check().catch(console.error).finally(() => prisma.$disconnect());
+

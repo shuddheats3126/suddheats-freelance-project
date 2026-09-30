@@ -51,3 +51,4 @@ for img_path in sorted(glob.glob(os.path.join(products_dir, '*.jpeg'))):
 print("\n" + "=" * 60)
 print("Done! All product images cropped and optimized.")
 print("=" * 60)
+

@@ -8,3 +8,4 @@ async function check() {
   console.log(products);
 }
 check().finally(() => prisma.$disconnect());
+

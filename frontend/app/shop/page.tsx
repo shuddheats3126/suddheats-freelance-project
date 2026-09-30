@@ -185,9 +185,9 @@ function ShopContent() {
         "price": 249,
         "originalPrice": 299,
         "category": "Flavoured Makhanas",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563584/shuddheats/products/cream-onion-makhana.jpg",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg",
         "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563584/shuddheats/products/cream-onion-makhana.jpg"
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg"
         ],
         "stock": 95,
         "weight": "100g",
@@ -631,3 +631,4 @@ export default function ShopPage() {
         </Suspense>
     );
 }
+

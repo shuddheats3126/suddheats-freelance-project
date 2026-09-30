@@ -51,3 +51,4 @@ async function cropImages() {
 }
 
 cropImages().catch(console.error);
+

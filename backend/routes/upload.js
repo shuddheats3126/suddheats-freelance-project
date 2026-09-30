@@ -38,3 +38,4 @@ router.post('/product-image', protect, upload.single('image'), (req, res) => {
 });
 
 module.exports = router;
+

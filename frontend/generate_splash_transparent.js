@@ -34,3 +34,4 @@ async function createSplash() {
 }
 
 createSplash().catch(console.error);
+

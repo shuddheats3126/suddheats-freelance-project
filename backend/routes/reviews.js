@@ -82,3 +82,4 @@ router.get('/product/:productId', async (req, res) => {
 });
 
 module.exports = router;
+

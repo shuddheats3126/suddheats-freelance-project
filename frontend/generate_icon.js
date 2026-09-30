@@ -28,3 +28,4 @@ async function createIcon() {
 }
 
 createIcon().catch(console.error);
+

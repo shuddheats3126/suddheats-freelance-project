@@ -1,1 +1,2 @@
 const { PrismaClient } = require('@prisma/client'); const prisma = new PrismaClient(); async function main() { const queries = await prisma.contactQuery.findMany(); console.log(queries); } main().catch(console.error).finally(() => prisma.\());
+

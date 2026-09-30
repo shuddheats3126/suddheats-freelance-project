@@ -279,3 +279,4 @@ export default function ProductCardWithSizes({ product }: { product: Product }) 
         </div>
     );
 }
+

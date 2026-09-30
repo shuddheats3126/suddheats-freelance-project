@@ -75,3 +75,4 @@ for input_name, output_name in images:
 
 print("=" * 50)
 print("✅ Image processing complete!")
+

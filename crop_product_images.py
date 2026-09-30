@@ -69,3 +69,4 @@ for img_path in images:
 
 print("=" * 60)
 print("Done! Images cropped and optimized for product display.")
+

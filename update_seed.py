@@ -251,8 +251,8 @@ products = [
         "price": 99,
         "originalPrice": 129,
         "category": "Flavoured Makhanas",
-        "thumbnail": "/images/products/cream-onion-makhana.jpeg",
-        "images": ["/images/products/cream-onion-makhana.jpeg"],
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg",
+        "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg"],
         "stock": 95,
         "weight": "35g",
         "ingredients": ["Fox Nuts (Makhana)", "Cream and Onion Flavoring", "Salt", "Sunflower Oil"],
@@ -271,8 +271,8 @@ products = [
         "price": 199,
         "originalPrice": 249,
         "category": "Flavoured Makhanas",
-        "thumbnail": "/images/products/cream-onion-makhana.jpeg",
-        "images": ["/images/products/cream-onion-makhana.jpeg"],
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg",
+        "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg"],
         "stock": 95,
         "weight": "75g",
         "ingredients": ["Fox Nuts (Makhana)", "Cream and Onion Flavoring", "Salt", "Sunflower Oil"],
@@ -291,8 +291,8 @@ products = [
         "price": 249,
         "originalPrice": 299,
         "category": "Flavoured Makhanas",
-        "thumbnail": "/images/products/cream-onion-makhana.jpeg",
-        "images": ["/images/products/cream-onion-makhana.jpeg"],
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg",
+        "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg"],
         "stock": 95,
         "weight": "100g",
         "ingredients": ["Fox Nuts (Makhana)", "Cream and Onion Flavoring", "Salt", "Sunflower Oil"],
@@ -439,3 +439,4 @@ with open("backend/seed.js", "w", encoding="utf-8") as f:
     f.write(content)
 
 print("Updated backend/seed.js")
+
