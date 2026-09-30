@@ -5,9 +5,9 @@ async function updateDB() {
     console.log('Connecting...');
     await client.connect();
     console.log('Connected! Executing query...');
-    const result = await client.query('UPDATE "products" SET thumbnail = $1, images = $2 WHERE slug = \'beetroot-chips\'', [
-      'https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg',
-      JSON.stringify(['https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg'])
+    const result = await client.query('UPDATE "products" SET thumbnail = $1, images = $2 WHERE slug = \'ragi-chips\'', [
+      'https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg',
+      JSON.stringify(['https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg'])
     ]);
     console.log('Update result:', result.rowCount);
   } catch (err) {
