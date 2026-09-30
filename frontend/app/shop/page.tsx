@@ -223,9 +223,9 @@ function ShopContent() {
         "price": 129,
         "originalPrice": 169,
         "category": "Air Fried Chips",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563579/shuddheats/products/beetroot-chips.jpg",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg",
         "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563579/shuddheats/products/beetroot-chips.jpg"
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg"
         ],
         "stock": 145,
         "weight": "100g",
