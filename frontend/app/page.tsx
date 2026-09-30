@@ -20,7 +20,7 @@ const heroSlides = [
     subtitle: 'From Himalayan Salt to Peri Peri — discover our full range of delicious roasted fox nuts.'
   },
   {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1789299180/file_000000006db08208bd7802128d7a0203.png',
+    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg',
     badge: '🥗 Air Fried | 70% Less Oil | Crunchy',
     titleLine1: 'Air Fried Chips',
     titleLine2: 'Collection',
@@ -51,7 +51,7 @@ const categories = [
     name: 'Air-Fried Chips',
     filterId: 'Air Fried Chips',
     emoji: '🥔',
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1789299180/file_000000006db08208bd7802128d7a0203.png',
+    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg',
     desc: 'All the crunch. Air-fried to perfection.',
     color: '#FEF9E7',
     icon: '⚡',
