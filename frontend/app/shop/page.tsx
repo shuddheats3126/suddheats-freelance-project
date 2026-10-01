@@ -148,9 +148,9 @@ function ShopContent() {
         "price": 249,
         "originalPrice": 299,
         "category": "Flavoured Makhanas",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563589/shuddheats/products/peri-peri-makhana.jpg",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg",
         "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563589/shuddheats/products/peri-peri-makhana.jpg"
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg"
         ],
         "stock": 110,
         "weight": "100g",
