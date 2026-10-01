@@ -152,9 +152,23 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative min-h-[100vh] max-md:min-h-[85vh] flex items-center justify-center overflow-hidden transition-all duration-1000 bg-cover bg-center bg-no-repeat -mt-[55px] sm:-mt-[65px] bg-fixed max-md:bg-scroll" style={{ backgroundImage: `url(${heroSlides[currentSlide].image})`, backgroundSize: 'cover' }}>
+      <section className="relative min-h-[100vh] max-md:min-h-[85vh] flex items-center justify-center overflow-hidden transition-all duration-1000 -mt-[55px] sm:-mt-[65px] bg-[#1a1a1a]">
+        {/* Ambient Full-Bleed Backdrop: prevents empty spaces, blends seamlessly with the slide image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center filter blur-2xl scale-110 opacity-50 transition-all duration-1000 z-0 pointer-events-none"
+          style={{ backgroundImage: `url(${heroSlides[currentSlide].image})` }}
+          aria-hidden="true"
+        />
+
+        {/* Crisp Uncropped Complete Hero Image: 100% visible packaging, branding, and aspect ratio */}
+        <div 
+          className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-1000 z-0 pointer-events-none"
+          style={{ backgroundImage: `url(${heroSlides[currentSlide].image})` }}
+          aria-hidden="true"
+        />
+
         {/* Enhanced Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/30 z-[1] pointer-events-none"></div>
 
         <div className="page-container relative z-10 py-6 sm:py-10 md:py-16 lg:py-20 flex flex-col justify-between h-full min-h-[75vh] max-md:min-h-[65vh]">
           <div className="max-w-3xl mt-auto mb-auto" key={currentSlide}>
@@ -192,7 +206,7 @@ export default function HomePage() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow">
+        <div className="absolute bottom-3 sm:bottom-4 md:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow z-10 pointer-events-none">
           <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/40 rounded-full flex justify-center pt-1.5 sm:pt-2" style={{ backdropFilter: 'blur(4px)' }}>
             <div className="w-1 h-2 sm:h-2.5 bg-white/60 rounded-full" />
           </div>
