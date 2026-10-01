@@ -5,6 +5,39 @@ const { adminOnly } = require('../middleware/admin');
 
 const router = express.Router();
 
+const sortProductsLogically = (items) => {
+    const getCatRank = (p) => {
+        const cat = (p.category || '').toLowerCase();
+        const name = (p.name || '').toLowerCase();
+        if (cat.includes('cookie') || name.includes('cookie')) return 1;
+        if (cat.includes('chip') || name.includes('chip')) return 2;
+        if (cat.includes('makhana') || name.includes('makhana')) return 3;
+        return 4;
+    };
+
+    const getProductRankWithinCategory = (p) => {
+        const name = (p.name || '').toLowerCase();
+        if (name.includes('crunchy pepper')) return 1;
+        if (name.includes('himalayan salt')) return 2;
+        if (name.includes('peri peri')) return 3;
+        if (name.includes('cream') || name.includes('onion') || name.includes('cheese')) return 4;
+        if (name.includes('pudina')) return 5;
+        return 100;
+    };
+
+    return [...items].sort((a, b) => {
+        const catA = getCatRank(a);
+        const catB = getCatRank(b);
+        if (catA !== catB) return catA - catB;
+
+        const rankA = getProductRankWithinCategory(a);
+        const rankB = getProductRankWithinCategory(b);
+        if (rankA !== rankB) return rankA - rankB;
+
+        return (a.name || '').localeCompare(b.name || '');
+    });
+};
+
 // @GET /api/products — public, with filters
 router.get('/', async (req, res) => {
     try {
@@ -16,7 +49,7 @@ router.get('/', async (req, res) => {
                 where: { isFeatured: true }
             });
             console.log("Database write successful");
-            return res.json(products);
+            return res.json(sortProductsLogically(products));
         }
 
         if (bestseller === 'true') {
@@ -25,7 +58,7 @@ router.get('/', async (req, res) => {
                 where: { isBestSeller: true }
             });
             console.log("Database write successful");
-            return res.json(products);
+            return res.json(sortProductsLogically(products));
         }
 
         const filter = {};
@@ -40,11 +73,16 @@ router.get('/', async (req, res) => {
         else if (sort === 'rating') orderBy = { ratings: 'desc' };
 
         console.log("Executing Prisma query...");
-        const products = await Product.findMany({
+        let products = await Product.findMany({
             where: filter,
             orderBy: orderBy
         });
         console.log("Database write successful");
+
+        if (!sort) {
+            products = sortProductsLogically(products);
+        }
+
         res.json(products);
     } catch (error) {
         console.error(error);

@@ -13,6 +13,39 @@ const SORTS = [
     { label: 'Top Rated', value: 'rating' },
 ];
 
+const sortProductsLogically = (items: any[]) => {
+    const getCatRank = (p: any) => {
+        const cat = (p.category || '').toLowerCase();
+        const name = (p.name || '').toLowerCase();
+        if (cat.includes('cookie') || name.includes('cookie')) return 1;
+        if (cat.includes('chip') || name.includes('chip')) return 2;
+        if (cat.includes('makhana') || name.includes('makhana')) return 3;
+        return 4;
+    };
+
+    const getProductRankWithinCategory = (p: any) => {
+        const name = (p.name || '').toLowerCase();
+        if (name.includes('crunchy pepper')) return 1;
+        if (name.includes('himalayan salt')) return 2;
+        if (name.includes('peri peri')) return 3;
+        if (name.includes('cream') || name.includes('onion') || name.includes('cheese')) return 4;
+        if (name.includes('pudina')) return 5;
+        return 100;
+    };
+
+    return [...items].sort((a: any, b: any) => {
+        const catA = getCatRank(a);
+        const catB = getCatRank(b);
+        if (catA !== catB) return catA - catB;
+
+        const rankA = getProductRankWithinCategory(a);
+        const rankB = getProductRankWithinCategory(b);
+        if (rankA !== rankB) return rankA - rankB;
+
+        return (a.name || '').localeCompare(b.name || '');
+    });
+};
+
 function ShopContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -25,315 +58,6 @@ function ShopContent() {
     const [viewType, setViewType] = useState<'grid' | 'list'>('grid');
 
     const mockProducts = [
-    {
-        "name": "Himalayan Salt Makhana",
-        "slug": "himalayan-salt-makhana",
-        "description": "Lightly roasted makhanas seasoned with premium Himalayan pink salt for a clean and healthy snack.",
-        "shortDescription": "Lightly roasted makhanas seasoned with premium Himalayan pink salt.",
-        "price": 249,
-        "originalPrice": 299,
-        "category": "Flavoured Makhanas",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg",
-        "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg"
-        ],
-        "stock": 150,
-        "weight": "100g",
-        "ingredients": [
-            "Fox Nuts (Makhana)",
-            "Himalayan Pink Salt",
-            "Cold Pressed Coconut Oil"
-        ],
-        "nutritionFacts": {
-            "calories": 347,
-            "protein": 9.7,
-            "carbs": 76.9,
-            "fat": 0.1,
-            "fiber": 0.5
-        },
-        "tags": [
-            "makhana",
-            "healthy",
-            "low-fat",
-            "himalayan-salt"
-        ],
-        "isFeatured": true,
-        "isBestSeller": true,
-        "ratings": 4.8,
-        "numReviews": 124,
-        "id": "1"
-    },
-    {
-        "name": "Crunchy Pepper Makhana",
-        "slug": "crunchy-pepper-makhana",
-        "description": "Crunchy roasted makhanas seasoned with bold black pepper for a spicy, flavorful snack.",
-        "shortDescription": "Crunchy roasted makhanas seasoned with bold black pepper.",
-        "price": 249,
-        "originalPrice": 299,
-        "category": "Flavoured Makhanas",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg",
-        "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg"
-        ],
-        "stock": 120,
-        "weight": "100g",
-        "ingredients": [
-            "Fox Nuts (Makhana)",
-            "Black Pepper Seasoning",
-            "Sunflower Oil",
-            "Salt"
-        ],
-        "nutritionFacts": {
-            "calories": 355,
-            "protein": 9.5,
-            "carbs": 74.2,
-            "fat": 2.1,
-            "fiber": 0.5
-        },
-        "tags": [
-            "makhana",
-            "spicy",
-            "pepper",
-            "crunchy-pepper"
-        ],
-        "isFeatured": false,
-        "isBestSeller": false,
-        "ratings": 4.6,
-        "numReviews": 89,
-        "id": "2"
-    },
-    {
-        "name": "Pudina Makhana",
-        "slug": "pudina-makhana",
-        "description": "Refreshing mint flavored makhana with aromatic pudina seasoning. Light, cooling, and perfect as an afternoon snack.",
-        "shortDescription": "Refreshing mint flavored fox nuts.",
-        "price": 249,
-        "originalPrice": 299,
-        "category": "Flavoured Makhanas",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563590/shuddheats/products/pudina-makhana.jpg",
-        "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563590/shuddheats/products/pudina-makhana.jpg"
-        ],
-        "stock": 100,
-        "weight": "100g",
-        "ingredients": [
-            "Fox Nuts (Makhana)",
-            "Pudina (Mint) Seasoning",
-            "Salt",
-            "Cold Pressed Oil"
-        ],
-        "nutritionFacts": {
-            "calories": 347,
-            "protein": 9.7,
-            "carbs": 76.9,
-            "fat": 0.13,
-            "fiber": 0.5
-        },
-        "tags": [
-            "makhana",
-            "pudina",
-            "mint"
-        ],
-        "isFeatured": false,
-        "isBestSeller": false,
-        "ratings": 4.5,
-        "numReviews": 65,
-        "id": "3"
-    },
-    {
-        "name": "Peri Peri Makhana",
-        "slug": "peri-peri-makhana",
-        "description": "Spicy and tangy peri peri flavoured makhana. Boldly seasoned with African spices for those who love a kick. Air-popped, never fried.",
-        "shortDescription": "Spicy peri peri flavoured fox nuts.",
-        "price": 249,
-        "originalPrice": 299,
-        "category": "Flavoured Makhanas",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg",
-        "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg"
-        ],
-        "stock": 110,
-        "weight": "100g",
-        "ingredients": [
-            "Fox Nuts (Makhana)",
-            "Peri Peri Seasoning",
-            "Salt",
-            "Sunflower Oil"
-        ],
-        "nutritionFacts": {
-            "calories": 347,
-            "protein": 10,
-            "carbs": 76.9,
-            "fat": 0.28,
-            "fiber": 0.5
-        },
-        "tags": [
-            "makhana",
-            "peri-peri",
-            "savory"
-        ],
-        "isFeatured": false,
-        "isBestSeller": true,
-        "ratings": 4.7,
-        "numReviews": 92,
-        "id": "4"
-    },
-    {
-        "name": "Cream & Onion Makhana",
-        "slug": "cream-onion-makhana",
-        "description": "Decadent cream and onion flavor meets light, crispy makhana. A sophisticated snack for those who prefer refined taste.",
-        "shortDescription": "Rich cream and onion flavored fox nuts.",
-        "price": 249,
-        "originalPrice": 299,
-        "category": "Flavoured Makhanas",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg",
-        "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg"
-        ],
-        "stock": 95,
-        "weight": "100g",
-        "ingredients": [
-            "Fox Nuts (Makhana)",
-            "Cream and Onion Flavoring",
-            "Salt",
-            "Sunflower Oil"
-        ],
-        "nutritionFacts": {
-            "calories": 347,
-            "protein": 9.7,
-            "carbs": 76.9,
-            "fat": 0.23,
-            "fiber": 0.5
-        },
-        "tags": [
-            "makhana",
-            "cream-onion",
-            "premium"
-        ],
-        "isFeatured": false,
-        "isBestSeller": false,
-        "ratings": 4.6,
-        "numReviews": 75,
-        "id": "5"
-    },
-    {
-        "name": "Beetroot Chips",
-        "slug": "beetroot-chips",
-        "description": "Crispy air-fried beetroot chips with just the right amount of salt. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
-        "shortDescription": "Air fried beetroot chips with minimal oil.",
-        "price": 149,
-        "originalPrice": 179,
-        "category": "Air Fried Chips",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg",
-        "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg"
-        ],
-        "stock": 145,
-        "weight": "100g",
-        "ingredients": [
-            "Beetroot",
-            "Salt",
-            "Sunflower Oil (minimal)"
-        ],
-        "nutritionFacts": {
-            "calories": 130,
-            "protein": 2.1,
-            "carbs": 27.8,
-            "fat": 2.0,
-            "fiber": 2.2
-        },
-        "tags": [
-            "chips",
-            "beetroot",
-            "air-fried",
-            "healthy",
-            "low-fat"
-        ],
-        "isFeatured": true,
-        "isBestSeller": true,
-        "ratings": 4.7,
-        "numReviews": 112,
-        "id": "6"
-    },
-    {
-        "name": "Broccoli Chips",
-        "slug": "broccoli-chips",
-        "description": "Flavorful broccoli air-fried chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
-        "shortDescription": "Broccoli air-fried chips with minimal oil.",
-        "price": 179,
-        "originalPrice": 199,
-        "category": "Air Fried Chips",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
-        "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg"
-        ],
-        "stock": 135,
-        "weight": "100g",
-        "ingredients": [
-            "Broccoli",
-            "Spices",
-            "Salt",
-            "Sunflower Oil (minimal)"
-        ],
-        "nutritionFacts": {
-            "calories": 140,
-            "protein": 2.3,
-            "carbs": 28.5,
-            "fat": 2.2,
-            "fiber": 2.4
-        },
-        "tags": [
-            "chips",
-            "broccoli",
-            "air-fried",
-            "healthy",
-            "low-fat"
-        ],
-        "isFeatured": false,
-        "isBestSeller": true,
-        "ratings": 4.8,
-        "numReviews": 98,
-        "id": "7"
-    },
-    {
-        "name": "Ragi Chips",
-        "slug": "ragi-chips",
-        "description": "Perfectly salted and crispy air-fried ragi chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
-        "shortDescription": "Salted air-fried ragi chips with minimal oil.",
-        "price": 149,
-        "originalPrice": 179,
-        "category": "Air Fried Chips",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg",
-        "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg"
-        ],
-        "stock": 125,
-        "weight": "100g",
-        "ingredients": [
-            "Ragi",
-            "Sea Salt",
-            "Sunflower Oil (minimal)"
-        ],
-        "nutritionFacts": {
-            "calories": 130,
-            "protein": 2.1,
-            "carbs": 27.8,
-            "fat": 2.0,
-            "fiber": 2.2
-        },
-        "tags": [
-            "chips",
-            "ragi",
-            "air-fried",
-            "healthy",
-            "low-fat"
-        ],
-        "isFeatured": false,
-        "isBestSeller": false,
-        "ratings": 4.6,
-        "numReviews": 87,
-        "id": "8"
-    },
     {
         "name": "Honey & Oats Cookies",
         "slug": "honey-oats-cookies",
@@ -462,6 +186,315 @@ function ShopContent() {
         "ratings": 4.7,
         "numReviews": 98,
         "id": "11"
+    },
+    {
+        "name": "Beetroot Chips",
+        "slug": "beetroot-chips",
+        "description": "Crispy air-fried beetroot chips with just the right amount of salt. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
+        "shortDescription": "Air fried beetroot chips with minimal oil.",
+        "price": 149,
+        "originalPrice": 179,
+        "category": "Air Fried Chips",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg",
+        "images": [
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg"
+        ],
+        "stock": 145,
+        "weight": "100g",
+        "ingredients": [
+            "Beetroot",
+            "Salt",
+            "Sunflower Oil (minimal)"
+        ],
+        "nutritionFacts": {
+            "calories": 130,
+            "protein": 2.1,
+            "carbs": 27.8,
+            "fat": 2.0,
+            "fiber": 2.2
+        },
+        "tags": [
+            "chips",
+            "beetroot",
+            "air-fried",
+            "healthy",
+            "low-fat"
+        ],
+        "isFeatured": true,
+        "isBestSeller": true,
+        "ratings": 4.7,
+        "numReviews": 112,
+        "id": "6"
+    },
+    {
+        "name": "Broccoli Chips",
+        "slug": "broccoli-chips",
+        "description": "Flavorful broccoli air-fried chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
+        "shortDescription": "Broccoli air-fried chips with minimal oil.",
+        "price": 179,
+        "originalPrice": 199,
+        "category": "Air Fried Chips",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
+        "images": [
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg"
+        ],
+        "stock": 135,
+        "weight": "100g",
+        "ingredients": [
+            "Broccoli",
+            "Spices",
+            "Salt",
+            "Sunflower Oil (minimal)"
+        ],
+        "nutritionFacts": {
+            "calories": 140,
+            "protein": 2.3,
+            "carbs": 28.5,
+            "fat": 2.2,
+            "fiber": 2.4
+        },
+        "tags": [
+            "chips",
+            "broccoli",
+            "air-fried",
+            "healthy",
+            "low-fat"
+        ],
+        "isFeatured": false,
+        "isBestSeller": true,
+        "ratings": 4.8,
+        "numReviews": 98,
+        "id": "7"
+    },
+    {
+        "name": "Ragi Chips",
+        "slug": "ragi-chips",
+        "description": "Perfectly salted and crispy air-fried ragi chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
+        "shortDescription": "Salted air-fried ragi chips with minimal oil.",
+        "price": 149,
+        "originalPrice": 179,
+        "category": "Air Fried Chips",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg",
+        "images": [
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg"
+        ],
+        "stock": 125,
+        "weight": "100g",
+        "ingredients": [
+            "Ragi",
+            "Sea Salt",
+            "Sunflower Oil (minimal)"
+        ],
+        "nutritionFacts": {
+            "calories": 130,
+            "protein": 2.1,
+            "carbs": 27.8,
+            "fat": 2.0,
+            "fiber": 2.2
+        },
+        "tags": [
+            "chips",
+            "ragi",
+            "air-fried",
+            "healthy",
+            "low-fat"
+        ],
+        "isFeatured": false,
+        "isBestSeller": false,
+        "ratings": 4.6,
+        "numReviews": 87,
+        "id": "8"
+    },
+    {
+        "name": "Crunchy Pepper Makhana",
+        "slug": "crunchy-pepper-makhana",
+        "description": "Crunchy roasted makhanas seasoned with bold black pepper for a spicy, flavorful snack.",
+        "shortDescription": "Crunchy roasted makhanas seasoned with bold black pepper.",
+        "price": 249,
+        "originalPrice": 299,
+        "category": "Flavoured Makhanas",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg",
+        "images": [
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg"
+        ],
+        "stock": 120,
+        "weight": "100g",
+        "ingredients": [
+            "Fox Nuts (Makhana)",
+            "Black Pepper Seasoning",
+            "Sunflower Oil",
+            "Salt"
+        ],
+        "nutritionFacts": {
+            "calories": 355,
+            "protein": 9.5,
+            "carbs": 74.2,
+            "fat": 2.1,
+            "fiber": 0.5
+        },
+        "tags": [
+            "makhana",
+            "spicy",
+            "pepper",
+            "crunchy-pepper"
+        ],
+        "isFeatured": false,
+        "isBestSeller": false,
+        "ratings": 4.6,
+        "numReviews": 89,
+        "id": "2"
+    },
+    {
+        "name": "Himalayan Salt Makhana",
+        "slug": "himalayan-salt-makhana",
+        "description": "Lightly roasted makhanas seasoned with premium Himalayan pink salt for a clean and healthy snack.",
+        "shortDescription": "Lightly roasted makhanas seasoned with premium Himalayan pink salt.",
+        "price": 249,
+        "originalPrice": 299,
+        "category": "Flavoured Makhanas",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg",
+        "images": [
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg"
+        ],
+        "stock": 150,
+        "weight": "100g",
+        "ingredients": [
+            "Fox Nuts (Makhana)",
+            "Himalayan Pink Salt",
+            "Cold Pressed Coconut Oil"
+        ],
+        "nutritionFacts": {
+            "calories": 347,
+            "protein": 9.7,
+            "carbs": 76.9,
+            "fat": 0.1,
+            "fiber": 0.5
+        },
+        "tags": [
+            "makhana",
+            "healthy",
+            "low-fat",
+            "himalayan-salt"
+        ],
+        "isFeatured": true,
+        "isBestSeller": true,
+        "ratings": 4.8,
+        "numReviews": 124,
+        "id": "1"
+    },
+    {
+        "name": "Peri Peri Makhana",
+        "slug": "peri-peri-makhana",
+        "description": "Spicy and tangy peri peri flavoured makhana. Boldly seasoned with African spices for those who love a kick. Air-popped, never fried.",
+        "shortDescription": "Spicy peri peri flavoured fox nuts.",
+        "price": 249,
+        "originalPrice": 299,
+        "category": "Flavoured Makhanas",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg",
+        "images": [
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg"
+        ],
+        "stock": 110,
+        "weight": "100g",
+        "ingredients": [
+            "Fox Nuts (Makhana)",
+            "Peri Peri Seasoning",
+            "Salt",
+            "Sunflower Oil"
+        ],
+        "nutritionFacts": {
+            "calories": 347,
+            "protein": 10,
+            "carbs": 76.9,
+            "fat": 0.28,
+            "fiber": 0.5
+        },
+        "tags": [
+            "makhana",
+            "peri-peri",
+            "savory"
+        ],
+        "isFeatured": false,
+        "isBestSeller": true,
+        "ratings": 4.7,
+        "numReviews": 92,
+        "id": "4"
+    },
+    {
+        "name": "Cream & Onion Makhana",
+        "slug": "cream-onion-makhana",
+        "description": "Decadent cream and onion flavor meets light, crispy makhana. A sophisticated snack for those who prefer refined taste.",
+        "shortDescription": "Rich cream and onion flavored fox nuts.",
+        "price": 249,
+        "originalPrice": 299,
+        "category": "Flavoured Makhanas",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg",
+        "images": [
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg"
+        ],
+        "stock": 95,
+        "weight": "100g",
+        "ingredients": [
+            "Fox Nuts (Makhana)",
+            "Cream and Onion Flavoring",
+            "Salt",
+            "Sunflower Oil"
+        ],
+        "nutritionFacts": {
+            "calories": 347,
+            "protein": 9.7,
+            "carbs": 76.9,
+            "fat": 0.23,
+            "fiber": 0.5
+        },
+        "tags": [
+            "makhana",
+            "cream-onion",
+            "premium"
+        ],
+        "isFeatured": false,
+        "isBestSeller": false,
+        "ratings": 4.6,
+        "numReviews": 75,
+        "id": "5"
+    },
+    {
+        "name": "Pudina Makhana",
+        "slug": "pudina-makhana",
+        "description": "Refreshing mint flavored makhana with aromatic pudina seasoning. Light, cooling, and perfect as an afternoon snack.",
+        "shortDescription": "Refreshing mint flavored fox nuts.",
+        "price": 249,
+        "originalPrice": 299,
+        "category": "Flavoured Makhanas",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563590/shuddheats/products/pudina-makhana.jpg",
+        "images": [
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563590/shuddheats/products/pudina-makhana.jpg"
+        ],
+        "stock": 100,
+        "weight": "100g",
+        "ingredients": [
+            "Fox Nuts (Makhana)",
+            "Pudina (Mint) Seasoning",
+            "Salt",
+            "Cold Pressed Oil"
+        ],
+        "nutritionFacts": {
+            "calories": 347,
+            "protein": 9.7,
+            "carbs": 76.9,
+            "fat": 0.13,
+            "fiber": 0.5
+        },
+        "tags": [
+            "makhana",
+            "pudina",
+            "mint"
+        ],
+        "isFeatured": false,
+        "isBestSeller": false,
+        "ratings": 4.5,
+        "numReviews": 65,
+        "id": "3"
     }
 ];
 
@@ -495,6 +528,8 @@ function ShopContent() {
                 filtered.sort((a: any, b: any) => b.price - a.price);
             } else if (sort === 'rating') {
                 filtered.sort((a: any, b: any) => b.ratings - a.ratings);
+            } else {
+                filtered = sortProductsLogically(filtered);
             }
 
             setProducts(filtered);
