@@ -5,14 +5,14 @@ const mockProducts = [
   {
     "name": "Himalayan Salt Makhana",
     "slug": "himalayan-salt-makhana",
-    "description": "Light, airy fox nuts air-popped and seasoned with pure Himalayan pink salt. High in protein, low in fat, and completely guilt-free. Perfect for evening snacking.",
-    "shortDescription": "Air-popped fox nuts with Himalayan pink salt.",
+    "description": "Lightly roasted makhanas seasoned with premium Himalayan pink salt for a clean and healthy snack.",
+    "shortDescription": "Lightly roasted makhanas seasoned with premium Himalayan pink salt.",
     "price": 249,
     "originalPrice": 299,
     "category": "Flavoured Makhanas",
-    "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563585/shuddheats/products/himalayan-salt-makhana.jpg",
+    "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563585/shuddheats/products/himalayan-salt-makhana.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg"
     ],
     "stock": 150,
     "weight": "100g",
@@ -40,16 +40,16 @@ const mockProducts = [
     "numReviews": 124
   },
   {
-    "name": "Black Pepper & Himalayan Salt Makhana",
-    "slug": "black-pepper-makhana",
-    "description": "Boldly seasoned with black pepper and Himalayan pink salt. Air-popped, never fried.",
-    "shortDescription": "Spicy black pepper flavoured fox nuts.",
+    "name": "Crunchy Pepper Makhana",
+    "slug": "crunchy-pepper-makhana",
+    "description": "Crunchy roasted makhanas seasoned with bold black pepper for a spicy, flavorful snack.",
+    "shortDescription": "Crunchy roasted makhanas seasoned with bold black pepper.",
     "price": 249,
     "originalPrice": 299,
     "category": "Flavoured Makhanas",
-    "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563580/shuddheats/products/black-pepper-makhana.jpg",
+    "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563580/shuddheats/products/black-pepper-makhana.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg"
     ],
     "stock": 120,
     "weight": "100g",
@@ -69,7 +69,8 @@ const mockProducts = [
     "tags": [
       "makhana",
       "spicy",
-      "black-pepper"
+      "pepper",
+      "crunchy-pepper"
     ],
     "isFeatured": false,
     "isBestSeller": false,
