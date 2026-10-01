@@ -21,7 +21,7 @@ module.exports = async function adminOnly(req, res, next) {
     }
   }
 
-  if (req.user.role !== 'ADMIN') {
+  if (String(req.user.role || '').toUpperCase() !== 'ADMIN') {
     return res.status(403).json({ message: 'Admin access only' });
   }
   next();

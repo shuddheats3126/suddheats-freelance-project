@@ -39,8 +39,8 @@ export default function AdminDashboard() {
         { label: 'Customers', value: stats.totalUsers, icon: Users, prefix: '', suffix: '', color: '#3a4620' },
     ];
 
-    const STATUS_COLORS: any = { Pending: '#fef3c7', Processing: '#dbeafe', Shipped: '#e0ffe0', 'Out for Delivery': '#f3e8ff', Delivered: '#d1fae5', Cancelled: '#fee2e2' };
-    const STATUS_TEXT: any = { Pending: '#92400e', Processing: '#1e40af', Shipped: '#166534', 'Out for Delivery': '#6b21a8', Delivered: '#065f46', Cancelled: '#991b1b' };
+    const STATUS_COLORS: any = { Pending: '#fef3c7', PLACED: '#ffedd5', Processing: '#dbeafe', Shipped: '#e0ffe0', 'Out for Delivery': '#f3e8ff', Delivered: '#d1fae5', Cancelled: '#fee2e2', FAILED: '#fee2e2', Failed: '#fee2e2' };
+    const STATUS_TEXT: any = { Pending: '#92400e', PLACED: '#c2410c', Processing: '#1e40af', Shipped: '#166534', 'Out for Delivery': '#6b21a8', Delivered: '#065f46', Cancelled: '#991b1b', FAILED: '#991b1b', Failed: '#991b1b' };
 
     return (
         <div className="min-h-screen pt-24 pb-16" style={{ background: '#fafaf7' }}>
@@ -110,24 +110,32 @@ export default function AdminDashboard() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-50">
-                                {stats.recentOrders.map((order: any) => (
-                                    <tr key={order.id} className="hover:bg-gray-50 transition-colors">
-                                        <td className="px-3 sm:px-4 py-2.5 sm:py-4 font-mono text-xs text-gray-500">{order.id.slice(-8)}</td>
-                                        <td className="px-3 sm:px-4 py-2.5 sm:py-4">
-                                            <p className="font-medium text-xs sm:text-sm line-clamp-1">{order.user?.name || 'N/A'}</p>
-                                            <p className="text-xs text-gray-400 line-clamp-1">{order.user?.email}</p>
-                                        </td>
-                                        <td className="px-3 sm:px-4 py-2.5 sm:py-4 font-bold text-xs sm:text-base" style={{ color: '#475d2a' }}>₹{order.totalPrice}</td>
-                                        <td className="px-3 sm:px-4 py-2.5 sm:py-4">
-                                            <span className="badge text-xs" style={{ background: STATUS_COLORS[order.status] || '#f3f4f6', color: STATUS_TEXT[order.status] || '#374151' }}>
-                                                {order.status}
-                                            </span>
-                                        </td>
-                                        <td className="px-3 sm:px-4 py-2.5 sm:py-4 text-xs text-gray-400">
-                                            {new Date(order.createdAt).toLocaleDateString('en-IN')}
+                                {stats.recentOrders && stats.recentOrders.length > 0 ? (
+                                    stats.recentOrders.map((order: any) => (
+                                        <tr key={order.id} className="hover:bg-gray-50 transition-colors">
+                                            <td className="px-3 sm:px-4 py-2.5 sm:py-4 font-mono text-xs text-gray-500">{order.id.slice(-8)}</td>
+                                            <td className="px-3 sm:px-4 py-2.5 sm:py-4">
+                                                <p className="font-medium text-xs sm:text-sm line-clamp-1">{order.user?.name || 'N/A'}</p>
+                                                <p className="text-xs text-gray-400 line-clamp-1">{order.user?.email}</p>
+                                            </td>
+                                            <td className="px-3 sm:px-4 py-2.5 sm:py-4 font-bold text-xs sm:text-base" style={{ color: '#475d2a' }}>₹{order.totalPrice}</td>
+                                            <td className="px-3 sm:px-4 py-2.5 sm:py-4">
+                                                <span className="badge text-xs" style={{ background: STATUS_COLORS[order.status] || '#f3f4f6', color: STATUS_TEXT[order.status] || '#374151' }}>
+                                                    {order.status}
+                                                </span>
+                                            </td>
+                                            <td className="px-3 sm:px-4 py-2.5 sm:py-4 text-xs text-gray-400">
+                                                {new Date(order.createdAt).toLocaleDateString('en-IN')}
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan={5} className="text-center py-8 text-gray-400 text-xs sm:text-sm">
+                                            No recent orders found in database
                                         </td>
                                     </tr>
-                                ))}
+                                )}
                             </tbody>
                         </table>
                     </div>

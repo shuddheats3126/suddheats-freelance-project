@@ -23,19 +23,9 @@ export default function InventoryPage() {
             try {
                 const { data } = await api.get('/admin/inventory');
                 setInventory(data);
-            } catch {
-                // Mock data fallback
-                setInventory([
-                    { id: '1', name: 'Himalayan Pink Salt Makhana', sku: 'MAKH-001', stock: 150, minStock: 20, category: 'Makhana' },
-                    { id: '2', name: 'Peri Peri Makhana', sku: 'MAKH-002', stock: 120, minStock: 20, category: 'Makhana' },
-                    { id: '3', name: 'Butter & Herbs Makhana', sku: 'MAKH-003', stock: 90, minStock: 20, category: 'Makhana' },
-                    { id: '4', name: 'Classic Salted Air Fried Chips', sku: 'CHIP-001', stock: 200, minStock: 30, category: 'Air Fried Chips' },
-                    { id: '5', name: 'Masala Air Fried Chips', sku: 'CHIP-002', stock: 180, minStock: 30, category: 'Air Fried Chips' },
-                    { id: '6', name: 'Beetroot & Spinach Chips', sku: 'CHIP-003', stock: 100, minStock: 25, category: 'Air Fried Chips' },
-                    { id: '7', name: 'Protein Power Diet Mix', sku: 'MIX-001', stock: 80, minStock: 15, category: 'Diet Mix' },
-                    { id: '8', name: 'Trail Mix Supreme', sku: 'MIX-002', stock: 60, minStock: 15, category: 'Diet Mix' },
-                    { id: '9', name: 'Chaat Flavoured Roasted Mixture', sku: 'MIX-003', stock: 110, minStock: 20, category: 'Diet Mix' },
-                ]);
+            } catch (err: any) {
+                console.error('Failed to fetch inventory from database:', err);
+                setInventory([]);
             } finally {
                 setFetching(false);
             }
