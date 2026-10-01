@@ -56,12 +56,8 @@ export default function ProductCardWithSizes({ product }: { product: Product }) 
         }
     };
 
-    const { price, originalPrice } = getDynamicPrice();
+    const { price } = getDynamicPrice();
     const packagingType = selectedWeight >= 100 ? 'jar' : 'pouch';
-
-    const discount = originalPrice
-        ? Math.round(((originalPrice - price) / originalPrice) * 100)
-        : null;
 
     const btnRef = useRef<HTMLButtonElement>(null);
     const [added, setAdded] = useState(false);
@@ -126,9 +122,6 @@ export default function ProductCardWithSizes({ product }: { product: Product }) 
                 <div className="absolute top-3 left-3 flex flex-col gap-2">
                     {product.isBestSeller && (
                         <span className="badge animate-scaleIn text-xs" style={{ background: '#D4BA9E', color: 'rgb(84, 82, 82)' }}>⭐ Best Seller</span>
-                    )}
-                    {discount && (
-                        <span className="badge animate-scaleIn text-xs" style={{ background: '#475d2a', color: 'white', animationDelay: '0.1s', fontWeight: '800' }}>{discount}% OFF</span>
                     )}
                 </div>
 
@@ -199,9 +192,6 @@ export default function ProductCardWithSizes({ product }: { product: Product }) 
                 <div className="flex items-end justify-between gap-2 mt-auto">
                     <div className="flex flex-col">
                         <span className="text-lg sm:text-xl font-extrabold" style={{ color: '#475d2a' }}>₹{price}</span>
-                        {originalPrice && (
-                            <span className="text-xs text-gray-400 line-through">₹{originalPrice}</span>
-                        )}
                     </div>
 
                     {/* ── Premium animated cart button ── */}

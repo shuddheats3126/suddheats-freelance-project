@@ -220,8 +220,8 @@ function ShopContent() {
         "slug": "beetroot-chips",
         "description": "Crispy air-fried beetroot chips with just the right amount of salt. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
         "shortDescription": "Air fried beetroot chips with minimal oil.",
-        "price": 129,
-        "originalPrice": 169,
+        "price": 149,
+        "originalPrice": 179,
         "category": "Air Fried Chips",
         "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg",
         "images": [
@@ -259,8 +259,8 @@ function ShopContent() {
         "slug": "broccoli-chips",
         "description": "Flavorful broccoli air-fried chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
         "shortDescription": "Broccoli air-fried chips with minimal oil.",
-        "price": 129,
-        "originalPrice": 169,
+        "price": 179,
+        "originalPrice": 199,
         "category": "Air Fried Chips",
         "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
         "images": [
@@ -299,8 +299,8 @@ function ShopContent() {
         "slug": "ragi-chips",
         "description": "Perfectly salted and crispy air-fried ragi chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
         "shortDescription": "Salted air-fried ragi chips with minimal oil.",
-        "price": 129,
-        "originalPrice": 169,
+        "price": 149,
+        "originalPrice": 179,
         "category": "Air Fried Chips",
         "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg",
         "images": [
@@ -338,7 +338,7 @@ function ShopContent() {
         "slug": "honey-oats-cookies",
         "description": "Delicious and nutritious honey and oats cookies with absolutely no added sugar or palm oil.",
         "shortDescription": "Nutritious honey oats cookies, zero sugar, no palm oil.",
-        "price": 149,
+        "price": 169,
         "originalPrice": 199,
         "category": "No Sugar No Palm Oil Millet Cookies",
         "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg",
@@ -381,7 +381,7 @@ function ShopContent() {
         "slug": "jowar-nuts-cookies",
         "description": "Delicious and nutritious jowar and nuts cookies with absolutely no added sugar or palm oil.",
         "shortDescription": "Nutritious jowar and nuts cookies, zero sugar, no palm oil.",
-        "price": 149,
+        "price": 169,
         "originalPrice": 199,
         "category": "No Sugar No Palm Oil Millet Cookies",
         "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg",
@@ -424,7 +424,7 @@ function ShopContent() {
         "slug": "ragi-elaichi-cookies",
         "description": "Delicious and nutritious ragi and elaichi cookies with absolutely no added sugar or palm oil.",
         "shortDescription": "Nutritious ragi and elaichi cookies, zero sugar, no palm oil.",
-        "price": 149,
+        "price": 169,
         "originalPrice": 199,
         "category": "No Sugar No Palm Oil Millet Cookies",
         "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg",
@@ -597,9 +597,6 @@ function ShopContent() {
                                         </div>
                                         <div className="text-right">
                                             <span className="text-base sm:text-lg font-extrabold block" style={{ color: '#475d2a' }}>₹{p.price}</span>
-                                            {p.originalPrice && (
-                                                <span className="text-xs text-gray-400 line-through">₹{p.originalPrice}</span>
-                                            )}
                                         </div>
                                     </div>
                                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mt-auto">

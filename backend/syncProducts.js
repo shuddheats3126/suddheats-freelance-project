@@ -2,12 +2,12 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 const requiredProducts = [
-  { name: 'Broccoli Chips', price: 99, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/broccoli-chips.jpg' },
-  { name: 'Ragi Chips – Himalayan Flavour', price: 99, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/ragi-chips.jpg' },
+  { name: 'Broccoli Chips', price: 179, originalPrice: 199, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/broccoli-chips.jpg' },
+  { name: 'Ragi Chips – Himalayan Flavour', price: 149, originalPrice: 179, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/ragi-chips.jpg' },
   { name: 'Makhan Black Pepper Makhana', price: 149, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/makhana-black-pepper.jpg' },
   { name: 'Himalayan Flavour Makhana', price: 149, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563588/shuddheats/products/makhana-himalayan.jpg' },
-  { name: 'Ragi & Elaichi Cookies', price: 199, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563570/shuddheats/assets/ragi-cookies.jpg' },
-  { name: 'Jowar & Nuts Cookies', price: 199, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563568/shuddheats/assets/jowar-cookies.jpg' }
+  { name: 'Ragi & Elaichi Cookies', price: 169, originalPrice: 199, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563570/shuddheats/assets/ragi-cookies.jpg' },
+  { name: 'Jowar & Nuts Cookies', price: 169, originalPrice: 199, image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563568/shuddheats/assets/jowar-cookies.jpg' }
 ];
 
 async function run() {

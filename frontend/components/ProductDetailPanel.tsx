@@ -128,10 +128,6 @@ export default function ProductDetailPanel({
     }
   };
 
-  const discount = originalPrice && price
-    ? Math.round(((originalPrice - price) / originalPrice) * 100)
-    : null;
-
   if (!isOpen) return null;
 
   return (
@@ -211,15 +207,7 @@ export default function ProductDetailPanel({
                 <span className="text-3xl font-bold" style={{ color: '#475d2a' }}>
                   ₹{price}
                 </span>
-                {originalPrice && (
-                  <span className="text-lg text-gray-400 line-through">₹{originalPrice}</span>
-                )}
               </div>
-              {discount && (
-                <div className="inline-block px-3 py-1 rounded-lg text-sm font-bold text-white" style={{ background: '#475d2a' }}>
-                  {discount}% OFF
-                </div>
-              )}
             </div>
           )}
 

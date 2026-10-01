@@ -74,8 +74,8 @@ async function main() {
       slug: 'beetroot-chips',
       description: 'Air-fried beetroot chips with 70% less oil. Earthy, crunchy, and packed with fibre and antioxidants.',
       shortDescription: 'Air-fried crispy beetroot chips.',
-      price: 120,
-      originalPrice: 150,
+      price: 149,
+      originalPrice: 179,
       category: 'Air Fried Chips',
       images: [
         'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563567/shuddheats/assets/beetroot-chips.jpg'
@@ -95,8 +95,8 @@ async function main() {
       slug: 'jowar-nuts-cookies',
       description: 'Wholesome Jowar (Sorghum) cookies loaded with premium nuts. Zero refined sugar, zero palm oil. Sweetened naturally.',
       shortDescription: 'Healthy jowar cookies with nuts.',
-      price: 180,
-      originalPrice: 220,
+      price: 169,
+      originalPrice: 199,
       category: 'No Sugar No Palm Oil Millet Cookies',
       images: [
         'https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563568/shuddheats/assets/jowar-cookies.jpg'
