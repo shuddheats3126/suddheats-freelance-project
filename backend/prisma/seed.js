@@ -193,15 +193,15 @@ const mockProducts = [
     "slug": "beetroot-chips",
     "description": "Crispy air-fried beetroot chips with just the right amount of salt. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
     "shortDescription": "Air fried beetroot chips with minimal oil.",
-    "price": 149,
-    "originalPrice": 179,
+    "price": 179,
+    "originalPrice": 199,
     "category": "Air Fried Chips",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg",
     "images": [
       "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg"
     ],
     "stock": 145,
-    "weight": "100g",
+    "weight": "120g",
     "ingredients": [
       "Beetroot",
       "Salt",
@@ -231,15 +231,15 @@ const mockProducts = [
     "slug": "broccoli-chips",
     "description": "Flavorful broccoli air-fried chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
     "shortDescription": "Broccoli air-fried chips with minimal oil.",
-    "price": 179,
-    "originalPrice": 199,
+    "price": 199,
+    "originalPrice": 229,
     "category": "Air Fried Chips",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
     "images": [
       "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg"
     ],
     "stock": 135,
-    "weight": "100g",
+    "weight": "120g",
     "ingredients": [
       "Broccoli",
       "Spices",
@@ -270,15 +270,15 @@ const mockProducts = [
     "slug": "ragi-chips",
     "description": "Perfectly salted and crispy air-fried ragi chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.",
     "shortDescription": "Salted air-fried ragi chips with minimal oil.",
-    "price": 149,
-    "originalPrice": 179,
+    "price": 179,
+    "originalPrice": 199,
     "category": "Air Fried Chips",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg",
     "images": [
       "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg"
     ],
     "stock": 125,
-    "weight": "100g",
+    "weight": "120g",
     "ingredients": [
       "Ragi",
       "Sea Salt",
@@ -308,8 +308,8 @@ const mockProducts = [
     "slug": "honey-oats-cookies",
     "description": "Delicious and nutritious honey and oats cookies with absolutely no added sugar or palm oil.",
     "shortDescription": "Nutritious honey oats cookies, zero sugar, no palm oil.",
-    "price": 169,
-    "originalPrice": 199,
+    "price": 199,
+    "originalPrice": 249,
     "category": "No Sugar No Palm Oil Millet Cookies",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg",
     "images": [
@@ -317,7 +317,7 @@ const mockProducts = [
       "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319786/millet_honey_back.jpg"
     ],
     "stock": 120,
-    "weight": "100g",
+    "weight": "120g",
     "ingredients": [
       "Oats",
       "Honey",
@@ -350,15 +350,15 @@ const mockProducts = [
     "slug": "jowar-nuts-cookies",
     "description": "Delicious and nutritious jowar and nuts cookies with absolutely no added sugar or palm oil.",
     "shortDescription": "Nutritious jowar and nuts cookies, zero sugar, no palm oil.",
-    "price": 169,
-    "originalPrice": 199,
+    "price": 199,
+    "originalPrice": 249,
     "category": "No Sugar No Palm Oil Millet Cookies",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg",
     "images": [
       "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg"
     ],
     "stock": 115,
-    "weight": "100g",
+    "weight": "120g",
     "ingredients": [
       "Jowar Flour",
       "Nuts",
@@ -392,15 +392,15 @@ const mockProducts = [
     "slug": "ragi-elaichi-cookies",
     "description": "Delicious and nutritious ragi and elaichi cookies with absolutely no added sugar or palm oil.",
     "shortDescription": "Nutritious ragi and elaichi cookies, zero sugar, no palm oil.",
-    "price": 169,
-    "originalPrice": 199,
+    "price": 199,
+    "originalPrice": 249,
     "category": "No Sugar No Palm Oil Millet Cookies",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg",
     "images": [
       "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg"
     ],
     "stock": 125,
-    "weight": "100g",
+    "weight": "120g",
     "ingredients": [
       "Ragi Flour",
       "Elaichi",
