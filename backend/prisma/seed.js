@@ -326,11 +326,11 @@ const mockProducts = [
       "Baking Powder"
     ],
     "nutritionFacts": {
-      "calories": 410,
-      "protein": 8.2,
-      "carbs": 62.3,
-      "fat": 14.5,
-      "fiber": 3.1
+      "calories": 530,
+      "protein": 5.7,
+      "carbs": 62.4,
+      "fat": 28.7,
+      "fiber": 9.1
     },
     "tags": [
       "cookies",
