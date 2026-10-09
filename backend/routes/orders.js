@@ -13,9 +13,10 @@ router.post('/', protect, async (req, res) => {
         const { items, shippingAddress, itemsPrice, shippingPrice, totalPrice, paymentMethod } = req.body;
         if (!items || items.length === 0) return res.status(400).json({ message: 'No items in order' });
 
-        let itemsPriceFloat = parseFloat(itemsPrice);
+        let itemsPriceFloat = parseFloat(itemsPrice || 0);
         let correctShippingPrice = itemsPriceFloat >= 499 ? 0 : 49;
-        let finalTotalPrice = Math.round((parseFloat(totalPrice) - receivedShippingPrice + correctShippingPrice) * 100) / 100;
+        let receivedShippingPrice = parseFloat(shippingPrice || 0);
+        let finalTotalPrice = Math.round((parseFloat(totalPrice || 0) - receivedShippingPrice + correctShippingPrice) * 100) / 100;
 
         // Run stock decrement, order creation, and cart clearance in a transaction
         console.log("Executing Prisma query...");
