@@ -234,9 +234,9 @@ function ShopContent() {
         "price": 199,
         "originalPrice": 229,
         "category": "Air Fried Chips",
-        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
+        "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267227/WhatsApp_Image_2026-09-21_at_2.59.36_PM.jpg",
         "images": [
-            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg"
+            "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267227/WhatsApp_Image_2026-09-21_at_2.59.36_PM.jpg"
         ],
         "stock": 135,
         "weight": "120g",
@@ -510,6 +510,16 @@ function ShopContent() {
                 console.error("Failed to fetch products", err);
                 filtered = [...mockProducts];
             }
+
+            filtered = filtered.map((p: any) => {
+                if (p.slug === 'broccoli-chips') {
+                    return {
+                        ...p,
+                        thumbnail: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267227/WhatsApp_Image_2026-09-21_at_2.59.36_PM.jpg'
+                    };
+                }
+                return p;
+            });
 
             if (category && category !== 'All') {
                 filtered = filtered.filter((p: any) => p.category?.toLowerCase() === category.toLowerCase());

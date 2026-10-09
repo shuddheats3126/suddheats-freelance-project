@@ -240,9 +240,9 @@ const mockProducts = [
     "price": 199,
     "originalPrice": 229,
     "category": "Air Fried Chips",
-    "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
+    "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267227/WhatsApp_Image_2026-09-21_at_2.59.36_PM.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267227/WhatsApp_Image_2026-09-21_at_2.59.36_PM.jpg",
       "https://res.cloudinary.com/dyf00ptkk/image/upload/v1791551110/brocoli_nutritional.jpg"
     ],
     "stock": 135,
