@@ -12,7 +12,8 @@ const mockProducts = [
     "category": "Flavoured Makhanas",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.25_PM.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267290/WhatsApp_Image_2026-09-24_at_3.00.21_PM_1.jpg"
     ],
     "stock": 150,
     "weight": "100g",
@@ -22,11 +23,11 @@ const mockProducts = [
       "Cold Pressed Coconut Oil"
     ],
     "nutritionFacts": {
-      "calories": 347,
-      "protein": 9.7,
-      "carbs": 76.9,
-      "fat": 0.1,
-      "fiber": 0.5
+      "calories": 352,
+      "protein": 9.6,
+      "carbs": 76.4,
+      "fat": 0.6,
+      "fiber": 14.3
     },
     "tags": [
       "makhana",
@@ -49,7 +50,8 @@ const mockProducts = [
     "category": "Flavoured Makhanas",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267193/WhatsApp_Image_2026-09-21_at_2.23.28_PM_2.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267302/WhatsApp_Image_2026-09-24_at_3.00.22_PM_1.jpg"
     ],
     "stock": 120,
     "weight": "100g",
@@ -60,11 +62,11 @@ const mockProducts = [
       "Salt"
     ],
     "nutritionFacts": {
-      "calories": 355,
-      "protein": 9.5,
-      "carbs": 74.2,
-      "fat": 2.1,
-      "fiber": 0.5
+      "calories": 435,
+      "protein": 8.3,
+      "carbs": 62.4,
+      "fat": 11.8,
+      "fiber": 12.1
     },
     "tags": [
       "makhana",
@@ -87,7 +89,8 @@ const mockProducts = [
     "category": "Flavoured Makhanas",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563590/shuddheats/products/pudina-makhana.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563590/shuddheats/products/pudina-makhana.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1780563590/shuddheats/products/pudina-makhana.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267303/WhatsApp_Image_2026-09-24_at_3.00.23_PM_1.jpg"
     ],
     "stock": 100,
     "weight": "100g",
@@ -98,11 +101,11 @@ const mockProducts = [
       "Cold Pressed Oil"
     ],
     "nutritionFacts": {
-      "calories": 347,
-      "protein": 9.7,
-      "carbs": 76.9,
-      "fat": 0.13,
-      "fiber": 0.5
+      "calories": 439,
+      "protein": 8.4,
+      "carbs": 63.1,
+      "fat": 12.2,
+      "fiber": 12.3
     },
     "tags": [
       "makhana",
@@ -161,7 +164,8 @@ const mockProducts = [
     "category": "Flavoured Makhanas",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267197/WhatsApp_Image_2026-09-21_at_2.23.28_PM_1.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267302/WhatsApp_Image_2026-09-24_at_3.00.22_PM.jpg"
     ],
     "stock": 95,
     "weight": "100g",
@@ -172,11 +176,11 @@ const mockProducts = [
       "Sunflower Oil"
     ],
     "nutritionFacts": {
-      "calories": 347,
-      "protein": 9.7,
-      "carbs": 76.9,
-      "fat": 0.23,
-      "fiber": 0.5
+      "calories": 475,
+      "protein": 8.5,
+      "carbs": 63.7,
+      "fat": 12.8,
+      "fiber": 11.6
     },
     "tags": [
       "makhana",
@@ -198,7 +202,8 @@ const mockProducts = [
     "category": "Air Fried Chips",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267289/WhatsApp_Image_2026-09-24_at_3.00.20_PM_2.jpg"
     ],
     "stock": 145,
     "weight": "120g",
@@ -208,11 +213,11 @@ const mockProducts = [
       "Sunflower Oil (minimal)"
     ],
     "nutritionFacts": {
-      "calories": 130,
-      "protein": 2.1,
-      "carbs": 27.8,
-      "fat": 2,
-      "fiber": 2.2
+      "calories": 420,
+      "protein": 11.0,
+      "carbs": 73.1,
+      "fat": 9.3,
+      "fiber": 1.64
     },
     "tags": [
       "chips",
@@ -275,7 +280,8 @@ const mockProducts = [
     "category": "Air Fried Chips",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267289/WhatsApp_Image_2026-09-24_at_3.00.20_PM.jpg"
     ],
     "stock": 125,
     "weight": "120g",
@@ -285,11 +291,11 @@ const mockProducts = [
       "Sunflower Oil (minimal)"
     ],
     "nutritionFacts": {
-      "calories": 130,
-      "protein": 2.1,
-      "carbs": 27.8,
-      "fat": 2,
-      "fiber": 2.2
+      "calories": 434,
+      "protein": 10.35,
+      "carbs": 73.0,
+      "fat": 11.0,
+      "fiber": 4.5
     },
     "tags": [
       "chips",
@@ -314,7 +320,7 @@ const mockProducts = [
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg",
     "images": [
       "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg",
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319786/millet_honey_back.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267289/WhatsApp_Image_2026-09-24_at_3.00.20_PM_1.jpg"
     ],
     "stock": 120,
     "weight": "120g",
@@ -355,7 +361,8 @@ const mockProducts = [
     "category": "No Sugar No Palm Oil Millet Cookies",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267288/WhatsApp_Image_2026-09-24_at_3.00.19_PM.jpg"
     ],
     "stock": 115,
     "weight": "120g",
@@ -368,11 +375,11 @@ const mockProducts = [
       "Baking Powder"
     ],
     "nutritionFacts": {
-      "calories": 410,
-      "protein": 8.2,
-      "carbs": 62.3,
-      "fat": 14.5,
-      "fiber": 3.1
+      "calories": 519.6,
+      "protein": 5.97,
+      "carbs": 64.62,
+      "fat": 26.36,
+      "fiber": 9.65
     },
     "tags": [
       "cookies",
@@ -397,7 +404,8 @@ const mockProducts = [
     "category": "No Sugar No Palm Oil Millet Cookies",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267287/WhatsApp_Image_2026-09-24_at_3.00.18_PM.jpg"
     ],
     "stock": 125,
     "weight": "120g",
@@ -410,11 +418,11 @@ const mockProducts = [
       "Baking Powder"
     ],
     "nutritionFacts": {
-      "calories": 410,
-      "protein": 8.2,
-      "carbs": 62.3,
-      "fat": 14.5,
-      "fiber": 3.1
+      "calories": 503.4,
+      "protein": 4.96,
+      "carbs": 69.0,
+      "fat": 23.0,
+      "fiber": 9.5
     },
     "tags": [
       "cookies",
