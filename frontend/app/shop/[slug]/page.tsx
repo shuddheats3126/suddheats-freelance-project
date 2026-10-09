@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import api from '@/lib/api';
 import { useCart } from '@/context/CartContext';
 import { useAuth } from '@/context/AuthContext';
-import { Star, ArrowLeft, Shield, Leaf, Package, Minus, Plus } from 'lucide-react';
+import { Star, ArrowLeft, Shield, Leaf, Package, Minus, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 const mockProducts: any = {
@@ -17,7 +17,7 @@ const mockProducts: any = {
     "beetroot-chips": {"name": "Beetroot Chips", "slug": "beetroot-chips", "description": "Crispy air-fried beetroot chips with just the right amount of salt. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.", "shortDescription": "Air fried beetroot chips with minimal oil.", "price": 179, "originalPrice": 199, "category": "Air Fried Chips", "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg", "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267216/WhatsApp_Image_2026-09-21_at_2.51.41_PM.jpg"], "stock": 145, "weight": "120g", "ingredients": ["Beetroot", "Salt", "Sunflower Oil (minimal)"], "nutritionFacts": {"calories": 130, "protein": 2.1, "carbs": 27.8, "fat": 2.0, "fiber": 2.2}, "tags": ["chips", "beetroot", "air-fried", "healthy", "low-fat"], "isFeatured": true, "isBestSeller": true, "ratings": 4.7, "numReviews": 112, "id": "6"},
     "broccoli-chips": {"name": "Broccoli Chips", "slug": "broccoli-chips", "description": "Flavorful broccoli air-fried chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.", "shortDescription": "Broccoli air-fried chips with minimal oil.", "price": 199, "originalPrice": 229, "category": "Air Fried Chips", "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg", "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg"], "stock": 135, "weight": "120g", "ingredients": ["Broccoli", "Spices", "Salt", "Sunflower Oil (minimal)"], "nutritionFacts": {"calories": 140, "protein": 2.3, "carbs": 28.5, "fat": 2.2, "fiber": 2.4}, "tags": ["chips", "broccoli", "air-fried", "healthy", "low-fat"], "isFeatured": false, "isBestSeller": true, "ratings": 4.8, "numReviews": 98, "id": "7"},
     "ragi-chips": {"name": "Ragi Chips", "slug": "ragi-chips", "description": "Perfectly salted and crispy air-fried ragi chips. 70% less oil than regular chips. Crispy, crunchy, and completely guilt-free.", "shortDescription": "Salted air-fried ragi chips with minimal oil.", "price": 179, "originalPrice": 199, "category": "Air Fried Chips", "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg", "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267215/WhatsApp_Image_2026-09-21_at_2.51.41_PM_1.jpg"], "stock": 125, "weight": "120g", "ingredients": ["Ragi", "Sea Salt", "Sunflower Oil (minimal)"], "nutritionFacts": {"calories": 130, "protein": 2.1, "carbs": 27.8, "fat": 2.0, "fiber": 2.2}, "tags": ["chips", "ragi", "air-fried", "healthy", "low-fat"], "isFeatured": false, "isBestSeller": false, "ratings": 4.6, "numReviews": 87, "id": "8"},
-    "honey-oats-cookies": {"name": "Honey & Oats Cookies", "slug": "honey-oats-cookies", "description": "Delicious and nutritious honey and oats cookies with absolutely no added sugar or palm oil.", "shortDescription": "Nutritious honey oats cookies, zero sugar, no palm oil.", "price": 199, "originalPrice": 249, "category": "No Sugar No Palm Oil Millet Cookies", "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg", "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg", "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319786/millet_honey_back.jpg"], "stock": 120, "weight": "120g", "ingredients": ["Oats", "Honey", "Coconut Oil", "Sea Salt", "Baking Powder"], "nutritionFacts": {"calories": 410, "protein": 8.2, "carbs": 62.3, "fat": 14.5, "fiber": 3.1}, "tags": ["cookies", "oats", "honey", "no-sugar", "no-palm-oil", "healthy"], "isFeatured": true, "isBestSeller": true, "ratings": 4.9, "numReviews": 134, "id": "9"},
+    "honey-oats-cookies": {"name": "Honey & Oats Cookies", "slug": "honey-oats-cookies", "description": "Delicious and nutritious honey and oats cookies with absolutely no added sugar or palm oil.", "shortDescription": "Nutritious honey oats cookies, zero sugar, no palm oil.", "price": 199, "originalPrice": 249, "category": "No Sugar No Palm Oil Millet Cookies", "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg", "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg", "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267289/WhatsApp_Image_2026-09-24_at_3.00.20_PM_1.jpg"], "stock": 120, "weight": "120g", "ingredients": ["Oats", "Honey", "Coconut Oil", "Sea Salt", "Baking Powder"], "nutritionFacts": {"calories": 410, "protein": 8.2, "carbs": 62.3, "fat": 14.5, "fiber": 3.1}, "tags": ["cookies", "oats", "honey", "no-sugar", "no-palm-oil", "healthy"], "isFeatured": true, "isBestSeller": true, "ratings": 4.9, "numReviews": 134, "id": "9"},
     "jowar-nuts-cookies": {"name": "Jowar & Nuts Cookies", "slug": "jowar-nuts-cookies", "description": "Delicious and nutritious jowar and nuts cookies with absolutely no added sugar or palm oil.", "shortDescription": "Nutritious jowar and nuts cookies, zero sugar, no palm oil.", "price": 199, "originalPrice": 249, "category": "No Sugar No Palm Oil Millet Cookies", "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg", "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320106/jowar_front.jpg"], "stock": 115, "weight": "120g", "ingredients": ["Jowar Flour", "Nuts", "Natural Sweetener (Stevia)", "Coconut Oil", "Sea Salt", "Baking Powder"], "nutritionFacts": {"calories": 410, "protein": 8.2, "carbs": 62.3, "fat": 14.5, "fiber": 3.1}, "tags": ["cookies", "jowar", "nuts", "no-sugar", "no-palm-oil", "healthy"], "isFeatured": false, "isBestSeller": true, "ratings": 4.8, "numReviews": 110, "id": "10"},
     "ragi-elaichi-cookies": {"name": "Ragi & Elaichi Cookies", "slug": "ragi-elaichi-cookies", "description": "Delicious and nutritious ragi and elaichi cookies with absolutely no added sugar or palm oil.", "shortDescription": "Nutritious ragi and elaichi cookies, zero sugar, no palm oil.", "price": 199, "originalPrice": 249, "category": "No Sugar No Palm Oil Millet Cookies", "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg", "images": ["https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319848/raji_image_front.jpg"], "stock": 125, "weight": "120g", "ingredients": ["Ragi Flour", "Elaichi", "Natural Sweetener (Stevia)", "Coconut Oil", "Sea Salt", "Baking Powder"], "nutritionFacts": {"calories": 410, "protein": 8.2, "carbs": 62.3, "fat": 14.5, "fiber": 3.1}, "tags": ["cookies", "ragi", "elaichi", "no-sugar", "no-palm-oil", "healthy"], "isFeatured": false, "isBestSeller": true, "ratings": 4.7, "numReviews": 98, "id": "11"},
 };
@@ -35,6 +35,95 @@ export default function ProductDetailPage() {
     const { user, loading: authLoading } = useAuth();
     const [selectedWeight, setSelectedWeight] = useState<number>(100);
     const [selectedPackaging, setSelectedPackaging] = useState<'jar' | 'pouch'>('jar');
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const touchStartXRef = useRef<number | null>(null);
+    const touchEndXRef = useRef<number | null>(null);
+
+    // Dynamic images array supporting any product with single or multiple images
+    const productImages: string[] = (() => {
+        if (!product) return [];
+        // Honey & Oats Cookies: Image 1 is existing product image, Image 2 is WhatsApp image
+        if (product.slug === 'honey-oats-cookies') {
+            const img1 = product.thumbnail || (Array.isArray(product.images) && product.images[0]) || "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319726/millet_honey_front.jpg";
+            return [img1, "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267289/WhatsApp_Image_2026-09-24_at_3.00.20_PM_1.jpg"];
+        }
+        if (Array.isArray(product.images) && product.images.length > 0) {
+            return product.images;
+        }
+        if (typeof product.images === 'string') {
+            try {
+                const parsed = JSON.parse(product.images);
+                if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+            } catch {
+                if (product.images.trim()) return [product.images];
+            }
+        }
+        if (product.thumbnail) return [product.thumbnail];
+        if (product.image) return [product.image];
+        return [];
+    })();
+
+    const hasMultipleImages = productImages.length > 1;
+
+    // Reset current image index when product changes
+    useEffect(() => {
+        setCurrentImageIndex(0);
+    }, [slug, product?.id]);
+
+    const goToPrevImage = useCallback(() => {
+        if (!hasMultipleImages) return;
+        setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+    }, [hasMultipleImages, productImages.length]);
+
+    const goToNextImage = useCallback(() => {
+        if (!hasMultipleImages) return;
+        setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
+    }, [hasMultipleImages, productImages.length]);
+
+    // Keyboard navigation support (ArrowLeft / ArrowRight)
+    useEffect(() => {
+        const handleGlobalKeyDown = (e: KeyboardEvent) => {
+            const target = e.target as HTMLElement | null;
+            if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+                return;
+            }
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                goToPrevImage();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                goToNextImage();
+            }
+        };
+
+        if (hasMultipleImages) {
+            window.addEventListener('keydown', handleGlobalKeyDown);
+            return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+        }
+    }, [hasMultipleImages, goToPrevImage, goToNextImage]);
+
+    // Mobile touch swipe handling
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartXRef.current = e.touches[0].clientX;
+        touchEndXRef.current = null;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndXRef.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        if (touchStartXRef.current === null || touchEndXRef.current === null) return;
+        const diff = touchStartXRef.current - touchEndXRef.current;
+        const swipeThreshold = 40;
+        if (diff > swipeThreshold) {
+            goToNextImage();
+        } else if (diff < -swipeThreshold) {
+            goToPrevImage();
+        }
+        touchStartXRef.current = null;
+        touchEndXRef.current = null;
+    };
 
     useEffect(() => {
         if (product) {
@@ -134,21 +223,142 @@ export default function ProductDetailPage() {
                     <ArrowLeft className="w-4 h-4" /> Back to Shop
                 </button>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-                    {/* Image */}
-                    <div className="relative rounded-3xl overflow-hidden" style={{ aspectRatio: '1/1', background: '#f0f4ed' }}>
-                        <img
-                            src={product.thumbnail}
-                            alt={product.name}
-                            style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'cover',
-                                objectPosition: 'center',
-                                display: 'block',
+                    {/* Image Gallery */}
+                    <div className="w-full flex flex-col">
+                        <div
+                            className="relative rounded-3xl overflow-hidden select-none focus:outline-none focus:ring-2 focus:ring-[#475d2a]"
+                            style={{ aspectRatio: '1/1', background: '#f0f4ed' }}
+                            tabIndex={hasMultipleImages ? 0 : undefined}
+                            onKeyDown={(e) => {
+                                if (!hasMultipleImages) return;
+                                if (e.key === 'ArrowLeft') {
+                                    e.preventDefault();
+                                    goToPrevImage();
+                                } else if (e.key === 'ArrowRight') {
+                                    e.preventDefault();
+                                    goToNextImage();
+                                }
                             }}
-                        />
-                        {product.isBestSeller && (
-                            <div className="absolute top-4 left-4 badge" style={{ background: 'rgb(223, 196, 172)', color: '#1a1a1a' }}>⭐ Best Seller</div>
+                            onTouchStart={handleTouchStart}
+                            onTouchMove={handleTouchMove}
+                            onTouchEnd={handleTouchEnd}
+                            role="region"
+                            aria-roledescription="carousel"
+                            aria-label={`${product.name} gallery`}
+                        >
+                            {/* Slide container */}
+                            <div
+                                className="flex w-full h-full"
+                                style={{
+                                    transform: `translateX(-${currentImageIndex * 100}%)`,
+                                    transition: 'transform 380ms cubic-bezier(0.25, 1, 0.5, 1)',
+                                    willChange: 'transform',
+                                }}
+                            >
+                                {productImages.map((imgSrc, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="w-full h-full flex-shrink-0 relative"
+                                        style={{ minWidth: '100%', height: '100%' }}
+                                    >
+                                        <img
+                                            src={imgSrc}
+                                            alt={`${product.name} - image ${idx + 1}`}
+                                            loading={idx === 0 ? 'eager' : 'lazy'}
+                                            decoding={idx === 0 ? 'sync' : 'async'}
+                                            draggable={false}
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
+                                                objectPosition: 'center',
+                                                display: 'block',
+                                            }}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Badge */}
+                            {product.isBestSeller && (
+                                <div
+                                    className="absolute top-4 left-4 badge z-10 pointer-events-none"
+                                    style={{ background: 'rgb(223, 196, 172)', color: '#1a1a1a' }}
+                                >
+                                    ⭐ Best Seller
+                                </div>
+                            )}
+
+                            {/* Navigation Arrows */}
+                            {hasMultipleImages && (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            goToPrevImage();
+                                        }}
+                                        aria-label="Previous image"
+                                        className="absolute left-3.5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#475d2a]"
+                                        style={{
+                                            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                                            backdropFilter: 'blur(8px)',
+                                            WebkitBackdropFilter: 'blur(8px)',
+                                            color: '#2d4a1e',
+                                            border: '1px solid rgba(255, 255, 255, 0.7)',
+                                        }}
+                                    >
+                                        <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            goToNextImage();
+                                        }}
+                                        aria-label="Next image"
+                                        className="absolute right-3.5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#475d2a]"
+                                        style={{
+                                            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+                                            backdropFilter: 'blur(8px)',
+                                            WebkitBackdropFilter: 'blur(8px)',
+                                            color: '#2d4a1e',
+                                            border: '1px solid rgba(255, 255, 255, 0.7)',
+                                        }}
+                                    >
+                                        <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+                                    </button>
+                                </>
+                            )}
+                        </div>
+
+                        {/* Dot Indicators */}
+                        {hasMultipleImages && (
+                            <div
+                                className="flex items-center justify-center gap-2 mt-4"
+                                role="tablist"
+                                aria-label="Image indicators"
+                            >
+                                {productImages.map((_, idx) => {
+                                    const isActive = currentImageIndex === idx;
+                                    return (
+                                        <button
+                                            key={idx}
+                                            type="button"
+                                            role="tab"
+                                            aria-selected={isActive}
+                                            aria-label={`Go to image ${idx + 1} of ${productImages.length}`}
+                                            onClick={() => setCurrentImageIndex(idx)}
+                                            className={`transition-all duration-300 rounded-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#475d2a] ${
+                                                isActive
+                                                    ? 'w-6 h-2.5 bg-[#475d2a]'
+                                                    : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
+                                            }`}
+                                        />
+                                    );
+                                })}
+                            </div>
                         )}
                     </div>
 
