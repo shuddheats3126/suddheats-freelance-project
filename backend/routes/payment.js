@@ -6,17 +6,59 @@ const { protect } = require('../middleware/auth');
 const router = express.Router();
 
 const getCashfreeURL = () => {
-    // FORCE LIVE MODE for production payment flow
+    const env = (process.env.CASHFREE_ENV || '').toUpperCase();
+    const appId = process.env.CASHFREE_APP_ID || '';
+    if (env === 'SANDBOX' || appId.startsWith('TEST') || appId.includes('SANDBOX')) {
+        return 'https://sandbox.cashfree.com/pg/orders';
+    }
     return 'https://api.cashfree.com/pg/orders';
+};
+
+// Helper to sanitize Indian mobile numbers
+const sanitizeIndianPhone = (rawPhone) => {
+    if (!rawPhone) return '';
+    let digits = rawPhone.toString().replace(/\D/g, '');
+    if (digits.length === 12 && digits.startsWith('91')) {
+        digits = digits.substring(2);
+    } else if (digits.length === 11 && digits.startsWith('0')) {
+        digits = digits.substring(1);
+    } else if (digits.length > 10) {
+        digits = digits.slice(-10);
+    }
+    return digits;
 };
 
 // @POST /api/payment/create-order
 // Create Cashfree order and return payment session id
 router.post('/create-order', async (req, res) => {
+    const correlationId = `req_${Date.now()}`;
     try {
         const { orderId, amount, currency, customer_phone, customer_email, customer_name } = req.body;
+        console.log(`[PAYMENT][${correlationId}] Incoming create-order request:`, {
+            orderId,
+            amount,
+            currency,
+            customer_phone,
+            customer_email,
+            customer_name,
+            headers: {
+                origin: req.headers.origin,
+                referer: req.headers.referer,
+                'user-agent': req.headers['user-agent']
+            }
+        });
+
         if (!orderId) {
+            console.warn(`[PAYMENT][${correlationId}] Validation Failed: Missing orderId in request body`);
             return res.status(400).json({ message: 'Order ID is required' });
+        }
+
+        // Check Cashfree API credentials
+        const appId = process.env.CASHFREE_APP_ID;
+        const secretKey = process.env.CASHFREE_SECRET_KEY;
+        if (!appId || !secretKey) {
+            console.error(`[PAYMENT][${correlationId}] Environment Error: CASHFREE_APP_ID or CASHFREE_SECRET_KEY is missing in environment variables!`);
+            return res.status(500).json({ message: 'Cashfree payment gateway credentials are not configured on server' });
         }
 
         const order = await prisma.order.findUnique({
@@ -25,35 +67,47 @@ router.post('/create-order', async (req, res) => {
         });
 
         if (!order) {
+            console.warn(`[PAYMENT][${correlationId}] Database Lookup Failed: Order not found for ID ${orderId}`);
             return res.status(404).json({ message: 'Order not found' });
         }
 
+        // Return URL for Cashfree payment redirection
         const returnUrl = `${process.env.FRONTEND_URL || req.headers.origin || 'https://suddheats-freelance-project.vercel.app'}/payment/success?order_id={order_id}`;
-        console.log(`[CASHFREE] Order Creation API called for DB order: ${orderId}, return_url: ${returnUrl}`);
 
-        const finalPhone = customer_phone || (order.shippingAddress && order.shippingAddress.phone) || order.user.phone;
-        const finalName = customer_name || (order.shippingAddress && order.shippingAddress.fullName) || order.user.name;
-        
-        const finalEmail = customer_email || req.user?.email || order.user?.email || "test@shuddheats.com"; // fallback (important)
+        // Phone sanitization & validation
+        const rawPhone = customer_phone || (order.shippingAddress && order.shippingAddress.phone) || order.user?.phone;
+        const finalPhone = sanitizeIndianPhone(rawPhone);
 
-        if (!finalPhone || !/^[6-9]\d{9}$/.test(finalPhone.toString().trim())) {
-            return res.status(400).json({ message: 'customer_details.customer_phone is missing or invalid in the request. A valid 10-digit Indian mobile number is required.' });
+        if (!finalPhone || !/^[6-9]\d{9}$/.test(finalPhone)) {
+            console.warn(`[PAYMENT][${correlationId}] Validation Failed: Invalid phone number. Raw: "${rawPhone}", Sanitized: "${finalPhone}"`);
+            return res.status(400).json({
+                message: 'A valid 10-digit Indian mobile number is required for payment (starting with 6-9).'
+            });
         }
 
-        console.log("PAYMENT CREATE ORDER:", {
-            finalEmail,
-            customer_phone: finalPhone,
-            customer_name: finalName,
-            amount: order.totalPrice
-        });
+        // Name & Email fallbacks
+        const rawName = customer_name || (order.shippingAddress && order.shippingAddress.fullName) || order.user?.name;
+        const finalName = (rawName && String(rawName).trim().length > 0) ? String(rawName).trim().slice(0, 100) : 'ShuddhEats Customer';
+        const finalEmail = customer_email || req.user?.email || order.user?.email || 'customer@shuddheats.com';
+
+        // Customer ID (alphanumeric, -, _ only, 3-50 chars)
+        const rawCustomerId = order.user?.id || order.userId || (req.user && req.user.id) || `cust_${order.id}`;
+        const finalCustomerId = String(rawCustomerId).replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 50);
+
+        // Order Amount validation & 2-decimal formatting (Cashfree requirement)
+        const numericAmount = parseFloat(Number(order.totalPrice || amount || 0).toFixed(2));
+        if (isNaN(numericAmount) || numericAmount <= 0) {
+            console.warn(`[PAYMENT][${correlationId}] Validation Failed: Invalid order amount. Amount: ${order.totalPrice}`);
+            return res.status(400).json({ message: `Invalid order amount: ${order.totalPrice}` });
+        }
 
         const cashfreePayload = {
             order_id: order.id,
-            order_amount: order.totalPrice,
+            order_amount: numericAmount,
             order_currency: 'INR',
             customer_details: {
-                customer_id: order.user.id,
-                customer_phone: finalPhone.toString().trim(),
+                customer_id: finalCustomerId,
+                customer_phone: finalPhone,
                 customer_email: finalEmail,
                 customer_name: finalName
             },
@@ -62,14 +116,15 @@ router.post('/create-order', async (req, res) => {
             }
         };
 
-        console.log('[CASHFREE] Request Payload:', JSON.stringify(cashfreePayload, null, 2));
+        const targetUrl = getCashfreeURL();
+        console.log(`[CASHFREE][${correlationId}] Sending Order Request to ${targetUrl}:`, JSON.stringify(cashfreePayload, null, 2));
 
         // Call Cashfree API to create the order session
-        const response = await fetch(getCashfreeURL(), {
+        const response = await fetch(targetUrl, {
             method: 'POST',
             headers: {
-                'x-client-id': process.env.CASHFREE_APP_ID,
-                'x-client-secret': process.env.CASHFREE_SECRET_KEY,
+                'x-client-id': appId,
+                'x-client-secret': secretKey,
                 'x-api-version': '2023-08-01',
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -78,15 +133,47 @@ router.post('/create-order', async (req, res) => {
         });
 
         const data = await response.json();
+        console.log(`[CASHFREE][${correlationId}] Cashfree Response status: ${response.status}`, data);
 
         if (!response.ok) {
-            console.error('Cashfree Create Order Error:', data);
-            return res.status(response.status).json({ message: data.message || 'Failed to create payment session' });
+            console.error(`[CASHFREE][${correlationId}] Create Order Failed:`, {
+                status: response.status,
+                data: data
+            });
+
+            // If order already exists in Cashfree (e.g. customer retried), fetch existing session
+            if (data.code === 'order_already_exists' || (data.message && data.message.includes('already exists'))) {
+                console.log(`[CASHFREE][${correlationId}] Order ${order.id} already exists in Cashfree, fetching existing payment session...`);
+                try {
+                    const existingRes = await fetch(`${targetUrl}/${order.id}`, {
+                        method: 'GET',
+                        headers: {
+                            'x-client-id': appId,
+                            'x-client-secret': secretKey,
+                            'x-api-version': '2023-08-01',
+                            'Accept': 'application/json'
+                        }
+                    });
+                    const existingData = await existingRes.json();
+                    if (existingData.payment_session_id) {
+                        console.log(`[CASHFREE][${correlationId}] Reused existing payment_session_id:`, existingData.payment_session_id);
+                        return res.json({ payment_session_id: existingData.payment_session_id });
+                    }
+                } catch (fetchErr) {
+                    console.error(`[CASHFREE][${correlationId}] Could not fetch existing order:`, fetchErr);
+                }
+            }
+
+            return res.status(response.status).json({
+                message: data.message || 'Failed to create payment session with Cashfree',
+                code: data.code || 'CASHFREE_ERROR'
+            });
         }
 
+        console.log(`[CASHFREE][${correlationId}] Order created successfully. Session ID: ${data.payment_session_id}`);
         res.json({ payment_session_id: data.payment_session_id });
     } catch (error) {
-        console.error(error);
+        console.error(`[PAYMENT][${correlationId}] Server Exception:`, error);
         console.error(error.stack);
 
         return res.status(500).json({

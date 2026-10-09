@@ -179,8 +179,11 @@ export default function CheckoutPage() {
                     console.log("Creating order...");
                     const token = localStorage.getItem('shuddheats_token');
                     
-                    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://suddheats-freelance-project-production-b773.up.railway.app';
-                    const response = await fetch(`${baseUrl}/api/payment/create-order`, {
+                    const rawBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://suddheats-freelance-project-production-b773.up.railway.app';
+                    const normalizedBase = rawBaseUrl.replace(/\/api\/?$/, '');
+                    const cleanPhone = (form.phone || user?.phone || '').replace(/\D/g, '').slice(-10);
+
+                    const response = await fetch(`${normalizedBase}/api/payment/create-order`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -190,17 +193,19 @@ export default function CheckoutPage() {
                             orderId: backendOrderId,
                             amount: total,
                             currency: 'INR',
-                            customer_phone: form.phone || user?.phone || '',
+                            customer_phone: cleanPhone,
                             customer_email: user?.email || '',
                             customer_name: form.fullName || user?.name || ''
                         })
                     });
                     
                     const data = await response.json();
-                    console.log("Order API response:", data);
+                    console.log("Order API response:", { status: response.status, data });
                     
-                    if (!data.payment_session_id) {
-                        toast.error("Invalid payment session ID from backend");
+                    if (!response.ok || !data.payment_session_id) {
+                        const errorMsg = data.message || data.error || `Payment initialization failed (${response.status})`;
+                        console.error("Payment create-order error from backend:", data);
+                        toast.error(errorMsg);
                         orderCreatedRef.current = false;
                         setProcessing(false);
                         return; // STOP execution

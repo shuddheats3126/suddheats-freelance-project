@@ -162,13 +162,21 @@ export default function HomePage() {
 
         {/* Crisp Uncropped Complete Hero Image: 100% visible packaging, branding, and aspect ratio */}
         <div 
-          className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-1000 z-0 pointer-events-none"
+          className={`absolute transition-all duration-1000 z-0 pointer-events-none ${
+            currentSlide === 2
+              ? 'top-[55px] sm:top-[65px] bottom-0 left-0 right-0 bg-contain bg-no-repeat bg-center md:bg-[position:82%_center] lg:bg-[position:85%_center] p-2 sm:p-4 md:p-6 pb-12 sm:pb-16'
+              : 'inset-0 bg-cover bg-center bg-no-repeat'
+          }`}
           style={{ backgroundImage: `url(${heroSlides[currentSlide].image})` }}
           aria-hidden="true"
         />
 
         {/* Enhanced Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/30 z-[1] pointer-events-none"></div>
+        <div className={`absolute inset-0 z-[1] pointer-events-none ${
+          currentSlide === 2
+            ? 'bg-gradient-to-r from-black/85 via-black/40 to-black/10 max-md:bg-gradient-to-b max-md:from-black/75 max-md:via-black/45 max-md:to-black/30'
+            : 'bg-gradient-to-b from-black/60 via-black/40 to-black/30'
+        }`}></div>
 
         <div className="page-container relative z-10 py-6 sm:py-10 md:py-16 lg:py-20 flex flex-col justify-between h-full min-h-[75vh] max-md:min-h-[65vh]">
           <div className="max-w-3xl mt-auto mb-auto" key={currentSlide}>

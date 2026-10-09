@@ -15,8 +15,7 @@ router.post('/', protect, async (req, res) => {
 
         let itemsPriceFloat = parseFloat(itemsPrice);
         let correctShippingPrice = itemsPriceFloat >= 499 ? 0 : 49;
-        let receivedShippingPrice = parseFloat(shippingPrice || 0);
-        let finalTotalPrice = parseFloat(totalPrice) - receivedShippingPrice + correctShippingPrice;
+        let finalTotalPrice = Math.round((parseFloat(totalPrice) - receivedShippingPrice + correctShippingPrice) * 100) / 100;
 
         // Run stock decrement, order creation, and cart clearance in a transaction
         console.log("Executing Prisma query...");
