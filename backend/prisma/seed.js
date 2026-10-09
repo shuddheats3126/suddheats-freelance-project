@@ -242,7 +242,8 @@ const mockProducts = [
     "category": "Air Fried Chips",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1789320176/broc_chips_front.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1791551110/brocoli_nutritional.jpg"
     ],
     "stock": 135,
     "weight": "120g",
@@ -253,11 +254,11 @@ const mockProducts = [
       "Sunflower Oil (minimal)"
     ],
     "nutritionFacts": {
-      "calories": 140,
-      "protein": 2.3,
-      "carbs": 28.5,
-      "fat": 2.2,
-      "fiber": 2.4
+      "calories": 392,
+      "protein": 8.7,
+      "carbs": 55.2,
+      "fat": 14.6,
+      "fiber": 12.4
     },
     "tags": [
       "chips",
