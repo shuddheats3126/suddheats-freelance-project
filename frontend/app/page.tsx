@@ -27,7 +27,7 @@ const heroSlides = [
     subtitle: 'Beetroot, Broccoli & Ragi chips — crispy, clean, and crafted with love in Mumbai.'
   },
   {
-    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1789319660/hero_cokkies.jpg',
+    image: 'https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267190/WhatsApp_Image_2026-09-21_at_1.36.28_PM_1.jpg',
     badge: '🍪 No Sugar | No Palm Oil | Millet Goodness',
     titleLine1: 'Millet Cookie',
     titleLine2: 'Collection',
