@@ -7,7 +7,7 @@ import { Plus, Edit, Trash2, X, Save, ArrowLeft, Upload } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 
-const CATEGORIES = ['Makhana', 'Air Fried Chips', 'Diet Mix'];
+const CATEGORIES = ['Makhana', 'Air Fried Chips', 'Diet Mix', 'No Sugar No Palm Oil Millet Cookies', 'Launch Offers'];
 const emptyProduct = { name: '', slug: '', description: '', shortDescription: '', price: '', originalPrice: '', category: 'Makhana', thumbnail: '', stock: '', weight: '', isFeatured: false, isBestSeller: false };
 
 export default function AdminProductsPage() {
@@ -25,7 +25,7 @@ export default function AdminProductsPage() {
     useEffect(() => { if (!loading && (!user || !isAdmin)) router.push('/auth/login'); }, [user, isAdmin, loading]);
 
     const loadProducts = () => {
-        api.get('/products').then(r => setProducts(r.data)).catch(() => setProducts([])).finally(() => setFetching(false));
+        api.get('/products?all=true').then(r => setProducts(r.data)).catch(() => setProducts([])).finally(() => setFetching(false));
     };
     useEffect(() => { if (isAdmin) loadProducts(); }, [isAdmin]);
 

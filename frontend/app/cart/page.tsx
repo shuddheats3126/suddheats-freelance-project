@@ -49,40 +49,48 @@ export default function CartPage() {
                                     <h3 className="font-bold text-sm sm:text-base line-clamp-2" style={{ color: '#475d2a' }}>{item.name}</h3>
                                     
                                     {/* Inline Interactive Options */}
-                                    <div className="flex flex-col gap-2.5 mt-2.5 mb-3 bg-gray-50/50 p-2.5 rounded-xl border border-gray-100">
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Weight:</span>
-                                            <div className="flex gap-2">
-                                                {(item.name.toLowerCase().includes('makhana') ? [50, 90] : [120]).map((w) => {
-                                                    const displayWeight = w;
-                                                    const isSelected = item.weight === displayWeight;
-                                                    return (
-                                                        <button
-                                                            key={w}
-                                                            onClick={async () => {
-                                                                const packaging = displayWeight >= 100 ? 'jar' : 'pouch';
-                                                                const price = getDynamicPrice(item.name, displayWeight, item.price, item.weight || 100);
-                                                                await updateItemOptions(item.product, displayWeight, packaging, price);
-                                                            }}
-                                                            className={`px-3 py-1 rounded-lg text-xs font-extrabold transition-all border ${
-                                                                isSelected
-                                                                    ? 'bg-[#475d2a] border-[#475d2a] text-white shadow-sm'
-                                                                    : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
-                                                            }`}
-                                                        >
-                                                            {displayWeight}g
-                                                        </button>
-                                                    );
-                                                })}
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
-                                            <span>Packaging:</span>
-                                            <span className="font-bold" style={{ color: '#475d2a' }}>
-                                                {item.packaging === 'jar' ? '🏺 Glass Jar' : '📦 Eco Pouch'}
+                                    {item.name.toLowerCase().includes('combo') ? (
+                                        <div className="flex items-center gap-2 mt-2 mb-2.5">
+                                            <span className="badge text-xs font-bold px-2.5 py-1" style={{ background: '#f0f4ed', color: '#475d2a' }}>
+                                                🎁 Exclusive Launch Combo Pack
                                             </span>
                                         </div>
-                                    </div>
+                                    ) : (
+                                        <div className="flex flex-col gap-2.5 mt-2.5 mb-3 bg-gray-50/50 p-2.5 rounded-xl border border-gray-100">
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Weight:</span>
+                                                <div className="flex gap-2">
+                                                    {(item.name.toLowerCase().includes('makhana') ? [50, 90] : [120]).map((w) => {
+                                                        const displayWeight = w;
+                                                        const isSelected = item.weight === displayWeight;
+                                                        return (
+                                                            <button
+                                                                key={w}
+                                                                onClick={async () => {
+                                                                    const packaging = displayWeight >= 100 ? 'jar' : 'pouch';
+                                                                    const price = getDynamicPrice(item.name, displayWeight, item.price, item.weight || 100);
+                                                                    await updateItemOptions(item.product, displayWeight, packaging, price);
+                                                                }}
+                                                                className={`px-3 py-1 rounded-lg text-xs font-extrabold transition-all border ${
+                                                                    isSelected
+                                                                        ? 'bg-[#475d2a] border-[#475d2a] text-white shadow-sm'
+                                                                        : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
+                                                                }`}
+                                                            >
+                                                                {displayWeight}g
+                                                            </button>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                                                <span>Packaging:</span>
+                                                <span className="font-bold" style={{ color: '#475d2a' }}>
+                                                    {item.packaging === 'jar' ? '🏺 Glass Jar' : '📦 Eco Pouch'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    )}
 
                                     <p className="text-base sm:text-lg font-extrabold mt-2 sm:mt-1" style={{ color: '#475d2a' }}>₹{item.price}</p>
                                 </div>

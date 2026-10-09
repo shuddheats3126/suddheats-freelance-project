@@ -2,6 +2,7 @@ const express = require('express');
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 const { protect } = require('../middleware/auth');
+const { LAUNCH_COMBOS } = require('../config/combos');
 
 const router = express.Router();
 
@@ -18,6 +19,13 @@ const populateCartItems = async (cart) => {
     });
 
     const productMap = new Map(products.map(p => [p.id, p]));
+    // Also include LAUNCH_COMBOS in productMap if any item.product matches
+    for (const combo of LAUNCH_COMBOS) {
+        if (!productMap.has(combo.id)) {
+            productMap.set(combo.id, combo);
+        }
+    }
+
     const populatedItems = items.map(item => ({
         ...item,
         product: productMap.get(item.product) || null
@@ -54,7 +62,39 @@ router.get('/', protect, async (req, res) => {
 router.post('/', protect, async (req, res) => {
     try {
         const { productId, quantity } = req.body;
-        const product = await Product.findUnique({ where: { id: productId } });
+        let product = await Product.findUnique({ where: { id: productId } });
+        
+        if (!product) {
+            // Check if it matches a combo by ID or slug
+            const foundCombo = LAUNCH_COMBOS.find(c => c.id === productId || c.slug === productId);
+            if (foundCombo) {
+                try {
+                    product = await Product.upsert({
+                        where: { slug: foundCombo.slug },
+                        update: {},
+                        create: {
+                            name: foundCombo.name,
+                            slug: foundCombo.slug,
+                            description: foundCombo.description,
+                            shortDescription: foundCombo.badge,
+                            price: foundCombo.price,
+                            originalPrice: foundCombo.originalPrice,
+                            category: foundCombo.category,
+                            thumbnail: foundCombo.thumbnail,
+                            images: foundCombo.images,
+                            stock: foundCombo.stock,
+                            weight: foundCombo.weight,
+                            isFeatured: false,
+                            isBestSeller: false
+                        }
+                    });
+                } catch (dbErr) {
+                    console.warn('Could not auto-create combo in DB, using static fallback:', dbErr.message);
+                    product = foundCombo;
+                }
+            }
+        }
+
         if (!product) return res.status(404).json({ message: 'Product not found' });
 
         let cart = await Cart.findUnique({ where: { userId: req.user.id } });

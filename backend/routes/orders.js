@@ -23,10 +23,14 @@ router.post('/', protect, async (req, res) => {
         const order = await prisma.$transaction(async (tx) => {
             // Reduce stock
             for (const item of items) {
-                await tx.product.update({
-                    where: { id: item.product },
-                    data: { stock: { decrement: item.quantity } }
-                });
+                try {
+                    await tx.product.update({
+                        where: { id: item.product },
+                        data: { stock: { decrement: item.quantity } }
+                    });
+                } catch (stockErr) {
+                    console.warn(`Could not decrement stock for product ${item.product}:`, stockErr.message);
+                }
             }
 
             // Create order

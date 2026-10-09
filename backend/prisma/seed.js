@@ -452,6 +452,31 @@ async function main() {
     console.log(`Created/Updated product: ${product.name}`);
   }
 
+  console.log('Seeding database with launch combo products...');
+  const { LAUNCH_COMBOS } = require('../config/combos');
+  for (const combo of LAUNCH_COMBOS) {
+    const { id, badge, ...comboData } = combo;
+    await prisma.product.upsert({
+      where: { slug: combo.slug },
+      update: {
+        ...comboData,
+        shortDescription: badge,
+        ingredients: [],
+        nutritionFacts: null,
+        tags: ["launch-offer", "combo"]
+      },
+      create: {
+        id: combo.id,
+        ...comboData,
+        shortDescription: badge,
+        ingredients: [],
+        nutritionFacts: null,
+        tags: ["launch-offer", "combo"]
+      }
+    });
+    console.log(`Created/Updated combo: ${combo.name}`);
+  }
+
   console.log('Checking for admin user...');
   const bcrypt = require("bcryptjs");
   const adminEmail = "admin@shuddheats.com";

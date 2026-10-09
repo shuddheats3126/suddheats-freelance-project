@@ -38,15 +38,17 @@ const sortProductsLogically = (items) => {
     });
 };
 
+const { LAUNCH_COMBOS } = require('../config/combos');
+
 // @GET /api/products — public, with filters
 router.get('/', async (req, res) => {
     try {
-        const { category, search, sort, featured, bestseller } = req.query;
+        const { category, search, sort, featured, bestseller, all } = req.query;
 
         if (featured === 'true') {
             console.log("Executing Prisma query...");
             const products = await Product.findMany({
-                where: { isFeatured: true }
+                where: { isFeatured: true, category: { not: 'Launch Offers' } }
             });
             console.log("Database write successful");
             return res.json(sortProductsLogically(products));
@@ -55,14 +57,19 @@ router.get('/', async (req, res) => {
         if (bestseller === 'true') {
             console.log("Executing Prisma query...");
             const products = await Product.findMany({
-                where: { isBestSeller: true }
+                where: { isBestSeller: true, category: { not: 'Launch Offers' } }
             });
             console.log("Database write successful");
             return res.json(sortProductsLogically(products));
         }
 
         const filter = {};
-        if (category) filter.category = category;
+        if (category) {
+            filter.category = category;
+        } else if (all !== 'true') {
+            filter.category = { not: 'Launch Offers' };
+        }
+
         if (search) {
             filter.name = { contains: search, mode: 'insensitive' };
         }
@@ -96,12 +103,31 @@ router.get('/', async (req, res) => {
     }
 });
 
+// @GET /api/products/launch-offers — dedicated launch offers endpoint
+router.get('/launch-offers', async (req, res) => {
+    try {
+        const products = await Product.findMany({
+            where: { category: 'Launch Offers' },
+            orderBy: { price: 'desc' }
+        });
+        if (products && products.length > 0) {
+            return res.json(products);
+        }
+        res.json(LAUNCH_COMBOS);
+    } catch {
+        res.json(LAUNCH_COMBOS);
+    }
+});
+
 // @GET /api/products/:slug — public
 router.get('/:slug', async (req, res) => {
     try {
         console.log("Executing Prisma query...");
-        const product = await Product.findUnique({ where: { slug: req.params.slug } });
+        let product = await Product.findUnique({ where: { slug: req.params.slug } });
         console.log("Database write successful");
+        if (!product) {
+            product = LAUNCH_COMBOS.find(c => c.slug === req.params.slug || c.id === req.params.slug);
+        }
         if (!product) return res.status(404).json({ message: 'Product not found' });
         res.json(product);
     } catch (error) {
