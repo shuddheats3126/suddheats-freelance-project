@@ -127,7 +127,8 @@ const mockProducts = [
     "category": "Flavoured Makhanas",
     "thumbnail": "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg",
     "images": [
-      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg"
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1790267192/WhatsApp_Image_2026-09-21_at_2.23.26_PM.jpg",
+      "https://res.cloudinary.com/dyf00ptkk/image/upload/v1791550430/peri_peri_nutritional.jpg"
     ],
     "stock": 110,
     "weight": "100g",
@@ -138,11 +139,11 @@ const mockProducts = [
       "Sunflower Oil"
     ],
     "nutritionFacts": {
-      "calories": 347,
-      "protein": 10,
-      "carbs": 76.9,
-      "fat": 0.28,
-      "fiber": 0.5
+      "calories": 443,
+      "protein": 8.2,
+      "carbs": 64.5,
+      "fat": 12.4,
+      "fiber": 11.5
     },
     "tags": [
       "makhana",
