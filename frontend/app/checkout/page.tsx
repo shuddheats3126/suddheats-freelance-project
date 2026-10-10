@@ -213,8 +213,8 @@ export default function CheckoutPage() {
                     
                     console.log("Payment Session ID:", data.payment_session_id);
                     
-                    // Force production mode for real payments
-                    const cashfreeMode = process.env.NEXT_PUBLIC_CASHFREE_ENV === 'SANDBOX' ? 'sandbox' : 'production';
+                    // Dynamically use mode returned by backend, or fallback to frontend env
+                    const cashfreeMode = (data.mode || (process.env.NEXT_PUBLIC_CASHFREE_ENV === 'SANDBOX' ? 'sandbox' : 'production')) as 'sandbox' | 'production';
                     console.log("SDK initialization details:", { mode: cashfreeMode });
                     
                     const cashfree = await load({

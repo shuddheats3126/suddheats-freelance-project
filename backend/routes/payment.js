@@ -5,10 +5,14 @@ const { protect } = require('../middleware/auth');
 
 const router = express.Router();
 
-const getCashfreeURL = () => {
+const isCashfreeSandbox = () => {
     const env = (process.env.CASHFREE_ENV || '').toUpperCase();
     const appId = process.env.CASHFREE_APP_ID || '';
-    if (env === 'SANDBOX' || appId.startsWith('TEST') || appId.includes('SANDBOX')) {
+    return env === 'SANDBOX' || appId.startsWith('TEST') || appId.includes('SANDBOX');
+};
+
+const getCashfreeURL = () => {
+    if (isCashfreeSandbox()) {
         return 'https://sandbox.cashfree.com/pg/orders';
     }
     return 'https://api.cashfree.com/pg/orders';
@@ -157,7 +161,10 @@ router.post('/create-order', async (req, res) => {
                     const existingData = await existingRes.json();
                     if (existingData.payment_session_id) {
                         console.log(`[CASHFREE][${correlationId}] Reused existing payment_session_id:`, existingData.payment_session_id);
-                        return res.json({ payment_session_id: existingData.payment_session_id });
+                        return res.json({ 
+                            payment_session_id: existingData.payment_session_id,
+                            mode: isCashfreeSandbox() ? 'sandbox' : 'production'
+                        });
                     }
                 } catch (fetchErr) {
                     console.error(`[CASHFREE][${correlationId}] Could not fetch existing order:`, fetchErr);
@@ -171,7 +178,10 @@ router.post('/create-order', async (req, res) => {
         }
 
         console.log(`[CASHFREE][${correlationId}] Order created successfully. Session ID: ${data.payment_session_id}`);
-        res.json({ payment_session_id: data.payment_session_id });
+        res.json({ 
+            payment_session_id: data.payment_session_id,
+            mode: isCashfreeSandbox() ? 'sandbox' : 'production'
+        });
     } catch (error) {
         console.error(`[PAYMENT][${correlationId}] Server Exception:`, error);
         console.error(error.stack);
