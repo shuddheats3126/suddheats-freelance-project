@@ -110,11 +110,59 @@ router.get('/launch-offers', async (req, res) => {
             where: { category: 'Launch Offers' },
             orderBy: { price: 'desc' }
         });
-        if (products && products.length > 0) {
-            return res.json(products);
+
+        // Map database products by slug and id for quick lookup
+        const dbMap = new Map();
+        if (Array.isArray(products)) {
+            for (const p of products) {
+                if (p.slug) dbMap.set(p.slug, p);
+                if (p.id) dbMap.set(p.id, p);
+            }
         }
-        res.json(LAUNCH_COMBOS);
-    } catch {
+
+        // Merge DB overrides into standard LAUNCH_COMBOS so all 8 combos are guaranteed
+        const merged = LAUNCH_COMBOS.map(combo => {
+            const dbItem = dbMap.get(combo.slug) || dbMap.get(combo.id);
+            if (!dbItem) return combo;
+            return {
+                ...combo,
+                id: dbItem.id || combo.id,
+                name: dbItem.name || combo.name,
+                price: dbItem.price !== undefined ? dbItem.price : combo.price,
+                originalPrice: dbItem.originalPrice !== undefined ? dbItem.originalPrice : combo.originalPrice,
+                thumbnail: dbItem.thumbnail || combo.thumbnail,
+                badge: dbItem.shortDescription || combo.badge,
+                subtitle: combo.subtitle || dbItem.description,
+                description: dbItem.description || combo.description,
+                stock: dbItem.stock !== undefined ? dbItem.stock : combo.stock,
+                itemsCount: combo.itemsCount
+            };
+        });
+
+        // Also append any extra custom launch offers added to DB that are not among standard 8
+        if (Array.isArray(products)) {
+            for (const p of products) {
+                const exists = merged.some(m => m.slug === p.slug || m.id === p.id);
+                if (!exists) {
+                    merged.push({
+                        id: p.id,
+                        name: p.name,
+                        slug: p.slug,
+                        price: p.price,
+                        originalPrice: p.originalPrice || p.price,
+                        thumbnail: p.thumbnail,
+                        badge: p.shortDescription || 'LAUNCH SPECIAL',
+                        subtitle: p.description,
+                        description: p.description,
+                        stock: p.stock ?? 100
+                    });
+                }
+            }
+        }
+
+        res.json(merged);
+    } catch (error) {
+        console.error('Error fetching launch offers:', error);
         res.json(LAUNCH_COMBOS);
     }
 });

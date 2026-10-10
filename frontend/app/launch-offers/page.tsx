@@ -133,13 +133,57 @@ export default function LaunchOffersPage() {
     const [addingId, setAddingId] = useState<string | null>(null);
     const [addedId, setAddedId] = useState<string | null>(null);
 
-    // Fetch dynamic combos if served by backend, fallback to verified static data
+    // Fetch dynamic combos if served by backend, fallback and smart-merge with verified static data
     useEffect(() => {
         const fetchCombos = async () => {
             try {
                 const { data } = await api.get('/products/launch-offers');
                 if (Array.isArray(data) && data.length > 0) {
-                    setCombos(data);
+                    const apiMap = new Map<string, any>();
+                    data.forEach((p: any) => {
+                        if (p.slug) apiMap.set(p.slug, p);
+                        if (p.id) apiMap.set(p.id, p);
+                    });
+
+                    // Ensure all 8 LAUNCH_COMBOS are always preserved and enriched
+                    const merged = LAUNCH_COMBOS.map((combo) => {
+                        const matched = apiMap.get(combo.slug) || apiMap.get(combo.id);
+                        if (!matched) return combo;
+                        return {
+                            ...combo,
+                            id: matched.id || combo.id,
+                            name: matched.name || combo.name,
+                            price: matched.price ?? combo.price,
+                            originalPrice: matched.originalPrice ?? combo.originalPrice,
+                            thumbnail: matched.thumbnail || combo.thumbnail,
+                            badge: matched.badge || matched.shortDescription || combo.badge,
+                            subtitle: combo.subtitle || matched.subtitle || '',
+                            description: matched.description || combo.description,
+                            stock: matched.stock ?? combo.stock,
+                            itemsCount: combo.itemsCount || matched.itemsCount,
+                        };
+                    });
+
+                    // Append any additional offers created in backend
+                    data.forEach((p: any) => {
+                        const exists = merged.some((m) => m.slug === p.slug || m.id === p.id);
+                        if (!exists) {
+                            merged.push({
+                                id: p.id,
+                                name: p.name,
+                                slug: p.slug,
+                                price: p.price,
+                                originalPrice: p.originalPrice || p.price,
+                                thumbnail: p.thumbnail,
+                                badge: p.badge || p.shortDescription || 'LAUNCH SPECIAL',
+                                subtitle: p.description,
+                                description: p.description,
+                                stock: p.stock ?? 100,
+                            });
+                        }
+                    });
+
+                    setCombos(merged);
                 }
             } catch {
                 // Keep default static launch combos
