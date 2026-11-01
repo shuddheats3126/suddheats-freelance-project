@@ -7,3 +7,4 @@ ALTER TABLE "users" ADD COLUMN IF NOT EXISTS "reset_password_expires" TIMESTAMP(
 
 -- CreateIndex
 CREATE UNIQUE INDEX IF NOT EXISTS "users_google_id_key" ON "users"("google_id");
+
