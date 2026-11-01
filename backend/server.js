@@ -126,9 +126,23 @@ const PORT = process.env.PORT || 5000;
 // Lazy-connect Prisma: We no longer wrap app.listen inside $connect
 // This prevents the server from crashing if the DB is temporarily unavailable at startup
 prisma.$connect()
-  .then(() => {
+  .then(async () => {
     console.log('✅ PostgreSQL Connected');
     console.log('✅ Prisma Connected');
+    // Ensure new auth columns exist in PostgreSQL
+    try {
+      await prisma.$executeRawUnsafe(`
+        ALTER TABLE "users" ALTER COLUMN "password" DROP NOT NULL;
+        ALTER TABLE "users" ADD COLUMN IF NOT EXISTS "google_id" TEXT;
+        ALTER TABLE "users" ADD COLUMN IF NOT EXISTS "avatar" TEXT;
+        ALTER TABLE "users" ADD COLUMN IF NOT EXISTS "reset_password_token" TEXT;
+        ALTER TABLE "users" ADD COLUMN IF NOT EXISTS "reset_password_expires" TIMESTAMP(3);
+        CREATE UNIQUE INDEX IF NOT EXISTS "users_google_id_key" ON "users"("google_id");
+      `);
+      console.log('✅ Database schema verified (google_id & reset tokens ready)');
+    } catch (e) {
+      console.warn('⚠️ Non-blocking schema check:', e.message);
+    }
   })
   .catch((err) => {
     console.error('❌ Database connection error:');
