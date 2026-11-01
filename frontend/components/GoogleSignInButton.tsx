@@ -24,7 +24,7 @@ export default function GoogleSignInButton({ redirect = '/', text = 'signin' }: 
     const [scriptLoaded, setScriptLoaded] = useState(false);
     const buttonRef = useRef<HTMLDivElement>(null);
 
-    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
+    const clientId = (process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '').trim();
 
     const handleCredentialResponse = async (response: any) => {
         if (!response.credential) {
