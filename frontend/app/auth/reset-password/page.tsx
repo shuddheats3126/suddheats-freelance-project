@@ -112,7 +112,8 @@ function ResetPasswordContent() {
                             onChange={e => setPassword(e.target.value)}
                             required
                             placeholder="At least 8 characters"
-                            className="input-field text-sm py-2.5 sm:py-2 px-3 sm:px-4 pr-12 w-full"
+                            className="input-field text-sm py-2.5 sm:py-2 pl-3 sm:pl-4 pr-11 w-full"
+                            style={{ paddingRight: '2.75rem' }}
                         />
                         <button
                             type="button"
@@ -135,7 +136,8 @@ function ResetPasswordContent() {
                             onChange={e => setConfirmPassword(e.target.value)}
                             required
                             placeholder="Re-enter your new password"
-                            className="input-field text-sm py-2.5 sm:py-2 px-3 sm:px-4 pr-12 w-full"
+                            className="input-field text-sm py-2.5 sm:py-2 pl-3 sm:pl-4 pr-11 w-full"
+                            style={{ paddingRight: '2.75rem' }}
                         />
                         <button
                             type="button"
@@ -216,3 +218,4 @@ export default function ResetPasswordPage() {
         </div>
     );
 }
+

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, CheckCircle2, Mail } from 'lucide-react';
+import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '@/lib/api';
 
@@ -88,19 +88,16 @@ export default function ForgotPasswordPage() {
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
                                 <label className="block text-xs sm:text-sm font-semibold mb-1.5" style={{ color: '#475d2a' }}>
-                                    Your Email Address
+                                    Email Address
                                 </label>
-                                <div className="relative">
-                                    <input
-                                        type="email"
-                                        value={email}
-                                        onChange={e => setEmail(e.target.value)}
-                                        required
-                                        placeholder="you@email.com"
-                                        className="input-field text-sm py-2.5 sm:py-2 px-3 sm:px-4 pl-10 w-full"
-                                    />
-                                    <Mail className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-                                </div>
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}
+                                    required
+                                    placeholder="you@email.com"
+                                    className="input-field text-sm py-2.5 sm:py-2 px-3 sm:px-4 w-full"
+                                />
                             </div>
 
                             <button
@@ -133,3 +130,4 @@ export default function ForgotPasswordPage() {
         </div>
     );
 }
+
