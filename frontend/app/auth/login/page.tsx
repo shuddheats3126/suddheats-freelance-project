@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Eye, EyeOff } from 'lucide-react';
 import toast from 'react-hot-toast';
+import GoogleSignInButton from '@/components/GoogleSignInButton';
 
 function LoginContent() {
     const [email, setEmail] = useState('');
@@ -63,7 +64,12 @@ function LoginContent() {
                                 placeholder="you@email.com" className="input-field text-sm py-2.5 sm:py-2 px-3 sm:px-4 w-full" />
                         </div>
                         <div>
-                            <label className="block text-xs sm:text-sm font-semibold mb-1.5" style={{ color: '#475d2a' }}>Password</label>
+                            <div className="flex items-center justify-between mb-1.5">
+                                <label className="block text-xs sm:text-sm font-semibold" style={{ color: '#475d2a' }}>Password</label>
+                                <Link href="/auth/forgot-password" className="text-xs font-semibold hover:underline" style={{ color: '#475d2a' }}>
+                                    Forgot password?
+                                </Link>
+                            </div>
                             <div className="relative">
                                 <input type={show ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value)} required
                                     placeholder="Enter your password" className="input-field text-sm py-2.5 sm:py-2 px-3 sm:px-4 pr-12 w-full" />
@@ -76,6 +82,17 @@ function LoginContent() {
                             {loading ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full" style={{ animation: 'spin 0.8s linear infinite' }} /> : 'Login'}
                         </button>
                     </form>
+
+                    <div className="relative my-4">
+                        <div className="absolute inset-0 flex items-center">
+                            <div className="w-full border-t border-gray-200" />
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="bg-white px-3 text-gray-400 font-medium">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <GoogleSignInButton redirect={redirect} text="signin" />
                     <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-100 text-center">
                         <p className="text-xs sm:text-sm text-gray-500">Don't have an account?{' '}
                             <Link href="/auth/register" className="font-bold hover:underline" style={{ color: '#475d2a' }}>Register</Link>

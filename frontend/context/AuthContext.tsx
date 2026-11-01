@@ -7,6 +7,7 @@ interface User {
     name: string;
     email: string;
     phone?: string;
+    avatar?: string;
     role: string;
     token: string;
 }
@@ -24,6 +25,7 @@ interface AuthContextType {
     user: User | null;
     loading: boolean;
     login: (email: string, password: string) => Promise<LoginResponse>;
+    googleLogin: (credential: string) => Promise<LoginResponse>;
     register: (name: string, email: string, password: string, phone?: string) => Promise<void>;
     logout: () => void;
     isAdmin: boolean;
@@ -117,6 +119,43 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
     };
 
+    const googleLogin = async (credential: string) => {
+        try {
+            console.log('🌐 Attempting Google sign-in');
+            const { data } = await api.post('/auth/google', { credential });
+            console.log('GOOGLE LOGIN API RESPONSE:', data);
+
+            const userData = {
+                id: data.user.id,
+                name: data.user.name,
+                email: data.user.email,
+                phone: data.user.phone,
+                avatar: data.user.avatar,
+                role: data.user.role,
+                token: data.token
+            };
+
+            setUser(userData);
+            try {
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('shuddheats_user', JSON.stringify(userData));
+                    localStorage.setItem('shuddheats_token', data.token);
+                    document.cookie = `token=${data.token}; path=/; max-age=2592000; SameSite=Lax`;
+                }
+            } catch (e) {
+                console.warn('Could not save to localStorage:', e);
+            }
+            api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+
+            setRequiresTwoFA(false);
+            setTempSessionToken(null);
+            return { requiresTwoFA: false, user: userData, token: data.token };
+        } catch (error) {
+            console.warn('❌ Google login failed:', error);
+            throw error;
+        }
+    };
+
     const verifyTwoFA = async (totpCode: string) => {
         if (!tempSessionToken) {
             throw new Error('No temp session token available');
@@ -196,7 +235,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ user, loading, login, register, logout, isAdmin: user?.role?.toUpperCase() === 'ADMIN', requiresTwoFA, tempSessionToken, verifyTwoFA }}>
+        <AuthContext.Provider value={{ user, loading, login, googleLogin, register, logout, isAdmin: user?.role?.toUpperCase() === 'ADMIN', requiresTwoFA, tempSessionToken, verifyTwoFA }}>
             {children}
         </AuthContext.Provider>
     );

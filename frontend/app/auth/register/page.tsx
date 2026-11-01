@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Leaf } from 'lucide-react';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
+import GoogleSignInButton from '@/components/GoogleSignInButton';
 
 export default function RegisterPage() {
     const [form, setForm] = useState({ name: '', email: '', password: '', phone: '' });
@@ -60,6 +61,17 @@ export default function RegisterPage() {
                             {loading ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full" style={{ animation: 'spin 0.8s linear infinite' }} /> : 'Create Account'}
                         </button>
                     </form>
+
+                    <div className="relative my-4">
+                        <div className="absolute inset-0 flex items-center">
+                            <div className="w-full border-t border-gray-200" />
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="bg-white px-3 text-gray-400 font-medium">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <GoogleSignInButton redirect="/" text="signup" />
                     <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-100 text-center">
                         <p className="text-xs sm:text-sm text-gray-500">Already have an account?{' '}
                             <Link href="/auth/login" className="font-bold hover:underline" style={{ color: '#475d2a' }}>Login</Link>

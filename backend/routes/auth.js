@@ -73,6 +73,118 @@ router.post('/register', async (req, res) => {
     }
 });
 
+// @POST /api/auth/google
+router.post('/google', async (req, res) => {
+    try {
+        const { credential } = req.body;
+
+        if (!credential) {
+            return res.status(400).json({ success: false, message: 'Google credential token is required' });
+        }
+
+        let payload = null;
+
+        // 1. Try verifying with google-auth-library if available
+        try {
+            const { OAuth2Client } = require('google-auth-library');
+            const googleClientId = process.env.GOOGLE_CLIENT_ID;
+            const client = new OAuth2Client(googleClientId);
+            const ticket = await client.verifyIdToken({
+                idToken: credential,
+                audience: googleClientId || undefined,
+            });
+            payload = ticket.getPayload();
+        } catch (libErr) {
+            // 2. Fallback to Google's official tokeninfo endpoint
+            console.log('[Google Auth] Verifying via Google tokeninfo endpoint...');
+            const response = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
+            if (response.ok) {
+                payload = await response.json();
+            } else {
+                return res.status(401).json({ success: false, message: 'Invalid Google token' });
+            }
+        }
+
+        if (!payload || !payload.email) {
+            return res.status(400).json({ success: false, message: 'Google token does not contain a valid email' });
+        }
+
+        const email = payload.email.toLowerCase().trim();
+        const name = payload.name || payload.given_name || email.split('@')[0];
+        const googleId = payload.sub;
+        const picture = payload.picture || null;
+
+        // Check if user already exists
+        let user = await User.findUnique({ where: { email } });
+
+        if (user) {
+            // Update lastLogin and googleId/avatar if available
+            try {
+                user = await User.update({
+                    where: { id: user.id },
+                    data: {
+                        lastLogin: new Date(),
+                        ...(user.googleId ? {} : { googleId: googleId || undefined }),
+                        ...(user.avatar ? {} : { avatar: picture || undefined })
+                    }
+                });
+            } catch (updateErr) {
+                // If columns don't exist yet in DB migration, continue gracefully
+                console.warn('[Google Auth] Non-blocking DB update notice:', updateErr.message);
+            }
+        } else {
+            // Create new user for Google Sign-In
+            const crypto = require('crypto');
+            const randomPassword = crypto.randomBytes(32).toString('hex');
+            const hashedPassword = await bcrypt.hash(randomPassword, 12);
+
+            const baseUserData = {
+                name,
+                email,
+                password: hashedPassword,
+                role: 'USER'
+            };
+
+            try {
+                user = await User.create({
+                    data: {
+                        ...baseUserData,
+                        googleId: googleId || null,
+                        avatar: picture || null
+                    }
+                });
+            } catch (createErr) {
+                // Fallback in case schema migration has not yet been applied for googleId/avatar
+                user = await User.create({
+                    data: baseUserData
+                });
+            }
+        }
+
+        const jwtToken = generateToken(user.id, user.role);
+
+        res.status(200).json({
+            success: true,
+            token: String(jwtToken),
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                phone: user.phone || null,
+                avatar: user.avatar || picture || null,
+                is2FAEnabled: user.is2FAEnabled || false
+            }
+        });
+    } catch (error) {
+        console.error('Google Auth Error:', error);
+        res.status(500).json({
+            success: false,
+            message: error.message || 'Google authentication failed'
+        });
+    }
+});
+
 // @POST /api/auth/login
 router.post('/login', async (req, res) => {
   try {

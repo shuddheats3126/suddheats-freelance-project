@@ -8,19 +8,23 @@ generator client {
 }
 
 model User {
-  id           String    @id @default(cuid()) @map("id")
-  name         String
-  email        String    @unique
-  password     String
-  role         Role      @default(USER)
-  phone        String?
-  addresses    Json      @default("[]")
-  is2FAEnabled Boolean   @default(false) @map("two_factor_enabled")
-  twoFASecret  String?   @map("two_factor_secret")
-  backupCodes  Json      @default("[]") @map("backup_codes")
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @updatedAt @map("updated_at")
-  lastLogin    DateTime? @map("last_login")
+  id                   String    @id @default(cuid()) @map("id")
+  name                 String
+  email                String    @unique
+  password             String?
+  googleId             String?   @unique @map("google_id")
+  avatar               String?
+  role                 Role      @default(USER)
+  phone                String?
+  addresses            Json      @default("[]")
+  is2FAEnabled         Boolean   @default(false) @map("two_factor_enabled")
+  twoFASecret          String?   @map("two_factor_secret")
+  backupCodes          Json      @default("[]") @map("backup_codes")
+  resetPasswordToken   String?   @map("reset_password_token")
+  resetPasswordExpires DateTime? @map("reset_password_expires")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+  lastLogin            DateTime? @map("last_login")
 
   cart         Cart?
   orders       Order[]
