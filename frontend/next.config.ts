@@ -8,10 +8,6 @@ const withPWA = withPWAInit({
 
 const nextConfig: NextConfig = {
   images: {
-    domains: [
-      'suddheats-freelance-project-production-b773.up.railway.app',
-      'res.cloudinary.com'
-    ],
     remotePatterns: [
       { protocol: 'https', hostname: '**' },
       { protocol: 'http', hostname: '**' },
